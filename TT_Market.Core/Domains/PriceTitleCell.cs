@@ -14,6 +14,8 @@ namespace TT_Market.Core.Domains
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public int OrderNumber { get; set; }
+        public int RowSpan { get; set; }
+        public int ColumnSpan { get; set; }
         public string ColumnName { get; set; }
         public virtual ICollection<PriceList> PriceLists { get; set; }
         public virtual WorkSheet WorkSheet { get; set; }
