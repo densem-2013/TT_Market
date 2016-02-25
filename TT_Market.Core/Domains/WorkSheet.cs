@@ -15,5 +15,7 @@ namespace TT_Market.Core.Domains
         public int Id { get; set; }
         public string Title { get; set; }
         public virtual PriceList PriceList { get; set; }
+        public virtual ICollection<PriceTitleCell> PriceColumns { get; set; }
+        public virtual ICollection<CellValue> ColumnValues { get; set; }
     }
 }

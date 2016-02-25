@@ -26,11 +26,40 @@ namespace TT_Market.Web.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         OrderNumber = c.Int(nullable: false),
+                        RowSpan = c.Int(nullable: false),
+                        ColSpan = c.Int(nullable: false),
                         ColumnName = c.String(),
                         WorkSheet_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.WorkSheets", t => t.WorkSheet_Id)
+                .Index(t => t.WorkSheet_Id);
+            
+            CreateTable(
+                "dbo.WorkSheets",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        PriceList_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.PriceLists", t => t.PriceList_Id)
+                .Index(t => t.PriceList_Id);
+            
+            CreateTable(
+                "dbo.CellValues",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Value = c.String(),
+                        PriceTitleCell_Id = c.Int(),
+                        WorkSheet_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.PriceTitleCells", t => t.PriceTitleCell_Id)
+                .ForeignKey("dbo.WorkSheets", t => t.WorkSheet_Id)
+                .Index(t => t.PriceTitleCell_Id)
                 .Index(t => t.WorkSheet_Id);
             
             CreateTable(
@@ -52,21 +81,6 @@ namespace TT_Market.Web.Migrations
                 .Index(t => t.PriceLanguage_Id)
                 .Index(t => t.Provider_Id)
                 .Index(t => t.ReadSetting_Id);
-            
-            CreateTable(
-                "dbo.CellValues",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Value = c.String(),
-                        PriceList_Id = c.Int(),
-                        PriceTitleCell_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.PriceLists", t => t.PriceList_Id)
-                .ForeignKey("dbo.PriceTitleCells", t => t.PriceTitleCell_Id)
-                .Index(t => t.PriceList_Id)
-                .Index(t => t.PriceTitleCell_Id);
             
             CreateTable(
                 "dbo.PriceLanguages",
@@ -103,18 +117,6 @@ namespace TT_Market.Web.Migrations
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.Providers", t => t.Provider_Id)
                 .Index(t => t.Provider_Id);
-            
-            CreateTable(
-                "dbo.WorkSheets",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        PriceList_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.PriceLists", t => t.PriceList_Id)
-                .Index(t => t.PriceList_Id);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -175,19 +177,6 @@ namespace TT_Market.Web.Migrations
                 .Index(t => t.RoleId)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.PriceListPriceTitleCells",
-                c => new
-                    {
-                        PriceList_Id = c.Int(nullable: false),
-                        PriceTitleCell_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.PriceList_Id, t.PriceTitleCell_Id })
-                .ForeignKey("dbo.PriceLists", t => t.PriceList_Id, cascadeDelete: true)
-                .ForeignKey("dbo.PriceTitleCells", t => t.PriceTitleCell_Id, cascadeDelete: true)
-                .Index(t => t.PriceList_Id)
-                .Index(t => t.PriceTitleCell_Id);
-            
         }
         
         public override void Down()
@@ -196,44 +185,39 @@ namespace TT_Market.Web.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.PriceTitleCells", "WorkSheet_Id", "dbo.WorkSheets");
             DropForeignKey("dbo.WorkSheets", "PriceList_Id", "dbo.PriceLists");
             DropForeignKey("dbo.ReadSettings", "Provider_Id", "dbo.Providers");
             DropForeignKey("dbo.PriceLists", "ReadSetting_Id", "dbo.ReadSettings");
             DropForeignKey("dbo.PriceLists", "Provider_Id", "dbo.Providers");
             DropForeignKey("dbo.PriceLists", "PriceLanguage_Id", "dbo.PriceLanguages");
-            DropForeignKey("dbo.PriceListPriceTitleCells", "PriceTitleCell_Id", "dbo.PriceTitleCells");
-            DropForeignKey("dbo.PriceListPriceTitleCells", "PriceList_Id", "dbo.PriceLists");
+            DropForeignKey("dbo.PriceTitleCells", "WorkSheet_Id", "dbo.WorkSheets");
+            DropForeignKey("dbo.CellValues", "WorkSheet_Id", "dbo.WorkSheets");
             DropForeignKey("dbo.CellValues", "PriceTitleCell_Id", "dbo.PriceTitleCells");
-            DropForeignKey("dbo.CellValues", "PriceList_Id", "dbo.PriceLists");
             DropForeignKey("dbo.ChildCellColumnNames", "Parent_Id", "dbo.PriceTitleCells");
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.PriceTitleCells", new[] { "WorkSheet_Id" });
             DropIndex("dbo.WorkSheets", new[] { "PriceList_Id" });
             DropIndex("dbo.ReadSettings", new[] { "Provider_Id" });
             DropIndex("dbo.PriceLists", new[] { "ReadSetting_Id" });
             DropIndex("dbo.PriceLists", new[] { "Provider_Id" });
             DropIndex("dbo.PriceLists", new[] { "PriceLanguage_Id" });
-            DropIndex("dbo.PriceListPriceTitleCells", new[] { "PriceTitleCell_Id" });
-            DropIndex("dbo.PriceListPriceTitleCells", new[] { "PriceList_Id" });
+            DropIndex("dbo.PriceTitleCells", new[] { "WorkSheet_Id" });
+            DropIndex("dbo.CellValues", new[] { "WorkSheet_Id" });
             DropIndex("dbo.CellValues", new[] { "PriceTitleCell_Id" });
-            DropIndex("dbo.CellValues", new[] { "PriceList_Id" });
             DropIndex("dbo.ChildCellColumnNames", new[] { "Parent_Id" });
-            DropTable("dbo.PriceListPriceTitleCells");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.WorkSheets");
             DropTable("dbo.ReadSettings");
             DropTable("dbo.Providers");
             DropTable("dbo.PriceLanguages");
-            DropTable("dbo.CellValues");
             DropTable("dbo.PriceLists");
+            DropTable("dbo.CellValues");
+            DropTable("dbo.WorkSheets");
             DropTable("dbo.PriceTitleCells");
             DropTable("dbo.ChildCellColumnNames");
         }

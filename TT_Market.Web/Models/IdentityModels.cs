@@ -15,6 +15,11 @@ namespace TT_Market.Web.Models
             : base("DefaultConnection")
         {
         }
+        static ApplicationDbContext()
+        {
+            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+        }
+
         public virtual DbSet<ReadSetting> ReadSettinges { get; set; }
         public virtual DbSet<PriceTitleCell> PriceColumns { get; set; }
         public virtual DbSet<PriceLanguage> PriceLanguages { get; set; }

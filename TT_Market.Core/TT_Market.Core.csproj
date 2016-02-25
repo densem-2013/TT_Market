@@ -84,8 +84,6 @@
     <Compile Include="Domains\Provider.cs" />
     <Compile Include="Domains\ReadSetting.cs" />
     <Compile Include="Domains\WorkSheet.cs" />
-    <Compile Include="HelpClasses\ExcelDataXLSX.cs" />
-    <Compile Include="HelpClasses\FileImport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

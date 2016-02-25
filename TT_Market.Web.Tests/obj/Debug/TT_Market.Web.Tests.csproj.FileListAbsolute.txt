@@ -59,3 +59,8 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.O
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.csprojResolveAssemblyReference.cache
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.pdb
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OOXML.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXmlFormats.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXml4Net.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OOXML.xml
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXml4Net.xml

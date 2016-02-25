@@ -15,6 +15,6 @@ namespace TT_Market.Core.Domains
         public int Id { get; set; }
         public string Value { get; set; }
         public virtual PriceTitleCell PriceTitleCell { get; set; }
-        public virtual PriceList PriceList { get; set; }
+        public virtual WorkSheet WorkSheet { get; set; }
     }
 }

@@ -18,8 +18,6 @@ namespace TT_Market.Core.Domains
         public string FileName { get; set; }
         public virtual Provider Provider { get; set; }
         public virtual PriceLanguage PriceLanguage { get; set; }
-        public virtual ICollection<PriceTitleCell> PriceColumns { get; set; }
-        public virtual ICollection<CellValue> ColumnValues { get; set; }
         public virtual ReadSetting ReadSetting { get; set; }
         public virtual ICollection<WorkSheet> WorkSheets { get; set; } 
     }

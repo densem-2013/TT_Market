@@ -68,3 +68,8 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\Excel.pdb
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csprojResolveAssemblyReference.cache
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OOXML.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXmlFormats.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OOXML.xml
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.xml

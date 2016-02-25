@@ -11,8 +11,9 @@ using NPOI.SS.Util;
 using NPOI.XSSF.UserModel;
 using OfficeOpenXml;
 using TT_Market.Core.Domains;
+using TT_Market.Web.Models;
 
-namespace TT_Market.Core.HelpClasses
+namespace TT_Market.Web.HelpClasses
 {
     public class ExcelDataXLSX
     {
@@ -24,6 +25,8 @@ namespace TT_Market.Core.HelpClasses
 
         private readonly string xmlsearchwords = AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web", "") +
                                                  @"TT_Market.Core\DBinitial\SearchWords.xml";
+
+        private readonly ApplicationDbContext _db = new ApplicationDbContext();
 
         public ExcelDataXLSX(string path)
         {
@@ -51,15 +54,23 @@ namespace TT_Market.Core.HelpClasses
                         rowSpan = cellRangeAddress.LastRow - cellRangeAddress.FirstRow;
 
                     }
-                    bool emptycell = (cellRangeAddress.FirstRow < cell.RowIndex &&
-                                      cellRangeAddress.LastRow >= cell.RowIndex) ||
-                                     (cellRangeAddress.FirstColumn < cell.ColumnIndex &&
-                                      cellRangeAddress.LastColumn >= cell.ColumnIndex)
+                    bool emptyXcell = (cellRangeAddress.FirstRow < cell.RowIndex &&
+                                       cellRangeAddress.LastRow >= cell.RowIndex)
                         ? true
                         : false;
-                    if (emptycell)
+                    bool emptyYcell = (cellRangeAddress.FirstColumn < cell.ColumnIndex &&
+                                       cellRangeAddress.LastColumn >= cell.ColumnIndex)
+                        ? true
+                        : false;
+
+                    if (emptyXcell)
                     {
-                        return null;
+                        colSpan = 0;
+                    }
+
+                    if (emptyYcell)
+                    {
+                        rowSpan = 0;
                     }
                 }
             }
@@ -110,17 +121,18 @@ namespace TT_Market.Core.HelpClasses
                     wsNode.Attributes.Append(nameAttr);
                     wss_node.AppendChild(wsNode);
 
-                    int? titlerow = GetTitleRow(sheet, dataFormatter, wordcollection);
+                    //int? titlerow = GetTitleRow(sheet, dataFormatter, wordcollection);
 
-                    if (titlerow != null)
-                    {
-                        int i = 0;
-                        while (sheet.GetRow(i) != null)
-                        {
+                    //if (titlerow != null)
+                    //{
+                    //    int i = 0;
+                    //    I
+                    //    while (dataFormatter.FormatCellValue(sheet.GetRow((int)titlerow).GetCell(i)) != String.Empty)
+                    //    {
 
-                            i++;
-                        }
-                    }
+                    //        i++;
+                    //    }
+                    //}
 
                     //            // ... Cell by cell...
                     //            ExcelRangeBase curcell = workSheet.Cells[row, col];
@@ -173,8 +185,16 @@ namespace TT_Market.Core.HelpClasses
             }
         }
 
-        public int? GetTitleRow(XSSFSheet sh, DataFormatter dataFormatter, List<string> wordcollection)
+        public IEnumerable<PriceTitleCell> GetTitleCells(XSSFSheet sh, DataFormatter dataFormatter)
         {
+            List<string> wordcollection = _db.PriceColumns.Select(c => c.ColumnName).ToList();
+
+            List<PriceTitleCell> tcels=new List<PriceTitleCell>();
+
+            WorkSheet ws = new WorkSheet
+            {
+                Title = sh.SheetName
+            };
             for (int row = 0; row <= 15; row++)
             {
                 // Row by row...
@@ -183,14 +203,84 @@ namespace TT_Market.Core.HelpClasses
                     ICell cell = sh.GetRow(row).GetCell(col);
 
                     string value = dataFormatter.FormatCellValue(cell);
+
+                    // Max Value RowSpan in TitleCells for determine the need to take the next row for analize
+
+                    int maxRowSpan = 1;
+
                     if (wordcollection.Contains(value))
                     {
-                        return row;
+                        for (int i = 0; i < sh.GetRow(row).LastCellNum; i++)
+                        {
+                            ICell titlecell = sh.GetRow(row).GetCell(i);
+                            string titleCellValue = dataFormatter.FormatCellValue(titlecell);
+
+                            if (!String.Equals(titleCellValue, String.Empty))
+                            {
+                                int[] mergAttribs = GetCellMergedAttributes(sh, titlecell);
+
+                                maxRowSpan = mergAttribs[1] <= maxRowSpan ? maxRowSpan : mergAttribs[1];
+
+                                PriceTitleCell titleCell;
+                                if (!wordcollection.Contains(value))
+                                {
+                                    titleCell = new PriceTitleCell
+                                    {
+                                        OrderNumber = i,
+                                        ColSpan = mergAttribs[1],
+                                        RowSpan = mergAttribs[0],
+                                        WorkSheet = ws
+                                    };
+                                }
+                                else
+                                {
+                                    titleCell = _db.PriceColumns.First(tc => String.Equals(tc.ColumnName, value));
+                                }
+                            }
+                            else
+                            {
+                                //TitleCells ended
+                                    break;
+                            }
+                        }
+                        //return row;
                     }
                 }
 
             }
             return null;
+        }
+
+        public void StartDownLoad(string filename)
+        {
+            byte[] file = File.ReadAllBytes(filename);
+            MemoryStream ms = new MemoryStream(file);
+            XSSFWorkbook wb = new XSSFWorkbook(ms);
+
+            PriceList Price = new PriceList
+            {
+                DownLoadDate = DateTime.UtcNow,
+                FileName = filename,
+                Provider = GetProvider(),
+                ReadSetting = GetReadSetting(),
+                WorkSheets = GetWorkSheets().ToList()
+            };
+
+        }
+
+        public IEnumerable<WorkSheet> GetWorkSheets()
+        {
+            return null;
+        }
+
+        public Provider GetProvider()
+        {
+            return new Provider();
+        }
+
+        public ReadSetting GetReadSetting()
+        {
+            return new ReadSetting();
         }
     }
 }
