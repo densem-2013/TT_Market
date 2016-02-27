@@ -26,5 +26,10 @@ namespace TT_Market.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Upload()
+        {
+            return View();
+        }
     }
 }

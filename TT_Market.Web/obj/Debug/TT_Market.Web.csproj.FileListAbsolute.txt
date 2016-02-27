@@ -73,3 +73,5 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXmlFormats.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OOXML.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.xml
+E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
+E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache

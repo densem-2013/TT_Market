@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="Domains\CellValue.cs" />
     <Compile Include="Domains\ChildCellColumnName.cs" />
+    <Compile Include="Domains\MPT.cs" />
     <Compile Include="Domains\PriceLanguage.cs" />
     <Compile Include="Domains\PriceList.cs" />
     <Compile Include="Domains\PriceTitleCell.cs" />
