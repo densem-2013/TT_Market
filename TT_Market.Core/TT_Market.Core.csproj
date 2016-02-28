@@ -76,20 +76,39 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domains\CellValue.cs" />
-    <Compile Include="Domains\ChildCellColumnName.cs" />
+    <Compile Include="Domains\AutoType.cs" />
+    <Compile Include="Domains\ConvSign.cs" />
+    <Compile Include="Domains\Country.cs" />
+    <Compile Include="Domains\Currency.cs" />
+    <Compile Include="Domains\Diameter.cs" />
+    <Compile Include="Domains\Height.cs" />
+    <Compile Include="Domains\HomolAttribute.cs" />
+    <Compile Include="Domains\Model.cs" />
     <Compile Include="Domains\MPT.cs" />
+    <Compile Include="Domains\PressIndex.cs" />
     <Compile Include="Domains\PriceLanguage.cs" />
     <Compile Include="Domains\PriceList.cs" />
-    <Compile Include="Domains\PriceTitleCell.cs" />
-    <Compile Include="Domains\Provider.cs" />
-    <Compile Include="Domains\ReadSetting.cs" />
-    <Compile Include="Domains\WorkSheet.cs" />
+    <Compile Include="Domains\Brand.cs" />
+    <Compile Include="Domains\Agent.cs" />
+    <Compile Include="Domains\Season.cs" />
+    <Compile Include="Domains\SpeedIndex.cs" />
+    <Compile Include="Domains\StockCity.cs" />
+    <Compile Include="Domains\Width.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DBInitial\ReadSettings.xml" />
-    <Content Include="DBInitial\SearchWords.xml" />
+    <Content Include="DBInitial\ReadAutoTypesInitial.xml" />
+    <Content Include="DBInitial\ReadBrandsInitial.xml" />
+    <Content Include="DBInitial\ReadCountrysInitial.xml" />
+    <Content Include="DBInitial\ReadCurrencysInitial.xml" />
+    <Content Include="DBInitial\ReadDiametersInitial.xml" />
+    <Content Include="DBInitial\ReadHeightsInitial.xml" />
+    <Content Include="DBInitial\ReadPriceSettingsInitial.xml" />
+    <Content Include="DBInitial\ReadAgentsInitial.xml" />
+    <Content Include="DBInitial\ReadLanguagesInitial.xml" />
+    <Content Include="DBInitial\ReadSeasonsInitial.xml" />
+    <Content Include="DBInitial\ReadSpeedIndexsInitial.xml" />
+    <Content Include="DBInitial\ReadWidthsInitial.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

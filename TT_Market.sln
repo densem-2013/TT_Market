@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TT_Market.Web.Tests", "TT_M
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TT_Market.Core", "TT_Market.Core\TT_Market.Core.csproj", "{EA8B190C-C3BB-414B-83E6-73A3F79ADF19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreateInitialXML", "CreateInitialXML\CreateInitialXML.csproj", "{6A33F3EA-F31C-47AF-BE2E-176509B45468}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{EA8B190C-C3BB-414B-83E6-73A3F79ADF19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA8B190C-C3BB-414B-83E6-73A3F79ADF19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA8B190C-C3BB-414B-83E6-73A3F79ADF19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A33F3EA-F31C-47AF-BE2E-176509B45468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A33F3EA-F31C-47AF-BE2E-176509B45468}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A33F3EA-F31C-47AF-BE2E-176509B45468}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A33F3EA-F31C-47AF-BE2E-176509B45468}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

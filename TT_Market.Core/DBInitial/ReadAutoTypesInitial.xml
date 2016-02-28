@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<AutoTypes>
+  <AutoType>Легковой</AutoType>
+  <AutoType>Грузовой</AutoType>
+  <AutoType>Легкогрузовой</AutoType>
+  <AutoType>Внедорожник</AutoType>
+  <AutoType>Мотоцикл</AutoType>
+  <AutoType>Спецтехника</AutoType>
+</AutoTypes>

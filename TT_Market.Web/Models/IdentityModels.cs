@@ -17,16 +17,26 @@ namespace TT_Market.Web.Models
         }
         static ApplicationDbContext()
         {
-            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
+            Database.SetInitializer(new ApplicationDbInitializer());
         }
 
-        public virtual DbSet<ReadSetting> ReadSettinges { get; set; }
-        public virtual DbSet<PriceTitleCell> PriceColumns { get; set; }
+        public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<PriceLanguage> PriceLanguages { get; set; }
         public virtual DbSet<PriceList> PriceLists { get; set; }
-        public virtual DbSet<Provider> Providers { get; set; }
-        public virtual DbSet<CellValue> ColumnValues { get; set; }
-        public virtual DbSet<ChildCellColumnName> ChildColumnNames { get; set; }
-        public virtual DbSet<WorkSheet> WorkSheets { get; set; }
+        public virtual DbSet<Agent> Agents { get; set; }
+        public virtual DbSet<AutoType> AutoTypes { get; set; } 
+        public virtual DbSet<ConvSign> ConvSigns { get; set; }
+        public virtual DbSet<Country> Countrys { get; set; }
+        public virtual DbSet<Currency> Currencys { get; set; }
+        public virtual DbSet<Diameter> Diameters { get; set; }
+        public virtual DbSet<Height> Heights { get; set; }
+        public virtual DbSet<HomolAttribute> Homols { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<MPT> Mpts { get; set; }
+        public virtual DbSet<PressIndex> PressIndixs { get; set; }
+        public virtual DbSet<Season> Seasons { get; set; }
+        public virtual DbSet<SpeedIndex> SpeedIndexs { get; set; }
+        public virtual DbSet<StockCity> Citys { get; set; }
+        public virtual DbSet<Width> Widths { get; set; }
     }
 }

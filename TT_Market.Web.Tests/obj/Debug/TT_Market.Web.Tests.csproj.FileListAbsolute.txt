@@ -18,6 +18,8 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Owin.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Web.Http.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EPPlus.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Excel.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\TT_Market.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.dll
@@ -25,11 +27,8 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.AspNet.Identity
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Web.Http.WebHost.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Net.Http.Formatting.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EPPlus.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Excel.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\ICSharpCode.SharpZipLib.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\TT_Market.Web.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EntityFramework.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EntityFramework.SqlServer.xml
@@ -45,6 +44,8 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Web.Optimization.x
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Web.Http.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.xml
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EPPlus.xml
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Excel.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\TT_Market.Core.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.xml
@@ -52,15 +53,7 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.AspNet.Identity
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Web.Http.WebHost.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\System.Net.Http.Formatting.xml
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\EPPlus.xml
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Excel.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.csprojResolveAssemblyReference.cache
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.pdb
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OOXML.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXmlFormats.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXml4Net.dll
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OOXML.xml
-E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.OpenXml4Net.xml

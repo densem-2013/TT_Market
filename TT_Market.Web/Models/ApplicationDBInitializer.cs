@@ -4,24 +4,207 @@ using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
+using System.Xml;
+using System.Xml.Linq;
 using TT_Market.Core.Domains;
 
 namespace TT_Market.Web.Models
 {
-    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
     {
+        private static readonly string _path =
+            AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web\bin", "") +
+            @"TT_Market.Core\DBinitial\Read";
         protected override void Seed(ApplicationDbContext context)
         {
             InitializeIdentityForEF(context);
             base.Seed(context);
         }
 
+        static  Func<string, double> parseDouble = str =>
+        {
+            double num = Double.Parse(str);
+            return num;
+        };
         public static void InitializeIdentityForEF(ApplicationDbContext context)
         {
-            context.PriceColumns.AddOrUpdate(p => p.ColumnName,
-                new PriceTitleCell { OrderNumber = 0,ColumnName = "Описание", ColSpan = 1, RowSpan = 2 },
-                new PriceTitleCell { OrderNumber = 9, ColumnName = "Спеццена грн", ColSpan = 1, RowSpan = 2 }
-                );
+            LoadAgentsFromXml(context);
+            LoadAutoTypesFromXml(context);
+            LoadBrandsFromXml(context);
+            LoadCountryFromXml(context);
+            LoadCurrencyFromXml(context);
+            LoadDiametersFromXml(context);
+            LoadHeightsFromXml(context);
+            LoadLanguagesFromXml(context);
+            LoadSeasonsFromXml(context);
+            LoadWidthsFromXml(context);
+            LoadSpeedIndexesFromXml(context);
+            LoadPricesReadSettingsFromXml(context);
+        }
+
+        public static void LoadAgentsFromXml( ApplicationDbContext context)
+        {
+            string path = _path + "AgentsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Agent");
+            Agent[] agents = collection.ToList().Select(a => new Agent
+            {
+                AgentTitle = a.Element("Title").Value,
+                City = a.Element("City").Value,
+                Phone = a.Element("Phone").Value,
+                Email = a.Element("Email").Value
+            }).ToArray();
+                context.Agents.AddOrUpdate(a => a.AgentTitle,agents);
+
+        }
+        public static void LoadAutoTypesFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "AutoTypesInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("AutoType");
+            AutoType[] autotypes = collection.ToList().Select(a => new AutoType
+            {
+                TypeValue = a.Value
+            }).ToArray();
+            context.AutoTypes.AddOrUpdate(at => at.TypeValue, autotypes);
+        }
+        public static void LoadBrandsFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "BrandsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Brand");
+            Brand[] autotypes = collection.ToList().Select(a => new Brand
+            {
+                BrandTitle = a.Value
+            }).ToArray();
+            context.Brands.AddOrUpdate(br => br.BrandTitle, autotypes);
+        }
+        public static void LoadCountryFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "CountrysInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Country");
+            Country[] countries = collection.ToList().Select(a => new Country
+            {
+                CountryTitle = a.Value
+            }).ToArray();
+            context.Countrys.AddOrUpdate(c => c.CountryTitle, countries);
+        }
+        public static void LoadCurrencyFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "CurrencysInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Currency");
+            Currency[] currencies = collection.ToList().Select(a => new Currency
+            {
+                CurrencyTitle = a.Value
+            }).ToArray();
+            context.Currencys.AddOrUpdate(c => c.CurrencyTitle, currencies);
+        }
+        public static void LoadDiametersFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "DiametersInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Diameter");
+            Diameter[] currencies = collection.ToList().Select(a => new Diameter
+            {
+                DSize = a.Value
+            }).ToArray();
+            context.Diameters.AddOrUpdate(d => d.DSize, currencies);
+        }
+        public static void LoadHeightsFromXml(ApplicationDbContext context)
+        {
+
+            string path = _path + "HeightsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Height");
+            Height[] heights = collection.ToList().Select(a => new Height
+            {
+                Value = parseDouble(a.Value)
+            }).ToArray();
+            context.Heights.AddOrUpdate(d => d.Value, heights);
+        }
+        public static void LoadLanguagesFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "LanguagesInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Language");
+            PriceLanguage[] priceLanguages = collection.ToList().Select(a => new PriceLanguage
+            {
+                LanguageName = a.Value
+            }).ToArray();
+            context.PriceLanguages.AddOrUpdate(d => d.LanguageName, priceLanguages);
+        }
+        public static void LoadSeasonsFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "SeasonsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Season");
+            Season[] seasons = collection.ToList().Select(a => new Season
+            {
+                SeasonTitle = a.Value
+            }).ToArray();
+            context.Seasons.AddOrUpdate(d => d.SeasonTitle, seasons);
+        }
+        public static void LoadWidthsFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "WidthsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("Width");
+            Width[] widths = collection.ToList().Select(a => new Width
+            {
+                Value = parseDouble(a.Value)
+            }).ToArray();
+            context.Widths.AddOrUpdate(d => d.Value, widths);
+        }
+        public static void LoadSpeedIndexesFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "SpeedIndexsInitial.xml";
+            var xml = XDocument.Load(path);
+            var collection = xml.Root.Descendants("SpeedIndex");
+            SpeedIndex[] spindexes = collection.ToList().Select(a => new SpeedIndex
+            {
+                Value = a.Value
+            }).ToArray();
+            context.SpeedIndexs.AddOrUpdate(d => d.Value, spindexes);
+        }
+        public static void LoadPricesReadSettingsFromXml(ApplicationDbContext context)
+        {
+            string path = _path + "PriceSettingsInitial.xml";
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceList");
+            List<PriceList> lists = new List<PriceList>();
+            foreach (XmlNode price in priceLists)
+            {
+                DateTime dt = DateTime.Parse(price.SelectSingleNode("InsertDate").InnerText);
+                string fn = price.SelectSingleNode("FileName").InnerText;
+                try
+                {
+                    List<PriceLanguage> plangs = context.PriceLanguages.ToList();
+                    PriceLanguage plg = plangs.FirstOrDefault(
+                            pl => string.Equals(pl.LanguageName, price.SelectSingleNode("PriceLanguage").InnerText));
+                    Agent aq = context.Agents.ToList()
+                        .FirstOrDefault(a => string.Equals(a.AgentTitle, price.SelectSingleNode("Agent").InnerText));
+                    string trmask = Newtonsoft.Json.JsonConvert.SerializeXmlNode(price.SelectSingleNode("ReadSettings"));
+                    PriceList pricelist = new PriceList
+                    {
+                        InsertDate = dt,
+                        DownLoadDate = DateTime.UtcNow,
+                        FileName = fn,
+                        PriceLanguage = plg,
+                        Agent = aq,
+                        TransformMask = trmask
+                    };
+                    lists.Add(pricelist);
+                }
+                catch (Exception ex)
+                {
+
+                    throw new Exception(ex.Message);
+                }
+            }
+            context.PriceLists.AddOrUpdate(d => d.FileName, lists.ToArray());
         }
     }
 }

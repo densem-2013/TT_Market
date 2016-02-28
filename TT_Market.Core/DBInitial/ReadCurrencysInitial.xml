@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Currencies>
+  <Currency>EU</Currency>
+  <Currency>RUR</Currency>
+  <Currency>UAH</Currency>
+  <Currency>$</Currency>
+  <Currency>PLN</Currency>
+</Currencies>

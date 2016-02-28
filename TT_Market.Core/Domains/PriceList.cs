@@ -16,9 +16,9 @@ namespace TT_Market.Core.Domains
         public DateTime DownLoadDate { get; set; }
         public DateTime InsertDate { get; set; }
         public string FileName { get; set; }
-        public virtual Provider Provider { get; set; }
+        public string TransformMask { get; set; }
+        public virtual Agent Agent { get; set; }
         public virtual PriceLanguage PriceLanguage { get; set; }
-        public virtual ReadSetting ReadSetting { get; set; }
-        public virtual ICollection<WorkSheet> WorkSheets { get; set; } 
+        public virtual ICollection<MPT> Mpts { get; set; } 
     }
 }

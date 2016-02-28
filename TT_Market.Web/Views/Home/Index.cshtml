@@ -1,5 +1,5 @@
 ﻿<div class="jumbotron">
-    @using (Html.BeginForm("Upload", "Home", FormMethod.Post,
+    @using (Html.BeginForm("Upload", "Upload", FormMethod.Post,
              new {enctype = "multipart/form-data"}))
          {
              @Html.AntiForgeryToken()

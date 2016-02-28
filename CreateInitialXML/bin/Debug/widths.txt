@@ -1,0 +1,470 @@
+<option value="w2-50">2.50
+    </option>
+    
+    
+    
+    <option value="w2-75">2.75
+    </option>
+    
+    
+    
+    
+    
+    
+    
+    <option value="w3-25">3.25
+    </option>
+    
+    
+    
+    <option value="w3-50">3.50
+    </option>
+    
+    
+    
+    
+    
+    <option value="w4-50">4.50
+    </option>
+    
+    
+    
+    <option value="w5-00">5.00
+    </option>
+    
+    
+    
+    <option value="w5-50">5.50
+    </option>
+    
+    
+    
+    <option value="w6-45">6.45
+    </option>
+    
+    
+    
+    <option value="w6-50">6.50
+    </option>
+    
+    
+    
+    <option value="w7-00">7.00
+    </option>
+    
+    
+    
+    <option value="w7-50">7.50
+    </option>
+    
+    
+    
+    <option value="w7-5">7.5
+    </option>
+    
+    
+    
+    <option value="w8-25">8.25
+    </option>
+    
+    
+    
+    <option value="w8-30">8.30
+    </option>
+    
+    
+    
+    <option value="w8-40">8.40
+    </option>
+    
+    
+    
+    <option value="w8-50">8.50
+    </option>
+    
+    
+    
+    <option value="w9-00">9.00
+    </option>
+    
+    
+    
+    <option value="w9">9
+    </option>
+    
+    
+    
+    <option value="w9-50">9.50
+    </option>
+    
+    
+    
+    <option value="w9-5">9.5
+    </option>
+    
+    
+    
+    <option value="w10-00">10.00
+    </option>
+    
+    
+    
+    <option value="w10-50">10.50
+    </option>
+    
+    
+    
+    <option value="w11-00">11.00
+    </option>
+    
+    
+    
+    <option value="w11-20">11.20
+    </option>
+    
+    
+    
+    <option value="w12-00">12.00
+    </option>
+    
+    
+    
+    <option value="w12">12
+    </option>
+    
+    
+    
+    <option value="w13-00">13.00
+    </option>
+    
+    
+    
+    <option value="w13-60">13.60
+    </option>
+    
+    
+    
+    <option value="w14-00">14.00
+    </option>
+    
+    
+    
+    <option value="w15-50">15.50
+    </option>
+    
+    
+    
+    <option value="w16-90">16.90
+    </option>
+    
+    
+    
+    <option value="w18-00">18.00
+    </option>
+    
+    
+    
+    <option value="w18-40">18.40
+    </option>
+    
+    
+    
+    <option value="w21-00">21.00
+    </option>
+    
+    
+    
+    <option value="w21-30">21.30
+    </option>
+    
+    
+    
+    <option value="w28-10">28.10
+    </option>
+    
+    
+    
+    <option value="w30">30
+    </option>
+    
+    
+    
+    <option value="w30-50">30.50
+    </option>
+    
+    
+    
+    <option value="w31">31
+    </option>
+    
+    
+    
+    <option value="w32">32
+    </option>
+    
+    
+    
+    <option value="w33">33
+    </option>
+    
+    
+    
+    <option value="w35">35
+    </option>
+    
+    
+    
+    <option value="w37">37
+    </option>
+    
+    
+    
+    <option value="w60">60
+    </option>
+    
+    
+    
+    <option value="w70">70
+    </option>
+    
+    
+    
+    <option value="w80">80
+    </option>
+    
+    
+    
+    <option value="w90">90
+    </option>
+    
+    
+    
+    <option value="w100">100
+    </option>
+    
+    
+    
+    <option value="w110">110
+    </option>
+    
+    
+    
+    <option value="w120">120
+    </option>
+    
+    
+    
+    <option value="w130">130
+    </option>
+    
+    
+    
+    <option value="w135">135
+    </option>
+    
+    
+    
+    <option value="w140">140
+    </option>
+    
+    
+    
+    <option value="w145">145
+    </option>
+    
+    
+    
+    <option value="w150">150
+    </option>
+    
+    
+    
+    <option value="w155">155
+    </option>
+    
+    
+    
+    <option value="w160">160
+    </option>
+    
+    
+    
+    <option value="w165">165
+    </option>
+    
+    
+    
+    <option value="w170">170
+    </option>
+    
+    
+    
+    <option value="w175">175
+    </option>
+    
+    
+    
+    <option value="w180">180
+    </option>
+    
+    
+    
+    <option value="w185">185
+    </option>
+    
+    
+    
+    <option value="w190">190
+    </option>
+    
+    
+    
+    <option value="w195">195
+    </option>
+    
+    
+    
+    <option value="w200">200
+    </option>
+    
+    
+    
+    <option value="w205">205
+    </option>
+    
+    
+    
+    <option value="w210">210
+    </option>
+    
+    
+    
+    <option value="w215">215
+    </option>
+    
+    
+    
+    <option value="w225">225
+    </option>
+    
+    
+    
+    <option value="w235">235
+    </option>
+    
+    
+    
+    <option value="w240">240
+    </option>
+    
+    
+    
+    <option value="w245">245
+    </option>
+    
+    
+    
+    <option value="w255">255
+    </option>
+    
+    
+    
+    <option value="w265">265
+    </option>
+    
+    
+    
+    <option value="w275">275
+    </option>
+    
+    
+    
+    <option value="w285">285
+    </option>
+    
+    
+    
+    <option value="w295">295
+    </option>
+    
+    
+    
+    <option value="w305">305
+    </option>
+    
+    
+    
+    <option value="w315">315
+    </option>
+    
+    
+    
+    <option value="w325">325
+    </option>
+    
+    
+    
+    <option value="w335">335
+    </option>
+    
+    
+    
+    <option value="w345">345
+    </option>
+    
+    
+    
+    <option value="w355">355
+    </option>
+    
+    
+    
+    <option value="w365">365
+    </option>
+    
+    
+    
+    <option value="w385">385
+    </option>
+    
+    
+    
+    
+    
+    <option value="w425">425
+    </option>
+    
+    
+    
+    <option value="w435">435
+    </option>
+    
+    
+    
+    <option value="w445">445
+    </option>
+    
+    
+    
+    <option value="w540">540
+    </option>
+    
+    
+    
+    <option value="w600">600
+    </option>
+    
+    
+    
+    <option value="w650">650
+    </option>
+    
+    
+    
+    <option value="w710">710
+    </option>
+    
+    
+    
+    <option value="w800">800
+    </option>

@@ -116,7 +116,7 @@ namespace TT_Market.Web.HelpClasses
                     XSSFSheet sheet = (XSSFSheet) wb.GetSheetAt(n);
 
                     XmlElement wsNode = xmlDoc.CreateElement("WorkSheet");
-                    XmlAttribute nameAttr = xmlDoc.CreateAttribute("Name");
+                    XmlAttribute nameAttr = xmlDoc.CreateAttribute("Agent_Title");
                     nameAttr.Value = sheet.SheetName;
                     wsNode.Attributes.Append(nameAttr);
                     wss_node.AppendChild(wsNode);
@@ -185,11 +185,11 @@ namespace TT_Market.Web.HelpClasses
             }
         }
 
-        public IEnumerable<PriceTitleCell> GetTitleCells(XSSFSheet sh, DataFormatter dataFormatter)
+        public IEnumerable<Brand> GetTitleCells(XSSFSheet sh, DataFormatter dataFormatter)
         {
-            List<string> wordcollection = _db.PriceColumns.Select(c => c.ColumnName).ToList();
+            //List<string> wordcollection = _db.PriceColumns.Select(c => c.Country).ToList();
 
-            List<PriceTitleCell> tcels=new List<PriceTitleCell>();
+            List<Brand> tcels=new List<Brand>();
 
             WorkSheet ws = new WorkSheet
             {
@@ -221,20 +221,17 @@ namespace TT_Market.Web.HelpClasses
 
                                 maxRowSpan = mergAttribs[1] <= maxRowSpan ? maxRowSpan : mergAttribs[1];
 
-                                PriceTitleCell titleCell;
+                                Brand titleCell;
                                 if (!wordcollection.Contains(value))
                                 {
-                                    titleCell = new PriceTitleCell
+                                    titleCell = new Brand
                                     {
-                                        OrderNumber = i,
-                                        ColSpan = mergAttribs[1],
-                                        RowSpan = mergAttribs[0],
                                         WorkSheet = ws
                                     };
                                 }
                                 else
                                 {
-                                    titleCell = _db.PriceColumns.First(tc => String.Equals(tc.ColumnName, value));
+                                    titleCell = _db.PriceColumns.First(tc => String.Equals(tc.Country, value));
                                 }
                             }
                             else
@@ -261,7 +258,7 @@ namespace TT_Market.Web.HelpClasses
             {
                 DownLoadDate = DateTime.UtcNow,
                 FileName = filename,
-                Provider = GetProvider(),
+                Agent = GetProvider(),
                 ReadSetting = GetReadSetting(),
                 WorkSheets = GetWorkSheets().ToList()
             };
@@ -273,9 +270,9 @@ namespace TT_Market.Web.HelpClasses
             return null;
         }
 
-        public Provider GetProvider()
+        public Agent GetProvider()
         {
-            return new Provider();
+            return new Agent();
         }
 
         public ReadSetting GetReadSetting()

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PriceLists>
+  <PriceList >
+    <FileName>Price160202New.xls</FileName>
+    <Agent>ТОВ «ТАЄРС-АСІСТАНС»</Agent>
+    <PriceLanguage>Russian</PriceLanguage>
+    <InsertDate>02.02.2016</InsertDate>
+    <ReadSettings>
+    <Sheets>
+      <Sheet Name="Лист1" SkipColumn="">
+        <TitleRows>
+          <Row RowNumber="5">
+            <Columns>
+              <Column OrderNumber="0" RowSpan="1" ColSpan="3">
+                  <Transform></Transform>
+              </Column>
+              <Column OrderNumber="3" RowSpan="2" ColSpan="1">
+                  <Transform>{ toarray:[{"Type":"Brand","Property":"BrandTitle"}],"mask":""}</Transform>
+              </Column>
+              <Column OrderNumber="4" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[
+                  { targets:[{"Type":"Width","Property":"Value","Group":"11|1"},{"Type":"Height","Property":"Value","Group":"12|2"},{"Type":"Diameter","Property":"DSize","Group":"13|5|6"},{"Type":"SpeedIndex","Property":"Value","Group":"14|7|8"},{"Type":"Model","Property":"ModelTitle","Group":"9"}],
+                    "mask":"(^\d{2,3}?)\/(\d{2,3}?)(((R\d{2,3}[C]?)|(R\d{2,3}\.{1}\d{1})?)\s+(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))\s+(.*?)\n)|((^\d{2,3}?)\/(\d{2,3}?)(R\d{2,3}[.,]{1}\d{1}?)(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))(.*?)\n)",
+                    "norecognized":"Message":{"ExtendedData":"No recognized Model!!!"},
+                    "alternative":[]} 
+                    ]]>
+              </Transform>
+              </Column>
+              <Column OrderNumber="5" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"Season","Property":"SeasonTitle"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized Season!!!"},
+                    "alternative":[]} 
+                    ]]>
+              </Transform>
+              </Column>
+              <Column OrderNumber="6" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"AutoType","Property":"TypeValue"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized AutoType!!!"}},
+                    "alternative":["Внедорожник":["4x4"],"Легковой":["Легковые"],"Грузовой":["Грузовые"],"Легкогрузовой":["LT"]]
+                    ]]>
+              </Transform>
+              </Column>
+              <Column OrderNumber="7" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"Season","Property":"SeasonTitle"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized Season!!!"}},
+                    "alternative":["Всесезонные":["всесез"]]
+                    ]]>
+                  </Transform>
+              </Column>
+              <Column OrderNumber="8" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"Country","Property":"CountryTitle"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized Country!!!"}},
+                    "alternative":[]
+                    ]]>
+                  </Transform>
+              </Column>
+              <Column OrderNumber="9" RowSpan="1" ColSpan="1">
+                  <Transform></Transform>
+              </Column>
+              <Column OrderNumber="10" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"MPT","Property":"SpecialPrice"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized SpecialPrice!!!"}},
+                    "alternative":[]
+                    ]]>
+                  </Transform>
+              </Column>
+              <Column OrderNumber="11" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"MPT","Property":"DiscountPrice"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized DiscountPrice!!!"}},
+                    "alternative":[]
+                    ]]>
+                  </Transform>
+              </Column>
+              <Column OrderNumber="12" RowSpan="2" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"MPT","Property":"RegularPrice"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized RegularPrice!!!"}},
+                    "alternative":[]
+                    ]]>
+                  </Transform>
+              </Column>
+            </Columns>
+          </Row>
+          <Row RowNumber="6">
+            <Columns>
+              <Column OrderNumber="0" RowSpan="1" ColSpan="1">
+                  <Transform></Transform>
+              </Column>
+              <Column OrderNumber="1" RowSpan="1" ColSpan="1">
+                  <Transform></Transform>
+              </Column>
+              <Column OrderNumber="2" RowSpan="1" ColSpan="1">
+                  <Transform></Transform>
+              </Column>
+              <Column OrderNumber="9" RowSpan="1" ColSpan="1">
+                  <Transform>
+                    <![CDATA[{ 
+                    targets:[{"Type":"MPT","Property":"Stock"}],
+                    "mask":"",
+                    "norecognized":"Message":{"ExtendedData":"No recognized Stock!!!"}},
+                    "alternative":[]
+                    ]]>
+                  </Transform>
+              </Column>
+            </Columns>
+          </Row>
+        </TitleRows>
+      </Sheet>
+    </Sheets>
+    </ReadSettings>
+  </PriceList>
+</PriceLists>

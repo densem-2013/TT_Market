@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Diameters>
+  <Diameter>R10</Diameter>
+  <Diameter>R11</Diameter>
+  <Diameter>R12</Diameter>
+  <Diameter>R12C</Diameter>
+  <Diameter>R13</Diameter>
+  <Diameter>R13C</Diameter>
+  <Diameter>R14</Diameter>
+  <Diameter>R14C</Diameter>
+  <Diameter>R15</Diameter>
+  <Diameter>R15.3</Diameter>
+  <Diameter>R15C</Diameter>
+  <Diameter>R16</Diameter>
+  <Diameter>R16.5</Diameter>
+  <Diameter>R16C</Diameter>
+  <Diameter>R17</Diameter>
+  <Diameter>R17.5</Diameter>
+  <Diameter>R17C</Diameter>
+  <Diameter>R18</Diameter>
+  <Diameter>R19</Diameter>
+  <Diameter>R19.5</Diameter>
+  <Diameter>R20</Diameter>
+  <Diameter>R21</Diameter>
+  <Diameter>R22</Diameter>
+  <Diameter>R22.5</Diameter>
+  <Diameter>R23</Diameter>
+  <Diameter>R24</Diameter>
+  <Diameter>R24.5</Diameter>
+  <Diameter>R26</Diameter>
+  <Diameter>R28</Diameter>
+  <Diameter>R32</Diameter>
+  <Diameter>R33</Diameter>
+  <Diameter>R35</Diameter>
+  <Diameter>R38</Diameter>
+</Diameters>

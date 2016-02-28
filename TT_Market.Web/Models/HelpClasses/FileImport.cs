@@ -160,7 +160,7 @@ namespace TT_Market.Core.HelpClasses
                 foreach (ExcelWorksheet workSheet in package.Workbook.Worksheets)
                 {
                     XmlElement ws_node = xmlDoc.CreateElement("WorkSheet");
-                    XmlAttribute NameAttr = xmlDoc.CreateAttribute("Name");
+                    XmlAttribute NameAttr = xmlDoc.CreateAttribute("Agent_Title");
                     NameAttr.Value = workSheet.Name;
                     ws_node.Attributes.Append(NameAttr);
                     wss_node.AppendChild(ws_node);

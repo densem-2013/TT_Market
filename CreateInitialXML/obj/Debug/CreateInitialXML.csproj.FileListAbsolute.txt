@@ -1,0 +1,10 @@
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\CreateInitialXML.exe.config
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\CreateInitialXML.exe
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\CreateInitialXML.pdb
+E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.exe
+E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.pdb
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.dll
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.SqlServer.dll
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.xml
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.SqlServer.xml
+E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.csprojResolveAssemblyReference.cache
