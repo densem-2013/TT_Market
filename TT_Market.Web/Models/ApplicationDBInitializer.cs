@@ -26,7 +26,7 @@ namespace TT_Market.Web.Models
             base.Seed(context);
         }
 
-        static  Func<string, double> parseDouble = str =>
+        static readonly Func<string, double> parseDouble = str =>
         {
             double num = Double.Parse(str);
             return num;
@@ -198,14 +198,14 @@ namespace TT_Market.Web.Models
         public static void LoadPricesReadSettingsFromXml(ApplicationDbContext context)
         {
             context.SaveChanges();
-            string path = _path + "PriceSettingsInitial.xml";
+            string path = _path + "PriceReadSettingsInitial.xml";
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
-            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceList");
-            List<PriceList> lists = new List<PriceList>();
+            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceReadSetting");
+            List<PriceReadSetting> lists = new List<PriceReadSetting>();
             foreach (XmlNode price in priceLists)
             {
-                DateTime dt = DateTime.Parse(price.SelectSingleNode("InsertDate").InnerText);
+                //DateTime dt = DateTime.Parse(price.SelectSingleNode("InsertDate").InnerText);
                 string fn = price.SelectSingleNode("FileName").InnerText;
                 try
                 {
@@ -217,10 +217,8 @@ namespace TT_Market.Web.Models
                     Agent aq = context.Agents.ToList()
                         .FirstOrDefault(a => string.Equals(a.AgentTitle, nodeagentvalue));
                     string trmask = Newtonsoft.Json.JsonConvert.SerializeXmlNode(price.SelectSingleNode("ReadSettings"));
-                    PriceList pricelist = new PriceList
+                    PriceReadSetting pricelist = new PriceReadSetting
                     {
-                        InsertDate = dt,
-                        DownLoadDate = DateTime.UtcNow,
                         FileName = fn,
                         PriceLanguage = plg,
                         Agent = aq,
@@ -235,7 +233,7 @@ namespace TT_Market.Web.Models
                     throw new Exception(ex.Message);
                 }
             }
-            context.PriceLists.AddRange(lists);
+            context.PriceReadSettings.AddRange(lists);
             context.SaveChanges();
         }
     }

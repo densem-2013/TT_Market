@@ -18,14 +18,14 @@ namespace TT_Market.Web.Models
         }
         static ApplicationDbContext()
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(new ApplicationDbInitializer());
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //one-to-many 
-            //modelBuilder.Entity<PriceList>()
+            //modelBuilder.Entity<PriceReadSetting>()
             //            .HasOptional<Agent>(s => s.Agent)
-            //            .WithMany(s => s.PriceLists)
+            //            .WithMany(s => s.PriceReadSettings)
             //            .HasForeignKey(s => s.AgentId);
 
             base.OnModelCreating(modelBuilder);
@@ -33,7 +33,8 @@ namespace TT_Market.Web.Models
         }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<PriceLanguage> PriceLanguages { get; set; }
-        public virtual DbSet<PriceList> PriceLists { get; set; }
+        public virtual DbSet<PriceReadSetting> PriceReadSettings { get; set; }
+        public virtual DbSet<Price> Prices { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
         public virtual DbSet<AutoType> AutoTypes { get; set; } 
         public virtual DbSet<ConvSign> ConvSigns { get; set; }

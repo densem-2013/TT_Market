@@ -10,7 +10,6 @@ namespace TT_Market.Core.Domains
 {
     public class MPT
     {
-        
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
@@ -40,7 +39,7 @@ namespace TT_Market.Core.Domains
         public virtual Height Height { get; set; }
         public virtual Diameter Diameter { get; set; }
         public virtual Model Model { get; set; }
-        public virtual PriceList PriceList { get; set; }
+        public virtual Price Price { get; set; }
         public virtual SpeedIndex SpeedIndex { get; set; }
         public virtual PressIndex PressIndex { get; set; }
         public virtual ConvSign ConvSign { get; set; }

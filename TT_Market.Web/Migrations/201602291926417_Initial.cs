@@ -20,12 +20,10 @@ namespace TT_Market.Web.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.PriceLists",
+                "dbo.PriceReadSettings",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        DownLoadDate = c.DateTime(nullable: false),
-                        InsertDate = c.DateTime(nullable: false),
                         FileName = c.String(),
                         TransformMask = c.String(),
                         Agent_Id = c.Int(),
@@ -36,6 +34,28 @@ namespace TT_Market.Web.Migrations
                 .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
                 .Index(t => t.Agent_Id)
                 .Index(t => t.PriceLanguage_Id);
+            
+            CreateTable(
+                "dbo.PriceLanguages",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageName = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Prices",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        DownLoadDate = c.DateTime(nullable: false),
+                        InsertDate = c.DateTime(nullable: false),
+                        PriceReadSetting_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.PriceReadSettings", t => t.PriceReadSetting_Id)
+                .Index(t => t.PriceReadSetting_Id);
             
             CreateTable(
                 "dbo.MPTs",
@@ -58,7 +78,7 @@ namespace TT_Market.Web.Migrations
                         Height_Id = c.Int(),
                         Homol_Id = c.Int(),
                         PressIndex_Id = c.Int(),
-                        PriceList_Id = c.Int(),
+                        Price_Id = c.Int(),
                         Season_Id = c.Int(),
                         SpeedIndex_Id = c.Int(),
                         StockCity_Id = c.Int(),
@@ -75,7 +95,7 @@ namespace TT_Market.Web.Migrations
                 .ForeignKey("dbo.Heights", t => t.Height_Id)
                 .ForeignKey("dbo.HomolAttributes", t => t.Homol_Id)
                 .ForeignKey("dbo.PressIndexes", t => t.PressIndex_Id)
-                .ForeignKey("dbo.PriceLists", t => t.PriceList_Id)
+                .ForeignKey("dbo.Prices", t => t.Price_Id)
                 .ForeignKey("dbo.Seasons", t => t.Season_Id)
                 .ForeignKey("dbo.SpeedIndexes", t => t.SpeedIndex_Id)
                 .ForeignKey("dbo.StockCities", t => t.StockCity_Id)
@@ -90,7 +110,7 @@ namespace TT_Market.Web.Migrations
                 .Index(t => t.Height_Id)
                 .Index(t => t.Homol_Id)
                 .Index(t => t.PressIndex_Id)
-                .Index(t => t.PriceList_Id)
+                .Index(t => t.Price_Id)
                 .Index(t => t.Season_Id)
                 .Index(t => t.SpeedIndex_Id)
                 .Index(t => t.StockCity_Id)
@@ -231,15 +251,6 @@ namespace TT_Market.Web.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.PriceLanguages",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        LanguageName = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -306,12 +317,12 @@ namespace TT_Market.Web.Migrations
             DropForeignKey("dbo.AspNetUserRoles", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
-            DropForeignKey("dbo.PriceLists", "PriceLanguage_Id", "dbo.PriceLanguages");
+            DropForeignKey("dbo.Prices", "PriceReadSetting_Id", "dbo.PriceReadSettings");
             DropForeignKey("dbo.MPTs", "Width_Id", "dbo.Widths");
             DropForeignKey("dbo.MPTs", "StockCity_Id", "dbo.StockCities");
             DropForeignKey("dbo.MPTs", "SpeedIndex_Id", "dbo.SpeedIndexes");
             DropForeignKey("dbo.MPTs", "Season_Id", "dbo.Seasons");
-            DropForeignKey("dbo.MPTs", "PriceList_Id", "dbo.PriceLists");
+            DropForeignKey("dbo.MPTs", "Price_Id", "dbo.Prices");
             DropForeignKey("dbo.MPTs", "PressIndex_Id", "dbo.PressIndexes");
             DropForeignKey("dbo.MPTs", "Homol_Id", "dbo.HomolAttributes");
             DropForeignKey("dbo.MPTs", "Height_Id", "dbo.Heights");
@@ -324,17 +335,18 @@ namespace TT_Market.Web.Migrations
             DropForeignKey("dbo.MPTs", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Brands", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.MPTs", "AutoType_Id", "dbo.AutoTypes");
-            DropForeignKey("dbo.PriceLists", "Agent_Id", "dbo.Agents");
+            DropForeignKey("dbo.PriceReadSettings", "PriceLanguage_Id", "dbo.PriceLanguages");
+            DropForeignKey("dbo.PriceReadSettings", "Agent_Id", "dbo.Agents");
             DropIndex("dbo.AspNetUserClaims", new[] { "User_Id" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
-            DropIndex("dbo.PriceLists", new[] { "PriceLanguage_Id" });
+            DropIndex("dbo.Prices", new[] { "PriceReadSetting_Id" });
             DropIndex("dbo.MPTs", new[] { "Width_Id" });
             DropIndex("dbo.MPTs", new[] { "StockCity_Id" });
             DropIndex("dbo.MPTs", new[] { "SpeedIndex_Id" });
             DropIndex("dbo.MPTs", new[] { "Season_Id" });
-            DropIndex("dbo.MPTs", new[] { "PriceList_Id" });
+            DropIndex("dbo.MPTs", new[] { "Price_Id" });
             DropIndex("dbo.MPTs", new[] { "PressIndex_Id" });
             DropIndex("dbo.MPTs", new[] { "Homol_Id" });
             DropIndex("dbo.MPTs", new[] { "Height_Id" });
@@ -347,13 +359,13 @@ namespace TT_Market.Web.Migrations
             DropIndex("dbo.MPTs", new[] { "Country_Id" });
             DropIndex("dbo.Brands", new[] { "Country_Id" });
             DropIndex("dbo.MPTs", new[] { "AutoType_Id" });
-            DropIndex("dbo.PriceLists", new[] { "Agent_Id" });
+            DropIndex("dbo.PriceReadSettings", new[] { "PriceLanguage_Id" });
+            DropIndex("dbo.PriceReadSettings", new[] { "Agent_Id" });
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetRoles");
-            DropTable("dbo.PriceLanguages");
             DropTable("dbo.Widths");
             DropTable("dbo.StockCities");
             DropTable("dbo.SpeedIndexes");
@@ -369,7 +381,9 @@ namespace TT_Market.Web.Migrations
             DropTable("dbo.Brands");
             DropTable("dbo.AutoTypes");
             DropTable("dbo.MPTs");
-            DropTable("dbo.PriceLists");
+            DropTable("dbo.Prices");
+            DropTable("dbo.PriceLanguages");
+            DropTable("dbo.PriceReadSettings");
             DropTable("dbo.Agents");
         }
     }

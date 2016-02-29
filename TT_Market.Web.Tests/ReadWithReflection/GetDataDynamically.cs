@@ -94,8 +94,8 @@ namespace TT_Market.Web.Tests.ReadWithReflection
             string path = _path + "PriceSettingsInitial.xml";
             XmlDocument doc = new XmlDocument();//rss/channel/item
             doc.Load(path);
-            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceList");
-            List<PriceList> lists = new List<PriceList>();
+            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceReadSetting");
+            List<PriceReadSetting> lists = new List<PriceReadSetting>();
             foreach (XmlNode price in priceLists)
             {
                 DateTime dt = DateTime.Parse(price.SelectSingleNode("InsertDate").InnerText);
@@ -107,11 +107,9 @@ namespace TT_Market.Web.Tests.ReadWithReflection
                             pl => string.Equals(pl.LanguageName, price.SelectSingleNode("PriceLanguage").InnerText));
                     Agent aq = context.Agents.ToList()
                         .FirstOrDefault(a => string.Equals(a.AgentTitle, price.SelectSingleNode("Agent").InnerText));
-                    string trmask = Newtonsoft.Json.JsonConvert.SerializeXmlNode(price.SelectSingleNode("ReadSettings"));
-                    PriceList pricelist = new PriceList
+                    string trmask = Newtonsoft.Json.JsonConvert.SerializeXmlNode(price.SelectSingleNode("PriceReadSetting"));
+                    PriceReadSetting pricelist = new PriceReadSetting
                     {
-                        InsertDate = dt,
-                        DownLoadDate = DateTime.UtcNow,
                         FileName = fn,
                         PriceLanguage = plg,
                         Agent = aq,

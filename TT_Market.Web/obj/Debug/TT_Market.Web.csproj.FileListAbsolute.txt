@@ -71,8 +71,6 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.Google.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.Twitter.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csprojResolveAssemblyReference.cache
-E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
-E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\bin\TT_Market.Web.dll.config
@@ -152,3 +150,5 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
+E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
+E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache

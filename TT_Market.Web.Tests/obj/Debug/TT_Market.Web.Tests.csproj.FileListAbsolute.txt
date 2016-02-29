@@ -116,3 +116,5 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Microsoft.Owin.Secur
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.csprojResolveAssemblyReference.cache
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.pdb
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml

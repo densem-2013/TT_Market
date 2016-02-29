@@ -86,8 +86,9 @@
     <Compile Include="Domains\Model.cs" />
     <Compile Include="Domains\MPT.cs" />
     <Compile Include="Domains\PressIndex.cs" />
+    <Compile Include="Domains\Price.cs" />
     <Compile Include="Domains\PriceLanguage.cs" />
-    <Compile Include="Domains\PriceList.cs" />
+    <Compile Include="Domains\PriceReadSetting.cs" />
     <Compile Include="Domains\Brand.cs" />
     <Compile Include="Domains\Agent.cs" />
     <Compile Include="Domains\Season.cs" />
@@ -103,7 +104,7 @@
     <Content Include="DBInitial\ReadCurrencysInitial.xml" />
     <Content Include="DBInitial\ReadDiametersInitial.xml" />
     <Content Include="DBInitial\ReadHeightsInitial.xml" />
-    <Content Include="DBInitial\ReadPriceSettingsInitial.xml" />
+    <Content Include="DBInitial\ReadPriceReadSettingsInitial.xml" />
     <Content Include="DBInitial\ReadAgentsInitial.xml" />
     <Content Include="DBInitial\ReadLanguagesInitial.xml" />
     <Content Include="DBInitial\ReadSeasonsInitial.xml" />

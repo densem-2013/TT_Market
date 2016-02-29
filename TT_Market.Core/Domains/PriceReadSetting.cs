@@ -8,12 +8,15 @@ using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
-    public class PriceLanguage
+    public class PriceReadSetting
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string LanguageName { get; set; }
-        public virtual ICollection<PriceReadSetting> PriceReadSettings { get; set; }
+        public string FileName { get; set; }
+        public string TransformMask { get; set; }
+        public virtual Agent Agent { get; set; }
+        public virtual PriceLanguage PriceLanguage { get; set; }
+        public virtual ICollection<Price> Prices { get; set; }
     }
 }
