@@ -7,6 +7,7 @@ using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using TT_Market.Core.Domains;
+using WebGrease.Css.Extensions;
 
 namespace TT_Market.Web.Models
 {
@@ -58,7 +59,9 @@ namespace TT_Market.Web.Models
                 Phone = a.Element("Phone").Value,
                 Email = a.Element("Email").Value
             }).ToArray();
-                context.Agents.AddOrUpdate(a => a.AgentTitle,agents);
+
+            context.Agents.AddRange(agents);
+            context.SaveChanges();
 
         }
         public static void LoadAutoTypesFromXml(ApplicationDbContext context)
@@ -70,18 +73,22 @@ namespace TT_Market.Web.Models
             {
                 TypeValue = a.Value
             }).ToArray();
-            context.AutoTypes.AddOrUpdate(at => at.TypeValue, autotypes);
+
+            context.AutoTypes.AddRange(autotypes);
+            context.SaveChanges();
         }
         public static void LoadBrandsFromXml(ApplicationDbContext context)
         {
             string path = _path + "BrandsInitial.xml";
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("Brand");
-            Brand[] autotypes = collection.ToList().Select(a => new Brand
+            Brand[] brands = collection.ToList().Select(a => new Brand
             {
                 BrandTitle = a.Value
             }).ToArray();
-            context.Brands.AddOrUpdate(br => br.BrandTitle, autotypes);
+
+            context.Brands.AddRange(brands);
+            context.SaveChanges();
         }
         public static void LoadCountryFromXml(ApplicationDbContext context)
         {
@@ -92,7 +99,9 @@ namespace TT_Market.Web.Models
             {
                 CountryTitle = a.Value
             }).ToArray();
-            context.Countrys.AddOrUpdate(c => c.CountryTitle, countries);
+
+            context.Countrys.AddRange(countries);
+            context.SaveChanges();
         }
         public static void LoadCurrencyFromXml(ApplicationDbContext context)
         {
@@ -103,18 +112,22 @@ namespace TT_Market.Web.Models
             {
                 CurrencyTitle = a.Value
             }).ToArray();
-            context.Currencys.AddOrUpdate(c => c.CurrencyTitle, currencies);
+
+            context.Currencys.AddRange(currencies);
+            context.SaveChanges();
         }
         public static void LoadDiametersFromXml(ApplicationDbContext context)
         {
             string path = _path + "DiametersInitial.xml";
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("Diameter");
-            Diameter[] currencies = collection.ToList().Select(a => new Diameter
+            Diameter[] diameters = collection.ToList().Select(a => new Diameter
             {
                 DSize = a.Value
             }).ToArray();
-            context.Diameters.AddOrUpdate(d => d.DSize, currencies);
+
+            context.Diameters.AddRange(diameters);
+            context.SaveChanges();
         }
         public static void LoadHeightsFromXml(ApplicationDbContext context)
         {
@@ -126,7 +139,9 @@ namespace TT_Market.Web.Models
             {
                 Value = parseDouble(a.Value)
             }).ToArray();
-            context.Heights.AddOrUpdate(d => d.Value, heights);
+
+            context.Heights.AddRange(heights);
+            context.SaveChanges();
         }
         public static void LoadLanguagesFromXml(ApplicationDbContext context)
         {
@@ -137,7 +152,9 @@ namespace TT_Market.Web.Models
             {
                 LanguageName = a.Value
             }).ToArray();
-            context.PriceLanguages.AddOrUpdate(d => d.LanguageName, priceLanguages);
+
+            context.PriceLanguages.AddRange(priceLanguages);
+            context.SaveChanges();
         }
         public static void LoadSeasonsFromXml(ApplicationDbContext context)
         {
@@ -148,7 +165,9 @@ namespace TT_Market.Web.Models
             {
                 SeasonTitle = a.Value
             }).ToArray();
-            context.Seasons.AddOrUpdate(d => d.SeasonTitle, seasons);
+
+            context.Seasons.AddRange(seasons);
+            context.SaveChanges();
         }
         public static void LoadWidthsFromXml(ApplicationDbContext context)
         {
@@ -159,7 +178,9 @@ namespace TT_Market.Web.Models
             {
                 Value = parseDouble(a.Value)
             }).ToArray();
-            context.Widths.AddOrUpdate(d => d.Value, widths);
+
+            context.Widths.AddRange(widths);
+            context.SaveChanges();
         }
         public static void LoadSpeedIndexesFromXml(ApplicationDbContext context)
         {
@@ -170,10 +191,13 @@ namespace TT_Market.Web.Models
             {
                 Value = a.Value
             }).ToArray();
-            context.SpeedIndexs.AddOrUpdate(d => d.Value, spindexes);
+
+            context.SpeedIndexs.AddRange(spindexes);
+            context.SaveChanges();
         }
         public static void LoadPricesReadSettingsFromXml(ApplicationDbContext context)
         {
+            context.SaveChanges();
             string path = _path + "PriceSettingsInitial.xml";
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
@@ -203,6 +227,7 @@ namespace TT_Market.Web.Models
                         TransformMask = trmask
                     };
                     lists.Add(pricelist);
+
                 }
                 catch (Exception ex)
                 {
@@ -210,7 +235,8 @@ namespace TT_Market.Web.Models
                     throw new Exception(ex.Message);
                 }
             }
-            context.PriceLists.AddOrUpdate(d => d.FileName, lists.ToArray());
+            context.PriceLists.AddRange(lists);
+            context.SaveChanges();
         }
     }
 }
