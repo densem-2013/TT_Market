@@ -132,6 +132,7 @@ namespace TT_Market.Web.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         ModelTitle = c.String(),
+                        AgentId = c.Int(nullable: false),
                         Brand_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)

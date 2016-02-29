@@ -10,8 +10,12 @@ using TT_Market.Core.Domains;
 
 namespace TT_Market.Web.Models
 {
-    public class ApplicationDbInitializer : CreateDatabaseIfNotExists<ApplicationDbContext>
+    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
+        //private static readonly string _path =
+        //    AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web", "") +
+        //    @"TT_Market.Core\DBinitial\Read";
+
         private static readonly string _path =
             AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web\bin", "") +
             @"TT_Market.Core\DBinitial\Read";
@@ -181,11 +185,13 @@ namespace TT_Market.Web.Models
                 string fn = price.SelectSingleNode("FileName").InnerText;
                 try
                 {
-                    List<PriceLanguage> plangs = context.PriceLanguages.ToList();
-                    PriceLanguage plg = plangs.FirstOrDefault(
-                            pl => string.Equals(pl.LanguageName, price.SelectSingleNode("PriceLanguage").InnerText));
+                    //List<PriceLanguage> plangs = context.PriceLanguages;
+                    string nodelangvalue = price.SelectSingleNode("PriceLanguage").InnerText;
+                    PriceLanguage plg = context.PriceLanguages.ToList().FirstOrDefault(
+                            pl => string.Equals(pl.LanguageName, nodelangvalue));
+                    string nodeagentvalue = price.SelectSingleNode("Agent").InnerText;
                     Agent aq = context.Agents.ToList()
-                        .FirstOrDefault(a => string.Equals(a.AgentTitle, price.SelectSingleNode("Agent").InnerText));
+                        .FirstOrDefault(a => string.Equals(a.AgentTitle, nodeagentvalue));
                     string trmask = Newtonsoft.Json.JsonConvert.SerializeXmlNode(price.SelectSingleNode("ReadSettings"));
                     PriceList pricelist = new PriceList
                     {

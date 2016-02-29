@@ -20,6 +20,21 @@ namespace TT_Market.Core.Domains
         public double RegularPrice { get; set; }
         public double DiscountPrice { get; set; }
         public double SpecialPrice { get; set; }
+        //public int BrandId { get; set; }
+        //public int WidthId { get; set; }
+        //public int HeightId { get; set; }
+        //public int DiameterId { get; set; }
+        //public int ModelId { get; set; }
+        //public int PriceListId { get; set; }
+        //public int SpeedIndexId { get; set; }
+        //public int PressIndexId { get; set; }
+        //public int ConvSignId { get; set; }
+        //public int HomolId { get; set; }
+        //public int SeasonId { get; set; }
+        //public int AutoTypeId { get; set; }
+        //public int CountryId { get; set; }
+        //public int StockCityId { get; set; }
+        //public int CurrencyId { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual Width Width { get; set; }
         public virtual Height Height { get; set; }

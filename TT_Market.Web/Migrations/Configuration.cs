@@ -18,5 +18,6 @@ namespace TT_Market.Web.Migrations
         {
            ApplicationDbInitializer.InitializeIdentityForEF(context);
         }
+
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TT_Market.Core.Domains;
+using TT_Market.Web.Migrations;
 
 namespace TT_Market.Web.Models
 {
@@ -17,9 +18,19 @@ namespace TT_Market.Web.Models
         }
         static ApplicationDbContext()
         {
-            Database.SetInitializer(new ApplicationDbInitializer());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            //one-to-many 
+            //modelBuilder.Entity<PriceList>()
+            //            .HasOptional<Agent>(s => s.Agent)
+            //            .WithMany(s => s.PriceLists)
+            //            .HasForeignKey(s => s.AgentId);
 
+            base.OnModelCreating(modelBuilder);
+
+        }
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<PriceLanguage> PriceLanguages { get; set; }
         public virtual DbSet<PriceList> PriceLists { get; set; }
