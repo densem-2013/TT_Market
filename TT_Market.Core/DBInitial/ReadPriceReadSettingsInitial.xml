@@ -18,90 +18,166 @@
                   <Transform></Transform>
               </Column>
               <Column OrderNumber="3" RowSpan="2" ColSpan="1">
-                  <Transform>{ toarray:[{"Type":"Brand","Property":"BrandTitle"}],"mask":""}</Transform>
+                  <Transform>
+                    <Targets>
+                      <target>
+                        <type>Brand</type>
+                        <property>BrandTitle</property>
+                        <group></group>
+                        <mask></mask>
+                      <norecognized></norecognized>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+              </Transform>
               </Column>
               <Column OrderNumber="4" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[
-                  "targets":[{"Type":"Width","Property":"Value","Group":"11|1"},{"Type":"Height","Property":"Value","Group":"12|2"},{"Type":"Diameter","Property":"DSize","Group":"13|5|6"},{"Type":"SpeedIndex","Property":"Value","Group":"14|7|8"},{"Type":"Model","Property":"ModelTitle","Group":"9"}],
-                    "mask":"(^\d{2,3}?)\/(\d{2,3}?)(((R\d{2,3}[C]?)|(R\d{2,3}\.{1}\d{1})?)\s+(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))\s+(.*?)\n)|((^\d{2,3}?)\/(\d{2,3}?)(R\d{2,3}[.,]{1}\d{1}?)(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))(.*?)\n)",
-                    "norecognized":{"ExtendedData":"No recognized Model!!!"},
-                    "alternative":"" 
-                    ]]>
+                    <Targets>
+                      <target>
+                        <type>Width</type>
+                        <property>Value</property>
+                        <group>11|1</group>
+                      <alternative></alternative>
+                      </target>
+                      <target>
+                        <type>Height</type>
+                        <property>Value</property>
+                        <group>12|2</group>
+                      <alternative></alternative>
+                      </target>
+                      <target>
+                        <type>Diameter</type>
+                        <property>DSize</property>
+                        <group>13|5|6</group>
+                      <alternative></alternative>
+                      </target>
+                      <target>
+                        <type>SpeedIndex</type>
+                        <property>Value</property>
+                        <group>14|7|8</group>
+                      <alternative></alternative>
+                      </target>
+                      <target>
+                        <type>Model</type>
+                        <property>ModelTitle</property>
+                        <group>9</group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask>
+                          <![CDATA["(^\d{2,3}?)\/(\d{2,3}?)(((R\d{2,3}[C]?)|(R\d{2,3}\.{1}\d{1})?)\s+(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))\s+(.*?)\n)|((^\d{2,3}?)\/(\d{2,3}?)(R\d{2,3}[.,]{1}\d{1}?)(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))(.*?)\n)"]]>
+                    </mask>
+                    <norecognized>No recognized Model!!!</norecognized>
+              </Transform>
+                  <Transform>
               </Transform>
               </Column>
               <Column OrderNumber="5" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"Season","Property":"SeasonTitle"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized Season!!!"},
-                    "alternative":"" 
-                    ]]>
+                    <Targets>
+                      <target>
+                        <type>Season</type>
+                        <property>SeasonTitle</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>ExtendedData":"No recognized Season!!!</norecognized>
               </Transform>
               </Column>
               <Column OrderNumber="6" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"AutoType","Property":"TypeValue"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized AutoType!!!"},
-                    "alternative":["Внедорожник":["4x4"],"Легковой":["Легковые"],"Грузовой":["Грузовые"],"Легкогрузовой":["LT"]]
-                    ]]>
+                    <Targets>
+                      <target>
+                        <type>AutoType</type>
+                        <property>TypeValue</property>
+                        <group></group>
+                      <alternative>
+                        <alter value="Внедорожник">4x4</alter>
+                        <alter value="Легковой">Легковые</alter>
+                        <alter value="Грузовой">Грузовые</alter>
+                        <alter value="Легкогрузовой">LT</alter>
+                      </alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized AutoType!!!</norecognized>
               </Transform>
               </Column>
               <Column OrderNumber="7" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"Season","Property":"SeasonTitle"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized Season!!!"},
-                    "alternative":["Всесезонные":["всесез"]]
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>Season</type>
+                        <property>SeasonTitle</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized Season!!!</norecognized>
+              </Transform>
               </Column>
               <Column OrderNumber="8" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"Country","Property":"CountryTitle"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized Country!!!"},
-                    "alternative":""
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>Country</type>
+                        <property>CountryTitle</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized Country!!!</norecognized>
+              </Transform>
               </Column>
               <Column OrderNumber="9" RowSpan="1" ColSpan="1">
                   <Transform></Transform>
               </Column>
               <Column OrderNumber="10" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[
-                    "targets":[{"Type":"MPT","Property":"SpecialPrice"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized SpecialPrice!!!"},
-                    "alternative":""
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>MPT</type>
+                        <property>SpecialPrice</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>"No recognized SpecialPrice!!!</norecognized>
+              </Transform>
               </Column>
               <Column OrderNumber="11" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"MPT","Property":"DiscountPrice"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized DiscountPrice!!!"},
-                    "alternative":""
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>MPT</type>
+                        <property>DiscountPrice</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized DiscountPrice!!!</norecognized>
+              </Transform>
               </Column>
               <Column OrderNumber="12" RowSpan="2" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"MPT","Property":"RegularPrice"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized RegularPrice!!!"},
-                    "alternative":""
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>MPT</type>
+                        <property>RegularPrice</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized RegularPrice!!!</norecognized>
+              </Transform>
               </Column>
             </Columns>
           </Row>
@@ -118,13 +194,17 @@
               </Column>
               <Column OrderNumber="9" RowSpan="1" ColSpan="1">
                   <Transform>
-                    <![CDATA[ 
-                    "targets":[{"Type":"MPT","Property":"Stock"}],
-                    "mask":"",
-                    "norecognized":{"ExtendedData":"No recognized Stock!!!"},
-                    "alternative":""
-                    ]]>
-                  </Transform>
+                    <Targets>
+                      <target>
+                        <type>MPT</type>
+                        <property>Stock</property>
+                        <group></group>
+                      <alternative></alternative>
+                      </target>
+                    </Targets>
+                        <mask></mask>
+                      <norecognized>No recognized Stock!!!</norecognized>
+              </Transform>
               </Column>
             </Columns>
           </Row>

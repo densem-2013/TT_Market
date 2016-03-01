@@ -11,7 +11,7 @@ using WebGrease.Css.Extensions;
 
 namespace TT_Market.Web.Models
 {
-    public class ApplicationDbInitializer : DropCreateDatabaseIfModelChanges<ApplicationDbContext>
+    public class ApplicationDbInitializer : DropCreateDatabaseAlways<ApplicationDbContext>
     {
         //private static readonly string _path =
         //    AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web", "") +

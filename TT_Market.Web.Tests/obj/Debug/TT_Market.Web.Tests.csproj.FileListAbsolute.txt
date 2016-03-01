@@ -118,3 +118,5 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml
+C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
+C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml

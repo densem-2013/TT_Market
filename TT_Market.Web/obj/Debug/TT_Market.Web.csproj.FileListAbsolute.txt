@@ -148,7 +148,7 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.Microsof
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csprojResolveAssemblyReference.cache
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
-C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
-C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
+C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
+C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache

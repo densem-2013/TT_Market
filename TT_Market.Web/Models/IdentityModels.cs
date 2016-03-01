@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using TT_Market.Core.Domains;
-using TT_Market.Web.Migrations;
+//using TT_Market.Web.Migrations;
 
 namespace TT_Market.Web.Models
 {

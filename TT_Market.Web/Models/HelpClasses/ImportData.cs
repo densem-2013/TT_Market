@@ -17,28 +17,31 @@ namespace TT_Market.Web.Models.HelpClasses
 {
     public static class ImportData
     {
-        private static readonly ApplicationDbContext _db = new ApplicationDbContext();
+        private static readonly ApplicationDbContext Db = new ApplicationDbContext();
 
         public static int ParseAndInsert(string path)
         {
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceReadSetting pricelist = _db.PriceReadSettings.FirstOrDefault(pl => string.Equals(pl.FileName,filename ));
+            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => string.Equals(pl.FileName,filename ));
             if (pricelist!=null)
             {
                     byte[] file = File.ReadAllBytes(path);
                     MemoryStream ms = new MemoryStream(file);
                     Price price = new Price
                     {
-                        DownLoadDate = DateTime.UtcNow,
+                        DownLoadDate = DateTime.UtcNow
                     };
                     //XSSFWorkbook wb = new XSSFWorkbook(fs);
                     DataSet data = GetExcelDataAsDataSet(path, false);
+
                     JObject jobj = JObject.Parse(pricelist.TransformMask);
-                    foreach (JProperty sheetname in jobj["ReadSettings.Sheets.Sheet"])
+                List<string> shmames =
+                    (jobj["ReadSettings"]["Sheets"]["Sheet"]["@Name"]).Select(c => (string) c).ToList();
+                foreach (string sheetname in shmames)
                     {
                         //XSSFSheet sh = (XSSFSheet)wb.GetSheet(sheetname);
-                        string dsname = data.DataSetName;
-                        string sh = (string)sheetname["@Name"];
+                        //string dsname = data.DataSetName;
+                        string sh = sheetname;
                     }
 
             }
@@ -49,14 +52,14 @@ namespace TT_Market.Web.Models.HelpClasses
         {
             Assembly assembly = Assembly.LoadFrom("TT_Market.Core.dll");
             var type = assembly.GetType("TT_Market.Core.Domains." + entity);
-            _db.Set(type).Load();
-            var collection = _db.Set(type).Local;
+            Db.Set(type).Load();
+            var collection = Db.Set(type).Local;
 
             var newEntity = Activator.CreateInstance(type);
             type.InvokeMember(property, BindingFlags.SetProperty, Type.DefaultBinder, newEntity,
                 new Object[] {value});
             collection.Add(newEntity);
-            _db.SaveChanges();
+            Db.SaveChanges();
 
             return 0;
         }
