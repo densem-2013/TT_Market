@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -22,27 +23,26 @@ namespace TT_Market.Web.Models.HelpClasses
         public static int ParseAndInsert(string path)
         {
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => string.Equals(pl.FileName,filename ));
-            if (pricelist!=null)
+            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => string.Equals(pl.FileName, filename));
+            if (pricelist != null)
             {
-                    byte[] file = File.ReadAllBytes(path);
-                    MemoryStream ms = new MemoryStream(file);
-                    Price price = new Price
-                    {
-                        DownLoadDate = DateTime.UtcNow
-                    };
-                    //XSSFWorkbook wb = new XSSFWorkbook(fs);
-                    DataSet data = GetExcelDataAsDataSet(path, false);
+                byte[] file = File.ReadAllBytes(path);
+                MemoryStream ms = new MemoryStream(file);
+                Price price = new Price
+                {
+                    DownLoadDate = DateTime.UtcNow
+                };
+                //XSSFWorkbook wb = new XSSFWorkbook(fs);
+                DataSet data = GetExcelDataAsDataSet(path, false);
 
-                    JObject jobj = JObject.Parse(pricelist.TransformMask);
-                List<string> shmames =
-                    (jobj["ReadSettings"]["Sheets"]["Sheet"]["@Name"]).Select(c => (string) c).ToList();
-                foreach (string sheetname in shmames)
-                    {
-                        //XSSFSheet sh = (XSSFSheet)wb.GetSheet(sheetname);
-                        //string dsname = data.DataSetName;
-                        string sh = sheetname;
-                    }
+                JObject jobj = JObject.Parse(pricelist.TransformMask);
+                IEnumerable shmames = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name");
+                foreach (var sheetname in shmames)
+                {
+                    //XSSFSheet sh = (XSSFSheet)wb.GetSheet(sheetname);
+                    //string dsname = data.DataSetName;
+                    string sh = sheetname.ToString();
+                }
 
             }
             return 0;
