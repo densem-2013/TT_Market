@@ -40,3 +40,4 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OOXML.xml
 C:\Soft\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OpenXml4Net.xml
 C:\Soft\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.pdb
+E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csprojResolveAssemblyReference.cache

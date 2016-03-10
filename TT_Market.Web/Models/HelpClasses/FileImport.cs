@@ -89,7 +89,7 @@ namespace TT_Market.Core.HelpClasses
 
                     throw;
                 }
-                XmlNodeList fileNameNodes = xmlDoc.SelectNodes("/Prices/Price/FileName");
+                XmlNodeList fileNameNodes = xmlDoc.SelectNodes("/Prices/PriceDocument/FileName");
                 bool hasfname = false;
                 if (fileNameNodes != null)
                     foreach (XmlNode node in fileNameNodes)
@@ -147,7 +147,7 @@ namespace TT_Market.Core.HelpClasses
 
                     throw;
                 }
-                XmlElement pricenode = xmlDoc.CreateElement("Price");
+                XmlElement pricenode = xmlDoc.CreateElement("PriceDocument");
                 XmlElement fn_node = xmlDoc.CreateElement("FileName");
                 fn_node.InnerText = _path;
                 pricenode.AppendChild(fn_node);

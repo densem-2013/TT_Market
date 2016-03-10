@@ -1,0 +1,679 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<HomolAttributes>
+  <HomolAttribute>
+    <Value>*</Value>
+    <Description>BMW approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>1Z</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>2Z</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>3Z</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>A</Value>
+    <Description>Renault Espace IV 18'' approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AR</Value>
+    <Description>Alfa Romeo</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>ARR</Value>
+    <Description>Alfa Romeo Racing</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AU</Value>
+    <Description>Audi approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AZ</Value>
+    <Description>Alfa Romeo / Fiat / Subaru / Toyota approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>B</Value>
+    <Description>Bentley approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>B1</Value>
+    <Description>Bentley approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>BL</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>BZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>CZ</Value>
+    <Description>Subaru approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DZ</Value>
+    <Description>Honda / Mazda / Toyota approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>EZ</Value>
+    <Description>Audi / Mazda 6 approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>F</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>G</Value>
+    <Description>Recommended for VW Golf</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>GZ</Value>
+    <Description>Subaru approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>HZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>J</Value>
+    <Description>Jaguar approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>JRS</Value>
+    <Description>Jaguar approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>JZ</Value>
+    <Description>Seat / Subaru approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>K1</Value>
+    <Description>Ferrari approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>K2</Value>
+    <Description>Ferrari approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>K3</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>KZ</Value>
+    <Description>Nissan / Toyota approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>LZ</Value>
+    <Description>Lancia approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MZ</Value>
+    <Description>Mitsubishi / Toyota approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N0</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N1</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N2</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N3</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N4</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N5</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>N6</Value>
+    <Description>Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>NZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>OZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>PE</Value>
+    <Description>Peugeot approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>PZ</Value>
+    <Description>Ford / Mazda / Mercedes / VW approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>QZ</Value>
+    <Description>Mini approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SZ</Value>
+    <Description>Mazda MPV approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>TZ</Value>
+    <Description>Mazda 6 approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>UZ</Value>
+    <Description>Original equipement for BMW 3 / Skoda</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>VZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>XZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>YZ</Value>
+    <Description>BRIDGESTONE ORIGINAL EQUIPMENT</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>m</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>10-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>12-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>14-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>16-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>18-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>4-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>6-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>8-PR</Value>
+    <Description>Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>A2A</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AM4</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AM6</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AM8</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AM9</Value>
+    <Description>HOMOLOGATION FOR ASTON MARTIN : DB9 VOLANTE VA V8</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AML</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AMR</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AMS</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AMV</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AMX</Value>
+    <Description>Aston Martin</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>AO</Value>
+    <Description>Audi</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Alfa Romeo</Value>
+    <Description>Alfa Romeo</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>BS</Value>
+    <Description>Black Stylized</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>BSW</Value>
+    <Description>Black Side Wall</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>C</Value>
+    <Description>Marking for light truck</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>C1</Value>
+    <Description>Chrysler Viper approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>CD</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>CRAMPONS</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Conti-Seal</Value>
+    <Description>Self-selling standard production tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Conti-Silent</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DA</Value>
+    <Description>DA indicates an appearance defect. Tyres with this marking are factory seconds that have the same manufacturers' guarantees.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DEMO</Value>
+    <Description>Tyres that have been mounted and dismounted and may have been used on a few meters. These tyres are guaranteed and new.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DOT 07</Value>
+    <Description>Manufactured year: 2007</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DOT 08</Value>
+    <Description>Manufactured year: 2008</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DOT 09</Value>
+    <Description>Manufactured year: 2009</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DOT 10</Value>
+    <Description>Manufactured year: 2010</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DSST</Value>
+    <Description>Dunlop Self-Supporting Technology run-flat tires by Dunlop.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DT</Value>
+    <Description>Different Tread Design</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>DT1</Value>
+    <Description>New pattern</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>EMT</Value>
+    <Description>Goodyear Extended Mobility Tyre: run flat tyres by Goodyear.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>F01</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FI</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FO</Value>
+    <Description>Ford approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FP</Value>
+    <Description>FLANGE PROTECTION FOR ALLOY RIM</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FR</Value>
+    <Description>Flange rim protection</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>FSL</Value>
+    <Description>Flange rim protection</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Ferrari</Value>
+    <Description>Ferrari</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Ferrari-Maserati</Value>
+    <Description>Ferrari/Maserati</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Fiat</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>G1</Value>
+    <Description>indicates that outside diameter or tread width differ from a tyre without this marking. We recommend to fit two G1 on the same axle. For</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>HARD</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>HO</Value>
+    <Description>Honda</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>HRS</Value>
+    <Description>Hankook Runflat System</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>L</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>LR</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>LRO</Value>
+    <Description>Land Rover</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>LRR</Value>
+    <Description>New blend of rubber that offers greater performance and trip economy</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>LTS</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Lamborghini</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Lancia</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Limited Edition</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>M</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>M+S</Value>
+    <Description>Efficient on muddy terrain.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MC1</Value>
+    <Description>Mc Laren</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MEDIUM</Value>
+    <Description>MEDIUM GUM COMPOUND</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MEDIUM-HARD</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MFS</Value>
+    <Description>Max Flange Shield: protects the tyre from curb damage.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MGT</Value>
+    <Description>Maserati</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MO</Value>
+    <Description>Mercedes approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MO1</Value>
+    <Description>Mercedes SL65 AMG</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>MOExtended</Value>
+    <Description>Mercedes Extended (Runflat)</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Mazda</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>NCS</Value>
+    <Description>Noise Control System</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>NHS</Value>
+    <Description>Not for Highway Service</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>OBL</Value>
+    <Description>Outlined Black Letters</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>OWL</Value>
+    <Description>Off White Letter: means that the writing on the sidewall is white.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>OWT</Value>
+    <Description>OUTLINED WHITE LETTERS</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Opel</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Pax</Value>
+    <Description>The ability to run with a deflated tyre for 125 miles at up to 50 mph, due to the integrated support ring which is anchored to the wheel.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>R01</Value>
+    <Description>Audi Quattro, RS4, RS6, R8</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>R02</Value>
+    <Description>Audi Quattro, RS4, RS6, R8</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RB</Value>
+    <Description>Lettrage des pneus noir, entouré de blanc.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RBL</Value>
+    <Description>Raised or Recessed Black Letters</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RBT</Value>
+    <Description>Raised Black Letters Tubeless</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RGL</Value>
+    <Description>Raised Gold Letters</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RPB</Value>
+    <Description>RPB = Rim Protection Bar. Flange rim protection</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RWL</Value>
+    <Description>Raised White Letter: means that the writing on the sidewall is white</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Renault</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>RunFlat</Value>
+    <Description>are provided for flat running. Only fits vehicles with Run Flat.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>S1</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>S2</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>S78</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SB</Value>
+    <Description>Serrated Black Stripe</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SBL</Value>
+    <Description>Serrated Black Letters</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SCT</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SOFT</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SPIKE</Value>
+    <Description>Winter tyre spikes for enhanced traction on ice. Due to their unique designs these tyres must be used in sets of four. Use of studded tyres is often prohibited or restricted.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SSR</Value>
+    <Description>Self Supporting Runflat, SSR tyres will enable you to continue driving for up 50 miles at a maximum speed of 50 mph. SSR tyres may only be fitted to vehicles equipped with a tyre pressure monitoring system</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>STUDDABLE</Value>
+    <Description>Winter tire studs for enhanced traction on ice. Due to their unique designs these tires must be used in sets of four. Use of studded tires is often prohibited or restricted.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>SUPER-SOFT</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Seal</Value>
+    <Description>Self-selling standard production tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Seal-Inside</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Seat</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Self Seal</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>Skoda</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>TH</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>TO</Value>
+    <Description>Toyota</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>TT</Value>
+    <Description>Tubetype, tyre with a tube.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>V1</Value>
+    <Description>New blend of rubber that offers greater performance and trip economy</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>VO</Value>
+    <Description>Volkswagen approved tyres</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>VSB</Value>
+    <Description>Vertical Serrated Band</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>VW</Value>
+    <Description>Volkswagen</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WET</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WL</Value>
+    <Description>White letter: means that the writing on the sidewall is white.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WSW</Value>
+    <Description>White Sidewall: Tyre having an entire white side.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WTCC</Value>
+    <Description>	</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WW</Value>
+    <Description>Tyre having an entire white side.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>WWW</Value>
+    <Description>Tyre having an entire white side.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>XL</Value>
+    <Description>Reinforced tyres. Have a higher load index.</Description>
+  </HomolAttribute>
+  <HomolAttribute>
+    <Value>ZP</Value>
+    <Description>Michelin ZP is the runflat technology of the Michelin brand. The runflat system allows to drive a distance of 50 miles at a maximum speed of 50 mph.</Description>
+  </HomolAttribute>
+</HomolAttributes>

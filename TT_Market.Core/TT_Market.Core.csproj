@@ -84,9 +84,10 @@
     <Compile Include="Domains\Height.cs" />
     <Compile Include="Domains\HomolAttribute.cs" />
     <Compile Include="Domains\Model.cs" />
-    <Compile Include="Domains\MPT.cs" />
+    <Compile Include="Domains\ProtectorType.cs" />
+    <Compile Include="Domains\TireProposition.cs" />
     <Compile Include="Domains\PressIndex.cs" />
-    <Compile Include="Domains\Price.cs" />
+    <Compile Include="Domains\PriceDocument.cs" />
     <Compile Include="Domains\PriceLanguage.cs" />
     <Compile Include="Domains\PriceReadSetting.cs" />
     <Compile Include="Domains\Brand.cs" />
@@ -94,22 +95,43 @@
     <Compile Include="Domains\Season.cs" />
     <Compile Include="Domains\SpeedIndex.cs" />
     <Compile Include="Domains\StockCity.cs" />
+    <Compile Include="Domains\Tire.cs" />
     <Compile Include="Domains\Width.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DBInitial\From1C\brand.xml" />
+    <Content Include="DBInitial\From1C\d.xml" />
+    <Content Include="DBInitial\From1C\for.xml" />
+    <Content Include="DBInitial\From1C\h.xml" />
+    <Content Include="DBInitial\From1C\model.xml" />
+    <Content Include="DBInitial\From1C\omolog.xml" />
+    <Content Include="DBInitial\From1C\press.xml" />
+    <Content Include="DBInitial\From1C\season.xml" />
+    <Content Include="DBInitial\From1C\speed.xml" />
+    <Content Include="DBInitial\From1C\type.xml" />
+    <Content Include="DBInitial\From1C\uslov.xml" />
+    <Content Include="DBInitial\From1C\w.xml" />
     <Content Include="DBInitial\ReadAutoTypesInitial.xml" />
     <Content Include="DBInitial\ReadBrandsInitial.xml" />
     <Content Include="DBInitial\ReadCountrysInitial.xml" />
     <Content Include="DBInitial\ReadCurrencysInitial.xml" />
     <Content Include="DBInitial\ReadDiametersInitial.xml" />
     <Content Include="DBInitial\ReadHeightsInitial.xml" />
-    <Content Include="DBInitial\ReadPriceReadSettingsInitial.xml" />
+    <Content Include="DBInitial\ReadHomolAttrbutesInitial.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="DBInitial\ReadPriceReadSettingsInitial.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DBInitial\ReadAgentsInitial.xml" />
     <Content Include="DBInitial\ReadLanguagesInitial.xml" />
     <Content Include="DBInitial\ReadSeasonsInitial.xml" />
-    <Content Include="DBInitial\ReadSpeedIndexsInitial.xml" />
+    <Content Include="DBInitial\ReadSpeedIndexsInitial.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DBInitial\ReadWidthsInitial.xml" />
+    <Content Include="DBInitial\ReadPriceDocumentsInitial.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

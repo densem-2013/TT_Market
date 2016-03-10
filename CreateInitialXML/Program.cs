@@ -123,6 +123,44 @@ namespace CreateInitialXML
             }
             xmlDoc.Save(savepath);
         }
+
+        public static void CreateHomolAttributes()
+        {
+
+            string source = File.ReadAllText("addNew_Homols.txt");
+            Regex reg = new Regex(@"(^\s*<th[^>]*>\s*\n?)\(?(.+?)\)?\s*<\/th>\s*\n?\s*<td[^>]*>\s*\n?(.+?)(\s*<\/td>\s*\n)", RegexOptions.Multiline);
+            XmlDocument xmlDoc = new XmlDocument();
+            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "utf-8", null);
+
+            // Create the root element
+            XmlNode rootNode = xmlDoc.CreateElement("HomolAttributes");
+            xmlDoc.InsertBefore(xmlDeclaration, xmlDoc.DocumentElement);
+            xmlDoc.AppendChild(rootNode);
+            //int[] groupsArray = new int[]{1,2};
+            Dictionary<string, string> targets = new Dictionary<string, string>();
+            foreach (Match m in reg.Matches(source))
+            {
+                if (!targets.Keys.Contains(m.Groups[2].Value.Trim()) && m.Groups[2].Value.Trim()!=String.Empty)
+                {
+                    targets.Add(m.Groups[2].Value,m.Groups[3].Value);
+                }
+
+            }
+            foreach (KeyValuePair<string,string> item in targets.Distinct())
+            {
+                XmlNode homolNode = xmlDoc.CreateElement("HomolAttribute");
+                XmlNode titleNode = xmlDoc.CreateElement("Value");
+                titleNode.InnerText = item.Key;
+                homolNode.AppendChild(titleNode);
+                XmlNode descriptNode = xmlDoc.CreateElement("Description");
+                descriptNode.InnerText = item.Value;
+                homolNode.AppendChild(descriptNode);
+                rootNode.AppendChild(homolNode);
+            }
+            string savepath = AppDomain.CurrentDomain.BaseDirectory.Replace(@"CreateInitialXML\bin\Debug", "") +
+                              @"TT_Market.Core\DBinitial\ReadHomolAttrbutesInitial.xml";
+            xmlDoc.Save(savepath);
+        }
     }
 
     internal class Program
@@ -140,7 +178,8 @@ namespace CreateInitialXML
             //HelpForXML.AddValuesIfNotExists("Brand");
             string reggroups =
                 @"(^\d{2,3}?)\/(\d{2,3}?)(((R\d{2,3}[C]?)|(R\d{2,3}\.{1}\d{1})?)\s+(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))\s+(.*?)\n)|((^\d{2,3}?)\/(\d{2,3}?)(R\d{2,3}[.,]{1}\d{1}?)(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))(.*?)\n)";
-            HelpForXML.GetValuesWithRegexGrops(reggroups,"SpeedIndex","14,7,8",",");
+            //HelpForXML.GetValuesWithRegexGrops(reggroups,"SpeedIndex","14,7,8",",");
+            HelpForXML.CreateHomolAttributes();
         }
     }
 }

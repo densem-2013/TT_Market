@@ -34,7 +34,7 @@ namespace TT_Market.Web.Models
         public virtual DbSet<Brand> Brands { get; set; }
         public virtual DbSet<PriceLanguage> PriceLanguages { get; set; }
         public virtual DbSet<PriceReadSetting> PriceReadSettings { get; set; }
-        public virtual DbSet<Price> Prices { get; set; }
+        public virtual DbSet<PriceDocument> PriceDocuments { get; set; }
         public virtual DbSet<Agent> Agents { get; set; }
         public virtual DbSet<AutoType> AutoTypes { get; set; } 
         public virtual DbSet<ConvSign> ConvSigns { get; set; }
@@ -42,13 +42,14 @@ namespace TT_Market.Web.Models
         public virtual DbSet<Currency> Currencys { get; set; }
         public virtual DbSet<Diameter> Diameters { get; set; }
         public virtual DbSet<Height> Heights { get; set; }
-        public virtual DbSet<HomolAttribute> Homols { get; set; }
+        public virtual DbSet<HomolAttribute> HomolAttributes { get; set; }
         public virtual DbSet<Model> Models { get; set; }
-        public virtual DbSet<MPT> Mpts { get; set; }
-        public virtual DbSet<PressIndex> PressIndixs { get; set; }
+        public virtual DbSet<TireProposition> TirePropositions { get; set; }
+        public virtual DbSet<PressIndex> PressIndexs { get; set; }
         public virtual DbSet<Season> Seasons { get; set; }
         public virtual DbSet<SpeedIndex> SpeedIndexs { get; set; }
         public virtual DbSet<StockCity> Citys { get; set; }
         public virtual DbSet<Width> Widths { get; set; }
+        public virtual DbSet<ProtectorType> ProtectorTypes { get; set; }
     }
 }

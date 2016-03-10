@@ -1,6 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Seasons>
   <Season>Зима</Season>
+  <Season>Зима+всесезон</Season>
   <Season>Лето</Season>
+  <Season>Лето+всесезон</Season>
   <Season>Всесезонные</Season>
+  <Season>Другой</Season>
 </Seasons>

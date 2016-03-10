@@ -14,6 +14,6 @@ namespace TT_Market.Core.Domains
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string SeasonTitle { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public virtual ICollection<Model> Models { get; set; } 
     }
 }

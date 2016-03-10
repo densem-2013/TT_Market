@@ -13,7 +13,8 @@ namespace TT_Market.Core.Domains
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string HomolTitle { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public virtual ICollection<Model> Models { get; set; } 
     }
 }

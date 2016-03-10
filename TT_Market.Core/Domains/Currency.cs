@@ -15,6 +15,6 @@ namespace TT_Market.Core.Domains
         public int Id { get; set; }
         public string CurrencyTitle { get; set; }
         public double CurrentExchangeRate { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public virtual ICollection<TireProposition> TirePropositions { get; set; } 
     }
 }

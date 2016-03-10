@@ -2,15 +2,8 @@
 <PriceReadSettings>
   <PriceReadSetting >
     <FileName>Price160202New.xls</FileName>
-    <Agent>ТОВ «ТАЄРС-АСІСТАНС»</Agent>
-    <PriceLanguage>Russian</PriceLanguage>
-    <ReadSettings>
     <Sheets>
       <Sheet Name="Лист1" SkipColumn="">
-        <InsertDate>
-          <Row>1</Row>
-          <Column>1</Column>
-        </InsertDate>
         <TitleRows>
           <Row RowNumber="5">
             <Columns>
@@ -24,10 +17,10 @@
                         <type>Brand</type>
                         <property>BrandTitle</property>
                         <group></group>
-                        <mask></mask>
-                      <norecognized></norecognized>
                       <alternative></alternative>
                       </target>
+                        <mask></mask>
+                      <norecognized></norecognized>
                     </Targets>
               </Transform>
               </Column>
@@ -35,22 +28,34 @@
                   <Transform>
                     <Targets>
                       <target>
+                        <type>Brand</type>
+                        <property>BrandTitle</property>
+                        <group>10|22|28|36</group>
+                        <alternative></alternative>
+                      </target>
+                      <target>
                         <type>Width</type>
                         <property>Value</property>
-                        <group>11|1</group>
+                        <group>12|42</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Height</type>
                         <property>Value</property>
-                        <group>12|2</group>
+                        <group>13|3|43</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Diameter</type>
                         <property>DSize</property>
-                        <group>13|5|6</group>
+                        <group>45|14|6</group>
                       <alternative></alternative>
+                      </target>
+                      <target>
+                        <type>PressIndex</type>
+                        <property>Value</property>
+                        <group>53|51|15|35</group>
+                        <alternative></alternative>
                       </target>
                       <target>
                         <type>SpeedIndex</type>
@@ -66,7 +71,7 @@
                       </target>
                     </Targets>
                         <mask>
-                          <![CDATA[(^\d{2,3}?)\/(\d{2,3}?)(((R\d{2,3}[C]?)|(R\d{2,3}\.{1}\d{1})?)\s+(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))\s+(.*?)\n)|((^\d{2,3}?)\/(\d{2,3}?)(R\d{2,3}[.,]{1}\d{1}?)(?>(\d{2,3}[A-Z]{1})|(\d{2,3}\/\d{2,3}[A-Z]{1}))(.*?)\n)]]>
+                          <![CDATA[(((\d{2}?)((R(\d{1,2}[.,]\d{1}))|(\/\d\.\dR\d{2})\s?)(\d{3}?)([A-Z]{1}?)(\D*)(.*))|(\d{3}?)\/(\d{2,3}?)R(\d{2}[.,]\d{1}?)(\d{3}))(((([A-Z]?)|(\/\d{3}))([A-Z])(Goodyear)([A-Z]*)(LHT)\(([^)]*)\))|(([A-Z])(Goodyear)(REG)\.(RHD)([(]([^)]*)[)]))|(([A-Z])(\d{3})[A-Z](Goodyear)([A-Z]*(LHT))([(](.*[)]?)?)?)?)|((\d{3}?)\/(\d{2,3}?)R((\d{2}((\.\d)|([C]))?)+\s)?(((\d{2,3})([A-Z]))|(\d{2,3}\/\d{2,3})([A-Z]))?)\s?(.*)?\n]]>
                     </mask>
                     <norecognized>No recognized Model!!!</norecognized>
               </Transform>
@@ -141,7 +146,7 @@
                   <Transform>
                     <Targets>
                       <target>
-                        <type>MPT</type>
+                        <type>TireProposition</type>
                         <property>SpecialPrice</property>
                         <group></group>
                       <alternative></alternative>
@@ -155,7 +160,7 @@
                   <Transform>
                     <Targets>
                       <target>
-                        <type>MPT</type>
+                        <type>TireProposition</type>
                         <property>DiscountPrice</property>
                         <group></group>
                       <alternative></alternative>
@@ -169,7 +174,7 @@
                   <Transform>
                     <Targets>
                       <target>
-                        <type>MPT</type>
+                        <type>TireProposition</type>
                         <property>RegularPrice</property>
                         <group></group>
                       <alternative></alternative>
@@ -196,7 +201,7 @@
                   <Transform>
                     <Targets>
                       <target>
-                        <type>MPT</type>
+                        <type>TireProposition</type>
                         <property>Stock</property>
                         <group></group>
                       <alternative></alternative>
@@ -211,6 +216,5 @@
         </TitleRows>
       </Sheet>
     </Sheets>
-    </ReadSettings>
   </PriceReadSetting>
 </PriceReadSettings>

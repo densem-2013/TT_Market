@@ -23,31 +23,57 @@ namespace TT_Market.Web.Models.HelpClasses
         public static int ParseAndInsert(string path)
         {
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => string.Equals(pl.FileName, filename));
+            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => pl.PriceDocuments.Select(doc=>doc.FileName).Contains( filename));
             if (pricelist != null)
             {
                 byte[] file = File.ReadAllBytes(path);
                 MemoryStream ms = new MemoryStream(file);
-                Price price = new Price
+                PriceDocument priceDocument = new PriceDocument
                 {
                     DownLoadDate = DateTime.UtcNow
                 };
-                //XSSFWorkbook wb = new XSSFWorkbook(fs);
-                DataSet data = GetExcelDataAsDataSet(path, false);
+                //XSSFWorkbook wb = new XSSFWorkbook(ms);
+                //DataSet data = GetExcelDataAsDataSet(path, false);
 
                 JObject jobj = JObject.Parse(pricelist.TransformMask);
-                IEnumerable shmames = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name");
-                foreach (var sheetname in shmames)
+                int sheetsCount = jobj.SelectToken("ReadSettings.Sheets").Select(s=>s.SelectToken("Sheet")).Count();
+                    if (sheetsCount!=0)
                 {
-                    //XSSFSheet sh = (XSSFSheet)wb.GetSheet(sheetname);
-                    //string dsname = data.DataSetName;
-                    string sh = sheetname.ToString();
+                    if (sheetsCount>1)
+                    {
+                        
+                    }
+                    else
+                    {
+                        string sheetName = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name").ToString();
+                        IEnumerable<DataRow> data = GetData(path, sheetName, false);
+                        ReadDataFromDataRows(jobj, data);
+                    }
                 }
-
             }
             return 0;
         }
 
+        public static int ReadDataFromDataRows(JObject jobj, IEnumerable<DataRow> datarows)
+        {
+            int[] titleRowsNumbers =
+                jobj.SelectToken("ReadSettings.Sheets.Sheet.TitleRows.Row").Select(r => (int)r.SelectToken("@RowNumber").ToObject(typeof(int))).ToArray();
+            for (int i = 0; i < titleRowsNumbers.Length; i++)
+            {
+                var rowQuery = jobj.SelectToken("ReadSettings.Sheets.Sheet.TitleRows.Row").Where(tr => (int)tr.SelectToken("@RowNumber").ToObject(typeof(int)) == titleRowsNumbers[i]);
+               
+            }
+            return 0;
+        }
+
+        /// <summary>[?(@.@RowNumber=5)]
+        /// Добавляет указанное значение как свойство сущности EntityFramework. Эта сущность
+        /// добавляется к соответствующему свойству контекста базы дфнных
+        /// </summary>
+        /// <param name="entity">Сущность в базе данных, представляющая одноимённую таблицу</param>
+        /// <param name="property">Свойство сущности  для изменения значения</param>
+        /// <param name="value">Сохраняемое значение</param>
+        /// <returns></returns>
         public static int AddDataToDb(string entity, string property, string value)
         {
             Assembly assembly = Assembly.LoadFrom("TT_Market.Core.dll");

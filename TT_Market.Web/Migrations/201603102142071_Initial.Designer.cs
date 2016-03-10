@@ -13,7 +13,7 @@ namespace TT_Market.Web.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201603011926215_Initial"; }
+            get { return "201603102142071_Initial"; }
         }
         
         string IMigrationMetadata.Source

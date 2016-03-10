@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<V8Exch:_1CV8DtUD xmlns:V8Exch="http://www.1c.ru/V8/1CV8DtUD/" xmlns:v8="http://v8.1c.ru/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<V8Exch:Data>
+		<CatalogObject.Типпротектора>
+			<Ref>a3e93e9c-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000001</Code>
+			<Description>Симметричный</Description>
+		</CatalogObject.Типпротектора>
+		<CatalogObject.Типпротектора>
+			<Ref>a3e93e9d-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000002</Code>
+			<Description>Ассиметричный</Description>
+		</CatalogObject.Типпротектора>
+		<CatalogObject.Типпротектора>
+			<Ref>a3e93e9e-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000003</Code>
+			<Description>Направленный</Description>
+		</CatalogObject.Типпротектора>
+	</V8Exch:Data>
+</V8Exch:_1CV8DtUD>

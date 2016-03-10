@@ -14,6 +14,6 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public double Value { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public virtual ICollection<Tire> Tires { get; set; } 
     }
 }

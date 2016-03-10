@@ -205,9 +205,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603011926215_Initial.cs" />
-    <Compile Include="Migrations\201603011926215_Initial.Designer.cs">
-      <DependentUpon>201603011926215_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603102142071_Initial.cs" />
+    <Compile Include="Migrations\201603102142071_Initial.Designer.cs">
+      <DependentUpon>201603102142071_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs">
       <SubType>Code</SubType>
@@ -216,6 +216,7 @@
     <Compile Include="Models\ApplicationDBInitializer.cs" />
     <Compile Include="Models\HelpClasses\FileImport.cs" />
     <Compile Include="Models\HelpClasses\ImportData.cs" />
+    <Compile Include="Models\HelpClasses\ReadCellSetting.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -286,8 +287,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603011926215_Initial.resx">
-      <DependentUpon>201603011926215_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603102142071_Initial.resx">
+      <DependentUpon>201603102142071_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

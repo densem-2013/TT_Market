@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<V8Exch:_1CV8DtUD xmlns:V8Exch="http://www.1c.ru/V8/1CV8DtUD/" xmlns:v8="http://v8.1c.ru/data" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<V8Exch:Data>
+		<CatalogObject.Сезон>
+			<Ref>a3e93e97-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000001</Code>
+			<Description>зимняя</Description>
+		</CatalogObject.Сезон>
+		<CatalogObject.Сезон>
+			<Ref>a3e93e98-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000002</Code>
+			<Description>летняя</Description>
+		</CatalogObject.Сезон>
+		<CatalogObject.Сезон>
+			<Ref>a3e93e99-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000003</Code>
+			<Description>всесезонная</Description>
+		</CatalogObject.Сезон>
+		<CatalogObject.Сезон>
+			<Ref>a3e93e9a-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000004</Code>
+			<Description>летняя+всесезонная</Description>
+		</CatalogObject.Сезон>
+		<CatalogObject.Сезон>
+			<Ref>a3e93e9b-fd9c-11e0-91df-00173196f75b</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000005</Code>
+			<Description>Зима-всесезон</Description>
+		</CatalogObject.Сезон>
+		<CatalogObject.Сезон>
+			<Ref>8a9e3d68-5392-11e5-afc0-000d609a645a</Ref>
+			<DeletionMark>false</DeletionMark>
+			<Code>000000006</Code>
+			<Description>Другой</Description>
+		</CatalogObject.Сезон>
+	</V8Exch:Data>
+</V8Exch:_1CV8DtUD>

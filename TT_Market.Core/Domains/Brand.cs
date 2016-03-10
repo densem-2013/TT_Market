@@ -16,6 +16,6 @@ namespace TT_Market.Core.Domains
         public string BrandTitle { get; set; }
         public virtual Country Country { get; set; }
         public virtual ICollection<Model> Models { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public virtual ICollection<Tire> Tires { get; set; } 
     }
 }

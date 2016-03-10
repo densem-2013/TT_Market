@@ -1,0 +1,1041 @@
+<table class="expand">
+		<tbody><tr>
+		<th align="left">
+			(*)		</th>
+		<td>
+			BMW approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(1Z)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(2Z)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(3Z)		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(A)		</th>
+		<td>
+			Renault Espace IV 18'' approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(AR)		</th>
+		<td>
+			Alfa Romeo		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(ARR)		</th>
+		<td>
+			Alfa Romeo Racing		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(AU)		</th>
+		<td>
+			Audi approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(AZ)		</th>
+		<td>
+			Alfa Romeo / Fiat / Subaru / Toyota approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(B)		</th>
+		<td>
+			Bentley approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(B1)		</th>
+		<td>
+			Bentley approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(BL)		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(BZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(CZ)		</th>
+		<td>
+			Subaru approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(DZ)		</th>
+		<td>
+			Honda / Mazda / Toyota approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(EZ)		</th>
+		<td>
+			Audi / Mazda 6 approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(F)		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(FZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(G)		</th>
+		<td>
+			Recommended for VW Golf		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(GZ)		</th>
+		<td>
+			Subaru approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(HZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(J)		</th>
+		<td>
+			Jaguar approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(JRS)		</th>
+		<td>
+			Jaguar approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(JZ)		</th>
+		<td>
+			Seat / Subaru approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(K1)		</th>
+		<td>
+			Ferrari approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(K2)		</th>
+		<td>
+			Ferrari approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(K3)		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(KZ)		</th>
+		<td>
+			Nissan / Toyota approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(LZ)		</th>
+		<td>
+			Lancia approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(MZ)		</th>
+		<td>
+			Mitsubishi / Toyota approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N0)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N1)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N2)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N3)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N4)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N5)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(N6)		</th>
+		<td>
+			Porsche approved tyres. The numerical escalation of Porsche N-Spec tires reflect either enhancements to the previous generation of the same tire model.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(NZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(OZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(PE)		</th>
+		<td>
+			Peugeot approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(PZ)		</th>
+		<td>
+			Ford / Mazda / Mercedes / VW approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(QZ)		</th>
+		<td>
+			Mini approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(RZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(SZ)		</th>
+		<td>
+			Mazda MPV approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(TZ)		</th>
+		<td>
+			Mazda 6 approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(UZ)		</th>
+		<td>
+			Original equipement for BMW 3 / Skoda		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(VZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(WZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(XZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(YZ)		</th>
+		<td>
+			BRIDGESTONE ORIGINAL EQUIPMENT		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			(m)		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			10-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			12-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			14-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			16-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			18-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			4-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			6-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			8-PR		</th>
+		<td>
+			Ply Rating (PR) is indicator of the load capacity of the tire. The number has no direct relationship to the number of plies.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			A		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			A2A		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AM4		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AM6		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AM8		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AM9		</th>
+		<td>
+			HOMOLOGATION FOR ASTON MARTIN : DB9 VOLANTE VA V8		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AML		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AMR		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AMS		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AMV		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AMX		</th>
+		<td>
+			Aston Martin		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			AO		</th>
+		<td>
+			Audi		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Alfa Romeo		</th>
+		<td>
+			Alfa Romeo		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			BL		</th>
+		<td>
+			Black Label: The characters on the tyre wall are written in black		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			BS		</th>
+		<td>
+			Black Stylized		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			BSW		</th>
+		<td>
+			Black Side Wall		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			C		</th>
+		<td>
+			Marking for light truck		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			C1		</th>
+		<td>
+			Chrysler Viper approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			CD		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			CRAMPONS		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Conti-Seal		</th>
+		<td>
+			Self-selling standard production tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Conti-Silent		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DA		</th>
+		<td>
+			DA indicates an appearance defect. Tyres with this marking are factory seconds that have the same manufacturers' guarantees.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DEMO		</th>
+		<td>
+			Tyres that have been mounted and dismounted and may have been used on a few meters. These tyres are guaranteed and new.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DOT 07		</th>
+		<td>
+			Manufactured year: 2007		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DOT 08		</th>
+		<td>
+			Manufactured year: 2008		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DOT 09		</th>
+		<td>
+			Manufactured year: 2009		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DOT 10		</th>
+		<td>
+			Manufactured year: 2010		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DSST		</th>
+		<td>
+			Dunlop Self-Supporting Technology run-flat tires by Dunlop.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DT		</th>
+		<td>
+			Different Tread Design		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			DT1		</th>
+		<td>
+			New pattern		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			EMT		</th>
+		<td>
+			Goodyear Extended Mobility Tyre: run flat tyres by Goodyear.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			F01		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			FI		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			FO		</th>
+		<td>
+			Ford approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			FP		</th>
+		<td>
+			FLANGE PROTECTION FOR ALLOY RIM		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			FR		</th>
+		<td>
+			Flange rim protection		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			FSL		</th>
+		<td>
+			Flange rim protection		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Ferrari		</th>
+		<td>
+			Ferrari		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Ferrari-Maserati		</th>
+		<td>
+			Ferrari/Maserati		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Fiat		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			G1		</th>
+		<td>
+			indicates that outside diameter or tread width differ from a tyre without this marking. We recommend to fit two G1 on the same axle. For		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			HARD		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			HO		</th>
+		<td>
+			Honda		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			HRS		</th>
+		<td>
+			Hankook Runflat System		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			K1		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			L		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			LR		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			LRO		</th>
+		<td>
+			Land Rover		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			LRR		</th>
+		<td>
+			New blend of rubber that offers greater performance and trip economy		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			LTS		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Lamborghini		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Lancia		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Limited Edition		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			M		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			M+S		</th>
+		<td>
+			Efficient on muddy terrain.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MC1		</th>
+		<td>
+			Mc Laren		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MEDIUM		</th>
+		<td>
+			MEDIUM GUM COMPOUND		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MEDIUM-HARD		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MFS		</th>
+		<td>
+			Max Flange Shield: protects the tyre from curb damage.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MGT		</th>
+		<td>
+			Maserati		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MO		</th>
+		<td>
+			Mercedes approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MO1		</th>
+		<td>
+			Mercedes SL65 AMG		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			MOExtended		</th>
+		<td>
+			Mercedes Extended (Runflat)		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Mazda		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			NCS		</th>
+		<td>
+			Noise Control System		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			NHS		</th>
+		<td>
+			Not for Highway Service		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			OBL		</th>
+		<td>
+			Outlined Black Letters		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			OWL		</th>
+		<td>
+			Off White Letter: means that the writing on the sidewall is white.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			OWT		</th>
+		<td>
+			OUTLINED WHITE LETTERS		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Opel		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			PE		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Pax		</th>
+		<td>
+			The ability to run with a deflated tyre for 125 miles at up to 50 mph, due to the integrated support ring which is anchored to the wheel.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			R01		</th>
+		<td>
+			Audi Quattro, RS4, RS6, R8		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			R02		</th>
+		<td>
+			Audi Quattro, RS4, RS6, R8		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RB		</th>
+		<td>
+			Lettrage des pneus noir, entouré de blanc.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RBL		</th>
+		<td>
+			Raised or Recessed Black Letters		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RBT		</th>
+		<td>
+			Raised Black Letters Tubeless		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RGL		</th>
+		<td>
+			Raised Gold Letters		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RPB		</th>
+		<td>
+			RPB = Rim Protection Bar. Flange rim protection		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RWL		</th>
+		<td>
+			Raised White Letter: means that the writing on the sidewall is white		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Renault		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			RunFlat		</th>
+		<td>
+			are provided for flat running. Only fits vehicles with Run Flat.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			S1		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			S2		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			S78		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SB		</th>
+		<td>
+			Serrated Black Stripe		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SBL		</th>
+		<td>
+			Serrated Black Letters		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SCT		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SOFT		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SPIKE		</th>
+		<td>
+			Winter tyre spikes for enhanced traction on ice. Due to their unique designs these tyres must be used in sets of four. Use of studded tyres is often prohibited or restricted.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SSR		</th>
+		<td>
+			Self Supporting Runflat, SSR tyres will enable you to continue driving for up 50 miles at a maximum speed of 50 mph. SSR tyres may only be fitted to vehicles equipped with a tyre pressure monitoring system		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			STUDDABLE		</th>
+		<td>
+			Winter tire studs for enhanced traction on ice. Due to their unique designs these tires must be used in sets of four. Use of studded tires is often prohibited or restricted.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			SUPER-SOFT		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Seal		</th>
+		<td>
+			Self-selling standard production tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Seal-Inside		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Seat		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Self Seal		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			Skoda		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			TH		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			TO		</th>
+		<td>
+			Toyota		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			TT		</th>
+		<td>
+			Tubetype, tyre with a tube.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			V1		</th>
+		<td>
+			New blend of rubber that offers greater performance and trip economy		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			VO		</th>
+		<td>
+			Volkswagen approved tyres		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			VSB		</th>
+		<td>
+			Vertical Serrated Band		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			VW		</th>
+		<td>
+			Volkswagen		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WET		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WL		</th>
+		<td>
+			White letter: means that the writing on the sidewall is white.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WSW		</th>
+		<td>
+			White Sidewall: Tyre having an entire white side.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WTCC		</th>
+		<td>
+					</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WW		</th>
+		<td>
+			Tyre having an entire white side.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			WWW		</th>
+		<td>
+			Tyre having an entire white side.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			XL		</th>
+		<td>
+			Reinforced tyres. Have a higher load index.		</td>
+	</tr>
+		<tr>
+		<th align="left">
+			ZP		</th>
+		<td>
+			Michelin ZP is the runflat technology of the Michelin brand. The runflat system allows to drive a distance of 50 miles at a maximum speed of 50 mph.		</td>
+	</tr>
+	</tbody></table>
+	

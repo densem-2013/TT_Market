@@ -14,8 +14,10 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string ModelTitle { get; set; }
-        public int AgentId { get; set; }
         public virtual Brand Brand { get; set; }
-        public virtual ICollection<MPT> Mpts { get; set; } 
+        public virtual HomolAttribute Homol { get; set; }
+        public virtual ProtectorType ProtectorType { get; set; }
+        public virtual Season Season { get; set; }
+        public virtual ICollection<Tire> Tires { get; set; } 
     }
 }
