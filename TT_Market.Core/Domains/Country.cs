@@ -14,6 +14,7 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string CountryTitle { get; set; }
+        public virtual ICollection<City> Cities { get; set; } 
         public virtual ICollection<Brand> Brands { get; set; }
     }
 }

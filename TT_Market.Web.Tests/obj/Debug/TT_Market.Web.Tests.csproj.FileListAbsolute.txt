@@ -120,3 +120,5 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NPOI.xml
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NLog.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NLog.xml

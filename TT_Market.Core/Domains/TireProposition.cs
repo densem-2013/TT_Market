@@ -13,11 +13,13 @@ namespace TT_Market.Core.Domains
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+        public string PriceCode { get; set; }
         public string ExtendedData { get; set; }
         public double RegularPrice { get; set; }
         public double DiscountPrice { get; set; }
         public double SpecialPrice { get; set; }
         public virtual Tire Tire { get; set; }
         public virtual PriceDocument PriceDocument { get; set; }
+        public virtual Stock Stock { get; set; }
     }
 }

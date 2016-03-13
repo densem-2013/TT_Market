@@ -14,7 +14,6 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime DownLoadDate { get; set; }
-        public DateTime InsertDate { get; set; }
         public string FileName { get; set; }
         public virtual Agent Agent { get; set; }
         public virtual PriceLanguage PriceLanguage { get; set; }

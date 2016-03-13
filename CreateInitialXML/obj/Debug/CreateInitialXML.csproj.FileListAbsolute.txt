@@ -16,4 +16,7 @@ C:\Soft\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.xml
 C:\Soft\GitProjects\TT_Market\CreateInitialXML\bin\Debug\EntityFramework.SqlServer.xml
 C:\Soft\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.exe
 C:\Soft\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.pdb
-E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.csprojResolveAssemblyReference.cache
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml

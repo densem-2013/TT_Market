@@ -13,7 +13,7 @@ using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using TT_Market.Core.Domains;
-using TT_Market.Web.Models;
+using TT_Market.Core.Identity;
 
 namespace TT_Market.Web.Tests.ReadWithReflection
 {

@@ -13,6 +13,7 @@ using NPOI.OpenXmlFormats.Dml;
 using NPOI.SS.Formula;
 using NPOI.XSSF.UserModel;
 using TT_Market.Core.Domains;
+using TT_Market.Core.Identity;
 
 namespace TT_Market.Web.Models.HelpClasses
 {
@@ -23,31 +24,36 @@ namespace TT_Market.Web.Models.HelpClasses
         public static int ParseAndInsert(string path)
         {
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceReadSetting pricelist = Db.PriceReadSettings.FirstOrDefault(pl => pl.PriceDocuments.Select(doc=>doc.FileName).Contains( filename));
-            if (pricelist != null)
+            var firstOrDefault = Db.PriceDocuments.FirstOrDefault(pd => string.Equals(pd.FileName,filename));
+            if (firstOrDefault != null)
             {
-                byte[] file = File.ReadAllBytes(path);
-                MemoryStream ms = new MemoryStream(file);
-                PriceDocument priceDocument = new PriceDocument
+                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
+                if (priceReadSetting != null)
                 {
-                    DownLoadDate = DateTime.UtcNow
-                };
-                //XSSFWorkbook wb = new XSSFWorkbook(ms);
-                //DataSet data = GetExcelDataAsDataSet(path, false);
+                    byte[] file = File.ReadAllBytes(path);
+                    MemoryStream ms = new MemoryStream(file);
+                    PriceDocument priceDocument = new PriceDocument
+                    {
+                        DownLoadDate = DateTime.UtcNow,
+                        FileName = filename
+                    };
+                    //XSSFWorkbook wb = new XSSFWorkbook(ms);
+                    //DataSet data = GetExcelDataAsDataSet(path, false);
 
-                JObject jobj = JObject.Parse(pricelist.TransformMask);
-                int sheetsCount = jobj.SelectToken("ReadSettings.Sheets").Select(s=>s.SelectToken("Sheet")).Count();
+                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
+                    int sheetsCount = jobj.SelectToken("ReadSettings.Sheets").Select(s=>s.SelectToken("Sheet")).Count();
                     if (sheetsCount!=0)
-                {
-                    if (sheetsCount>1)
                     {
+                        if (sheetsCount>1)
+                        {
                         
-                    }
-                    else
-                    {
-                        string sheetName = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name").ToString();
-                        IEnumerable<DataRow> data = GetData(path, sheetName, false);
-                        ReadDataFromDataRows(jobj, data);
+                        }
+                        else
+                        {
+                            string sheetName = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name").ToString();
+                            IEnumerable<DataRow> data = GetData(path, sheetName, false);
+                            ReadDataFromDataRows(jobj, data);
+                        }
                     }
                 }
             }

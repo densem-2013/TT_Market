@@ -239,19 +239,5 @@
 				</Row>
 			</ключи>
 		</CatalogObject.Омологации>
-		<CatalogObject.Омологации>
-			<Ref>00f4c943-7d68-11e5-ba88-000d609a645a</Ref>
-			<DeletionMark>false</DeletionMark>
-			<Code>000000017</Code>
-			<Description>AO</Description>
-			<Значение>AO</Значение>
-			<длинна>2</длинна>
-			<ключи>
-				<Row>
-					<key_in>\W?AO\W?</key_in>
-					<key_out/>
-				</Row>
-			</ключи>
-		</CatalogObject.Омологации>
 	</V8Exch:Data>
 </V8Exch:_1CV8DtUD>

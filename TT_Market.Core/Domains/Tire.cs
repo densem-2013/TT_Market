@@ -14,7 +14,6 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string TireTitle { get; set; }
-        public virtual Brand Brand { get; set; }
         public virtual Width Width { get; set; }
         public virtual Height Height { get; set; }
         public virtual Diameter Diameter { get; set; }
@@ -22,7 +21,6 @@ namespace TT_Market.Core.Domains
         public virtual PressIndex PressIndex { get; set; }
         public virtual Model Model { get; set; }
         public virtual ConvSign ConvSign { get; set; }
-        public virtual AutoType AutoType { get; set; }
-        public virtual StockCity StockCity { get; set; }
+        public virtual Stock Stock { get; set; }
     }
 }

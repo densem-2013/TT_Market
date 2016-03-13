@@ -16,6 +16,7 @@ namespace TT_Market.Core.Domains
         public string ModelTitle { get; set; }
         public virtual Brand Brand { get; set; }
         public virtual HomolAttribute Homol { get; set; }
+        public virtual AutoType AutoType { get; set; }
         public virtual ProtectorType ProtectorType { get; set; }
         public virtual Season Season { get; set; }
         public virtual ICollection<Tire> Tires { get; set; } 

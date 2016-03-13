@@ -51,7 +51,6 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Razor.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.WebPages.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.WebPages.Deployment.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.WebPages.Razor.xml
-E:\GitProjects\TT_Market\TT_Market.Web\bin\Newtonsoft.Json.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Antlr3.Runtime.pdb
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Net.Http.Formatting.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Http.xml
@@ -150,5 +149,5 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
-E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.Initial.resources
-E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.xml

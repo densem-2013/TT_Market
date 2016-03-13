@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <PriceReadSettings>
-  <PriceReadSetting >
+  <PriceReadSetting>
     <FileName>Price160202New.xls</FileName>
     <Sheets>
       <Sheet Name="Лист1" SkipColumn="">

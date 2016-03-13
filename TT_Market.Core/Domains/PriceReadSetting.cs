@@ -14,6 +14,6 @@ namespace TT_Market.Core.Domains
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string TransformMask { get; set; }
-        public virtual ICollection<PriceDocument> PriceDocuments { get; set; }
+        public virtual ICollection<PriceDocument> PriceDocuments { get; set; } 
     }
 }
