@@ -30,48 +30,48 @@
                       <target>
                         <type>Brand</type>
                         <property>BrandTitle</property>
-                        <group>10|22|28|36</group>
+                        <group>12|25|32|42</group>
                         <alternative></alternative>
                       </target>
                       <target>
                         <type>Width</type>
                         <property>Value</property>
-                        <group>12|42</group>
+                        <group>14|54</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Height</type>
                         <property>Value</property>
-                        <group>13|3|43</group>
+                        <group>15|3|55</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Diameter</type>
                         <property>DSize</property>
-                        <group>45|14|6</group>
+                        <group>16|57|6</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>PressIndex</type>
                         <property>Value</property>
-                        <group>53|51|15|35</group>
+                        <group>10|22|30|38|40|63|65</group>
                         <alternative></alternative>
                       </target>
                       <target>
                         <type>SpeedIndex</type>
                         <property>Value</property>
-                        <group>14|7|8</group>
+                        <group>64|66|39|41|31|24|11</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Model</type>
                         <property>ModelTitle</property>
-                        <group>9</group>
+                        <group>67</group>
                       <alternative></alternative>
                       </target>
                     </Targets>
                         <mask>
-                          <![CDATA[(((\d{2}?)((R(\d{1,2}[.,]\d{1}))|(\/\d\.\dR\d{2})\s?)(\d{3}?)([A-Z]{1}?)(\D*)(.*))|(\d{3}?)\/(\d{2,3}?)R(\d{2}[.,]\d{1}?)(\d{3}))(((([A-Z]?)|(\/\d{3}))([A-Z])(Goodyear)([A-Z]*)(LHT)\(([^)]*)\))|(([A-Z])(Goodyear)(REG)\.(RHD)([(]([^)]*)[)]))|(([A-Z])(\d{3})[A-Z](Goodyear)([A-Z]*(LHT))([(](.*[)]?)?)?)?)|((\d{3}?)\/(\d{2,3}?)R((\d{2}((\.\d)|([C]))?)+\s)?(((\d{2,3})([A-Z]))|(\d{2,3}\/\d{2,3})([A-Z]))?)\s?(.*)?\n]]>
+                          <![CDATA[^(((\d{2}?)((R(\d{1,2}[.,]\d{1}))|(\/(\d\.\d)R(\d{2}))\s?)(\d{3}?)([A-Z]{1}?)(\D*)(.*))|(\d{3}?)\/(\d{2,3}?)R(\d{2}[.,]\d{1}?))((((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z]))\s?([A-Z][a-z]*)([A-Z]*)([A-Z]{3})\(([^)]*)\))|((\d{3})([A-Z])([A-Z][a-z]*)([A-Z]{3})\.([A-Z]{3})([(]([^)]*)[)]))|((\d{3})([A-Z])(\d{3})([A-Z])([A-Z][a-z]*)([A-Z]*([A-Z]{3}))([(](.*[)]?)?)?)|((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z])))|((\d{3}?)\/(\d{2,3}?)R((\d{2}((\.\d)|([C]))?)+\s)?(((\d{2,3})([A-Z]))|(\d{2,3}\/\d{2,3})([A-Z])))\s?(.*)$]]>
                     </mask>
                     <norecognized>No recognized Model!!!</norecognized>
               </Transform>
