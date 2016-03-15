@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace TT_Market.Web.Models.HelpClasses
 {
     public class Target
     {
-        public string DBType { get; set; }
+        public string DbType { get; set; }
         public string TypeProperty { get; set; }
         public List<int> GroupNumbers { get; set; }
+        public Type ValueType { get; set; }
     }
     public class ReadCellSetting
     {

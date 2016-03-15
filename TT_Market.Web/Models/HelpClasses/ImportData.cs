@@ -41,32 +41,40 @@ namespace TT_Market.Web.Models.HelpClasses
                     //DataSet data = GetExcelDataAsDataSet(path, false);
 
                     JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-                    int sheetsCount = jobj.SelectToken("ReadSettings.Sheets").Select(s=>s.SelectToken("Sheet")).Count();
-                    if (sheetsCount!=0)
-                    {
-                        if (sheetsCount>1)
-                        {
-                        
-                        }
-                        else
-                        {
-                            string sheetName = jobj.SelectToken("ReadSettings.Sheets.Sheet.@Name").ToString();
-                            IEnumerable<DataRow> data = GetData(path, sheetName, false);
-                            ReadDataFromDataRows(jobj, data);
-                        }
-                    }
+                    //
+
+                    //IEnumerable<DataRow> data = GetData(path, sheetName, false);
+                    //ReadDataFromDataRows(jobj, data);
                 }
             }
             return 0;
         }
 
+        public static Dictionary<string, List<ReadCellSetting>> AddRecordsToDict(JObject jobj)
+        {
+            Dictionary<string, List<ReadCellSetting>> dict = new Dictionary<string, List<ReadCellSetting>>();
+
+            int sheetsCount = jobj.SelectToken("Sheets").Select(s => s.SelectToken("Sheet")).Count();
+            if (sheetsCount != 0)
+            {
+                if (sheetsCount > 1)
+                {
+
+                }
+                else
+                {
+                    string sheetName = jobj.SelectToken("Sheets.Sheet.@Name").ToString();
+                }
+            }
+            return dict;
+        }
         public static int ReadDataFromDataRows(JObject jobj, IEnumerable<DataRow> datarows)
         {
             int[] titleRowsNumbers =
-                jobj.SelectToken("ReadSettings.Sheets.Sheet.TitleRows.Row").Select(r => (int)r.SelectToken("@RowNumber").ToObject(typeof(int))).ToArray();
+                jobj.SelectToken("Sheets.Sheet.TitleRows.Row").Select(r => (int)r.SelectToken("@RowNumber").ToObject(typeof(int))).ToArray();
             for (int i = 0; i < titleRowsNumbers.Length; i++)
             {
-                var rowQuery = jobj.SelectToken("ReadSettings.Sheets.Sheet.TitleRows.Row").Where(tr => (int)tr.SelectToken("@RowNumber").ToObject(typeof(int)) == titleRowsNumbers[i]);
+                var rowQuery = jobj.SelectToken("Sheets.Sheet.TitleRows.Row").Where(tr => (int)tr.SelectToken("@RowNumber").ToObject(typeof(int)) == titleRowsNumbers[i]);
                
             }
             return 0;

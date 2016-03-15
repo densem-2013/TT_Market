@@ -1,6 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<PriceReadSettings>
-  <PriceReadSetting>
+<PriceReadSetting>
     <FileName>Price160202New.xls</FileName>
     <Sheets>
       <Sheet Name="Лист1" SkipColumn="">
@@ -54,19 +53,19 @@
                       <target>
                         <type>PressIndex</type>
                         <property>Value</property>
-                        <group>10|22|30|38|40|63|65</group>
+                        <group>10|22|30|38|40|64|66</group>
                         <alternative></alternative>
                       </target>
                       <target>
                         <type>SpeedIndex</type>
                         <property>Value</property>
-                        <group>64|66|39|41|31|24|11</group>
+                        <group>65|67|39|41|31|24|11</group>
                       <alternative></alternative>
                       </target>
                       <target>
                         <type>Model</type>
                         <property>ModelTitle</property>
-                        <group>67</group>
+                        <group>26|33|43|68</group>
                       <alternative></alternative>
                       </target>
                     </Targets>
@@ -85,7 +84,9 @@
                         <type>Season</type>
                         <property>SeasonTitle</property>
                         <group></group>
-                      <alternative></alternative>
+                      <alternative>
+                        
+                      </alternative>
                       </target>
                     </Targets>
                         <mask></mask>
@@ -100,10 +101,9 @@
                         <property>TypeValue</property>
                         <group></group>
                       <alternative>
-                        <alter value="Внедорожник">4x4</alter>
-                        <alter value="Легковой">Легковые</alter>
-                        <alter value="Грузовой">Грузовые</alter>
-                        <alter value="Легкогрузовой">LT</alter>
+                        <alter value="Джипы">4x4</alter>
+                        <alter value="Грузовые-универсальные">Грузовые</alter>
+                        <alter value="Легкогрузовые">LT</alter>
                       </alternative>
                       </target>
                     </Targets>
@@ -118,7 +118,11 @@
                         <type>Season</type>
                         <property>SeasonTitle</property>
                         <group></group>
-                      <alternative></alternative>
+                      <alternative>
+                        <alter value="зимняя">зима</alter>
+                        <alter value="летняя">лето</alter>
+                        <alter value="всесезонная">всесез</alter>
+                      </alternative>
                       </target>
                     </Targets>
                         <mask></mask>
@@ -216,5 +220,4 @@
         </TitleRows>
       </Sheet>
     </Sheets>
-  </PriceReadSetting>
-</PriceReadSettings>
+</PriceReadSetting>

@@ -519,18 +519,17 @@ namespace TT_Market.Core.Identity
             path = path + "PriceReadSettingsInitial.xml";
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
-            XmlNodeList priceLists = doc.SelectNodes("descendant::PriceReadSetting");
+            XmlNode priceList = doc.DocumentElement;
             List<PriceReadSetting> lists = new List<PriceReadSetting>();
-            foreach (XmlNode readset in priceLists)
+            var selectSingleNode = priceList.SelectSingleNode("FileName");
+            if (selectSingleNode != null)
             {
+                string fn = selectSingleNode.InnerText;
 
-                var selectSingleNode = readset.SelectSingleNode("FileName");
-                if (selectSingleNode != null)
-                {
-                    string fn = selectSingleNode.InnerText;
                     try
                     {
-                        string trmask = JsonConvert.SerializeXmlNode(readset);
+                        XmlNode sheets = priceList.SelectSingleNode("Sheets");
+                        string trmask = JsonConvert.SerializeXmlNode(sheets);
                         PriceReadSetting pricers = new PriceReadSetting
                         {
                             TransformMask = trmask
@@ -549,7 +548,6 @@ namespace TT_Market.Core.Identity
 
                         throw new Exception(ex.Message);
                     }
-                }
             }
             context.PriceReadSettings.AddRange(lists);
             context.SaveChanges();
