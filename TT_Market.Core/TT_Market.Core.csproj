@@ -148,6 +148,8 @@
     <Compile Include="DAL\IUnitOfWork.cs" />
     <Compile Include="DAL\Repository.cs" />
     <Compile Include="DAL\UnitOfWork.cs" />
+    <Compile Include="HelpClasses\ReadCellSetting.cs" />
+    <Compile Include="HelpClasses\ReadSetting.cs" />
     <Compile Include="Identity\ApplicationDBInitializer.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />

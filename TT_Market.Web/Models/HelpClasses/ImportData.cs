@@ -13,6 +13,7 @@ using NPOI.OpenXmlFormats.Dml;
 using NPOI.SS.Formula;
 using NPOI.XSSF.UserModel;
 using TT_Market.Core.Domains;
+using TT_Market.Core.HelpClasses;
 using TT_Market.Core.Identity;
 
 namespace TT_Market.Web.Models.HelpClasses
@@ -23,51 +24,10 @@ namespace TT_Market.Web.Models.HelpClasses
 
         public static int ParseAndInsert(string path)
         {
-            string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            var firstOrDefault = Db.PriceDocuments.FirstOrDefault(pd => string.Equals(pd.FileName,filename));
-            if (firstOrDefault != null)
-            {
-                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
-                if (priceReadSetting != null)
-                {
-                    byte[] file = File.ReadAllBytes(path);
-                    MemoryStream ms = new MemoryStream(file);
-                    PriceDocument priceDocument = new PriceDocument
-                    {
-                        DownLoadDate = DateTime.UtcNow,
-                        FileName = filename
-                    };
-                    //XSSFWorkbook wb = new XSSFWorkbook(ms);
-                    //DataSet data = GetExcelDataAsDataSet(path, false);
-
-                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-                    //
-
-                    //IEnumerable<DataRow> data = GetData(path, sheetName, false);
-                    //ReadDataFromDataRows(jobj, data);
-                }
-            }
+            Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, path);
             return 0;
         }
 
-        public static Dictionary<string, List<ReadCellSetting>> AddRecordsToDict(JObject jobj)
-        {
-            Dictionary<string, List<ReadCellSetting>> dict = new Dictionary<string, List<ReadCellSetting>>();
-
-            int sheetsCount = jobj.SelectToken("Sheets").Select(s => s.SelectToken("Sheet")).Count();
-            if (sheetsCount != 0)
-            {
-                if (sheetsCount > 1)
-                {
-
-                }
-                else
-                {
-                    string sheetName = jobj.SelectToken("Sheets.Sheet.@Name").ToString();
-                }
-            }
-            return dict;
-        }
         public static int ReadDataFromDataRows(JObject jobj, IEnumerable<DataRow> datarows)
         {
             int[] titleRowsNumbers =

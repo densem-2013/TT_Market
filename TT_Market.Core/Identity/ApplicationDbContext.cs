@@ -39,5 +39,9 @@ namespace TT_Market.Core.Identity
         public virtual DbSet<Width> Widths { get; set; }
         public virtual DbSet<ProtectorType> ProtectorTypes { get; set; }
         public virtual DbSet<City> Citys { get; set; }
+        public virtual DbSet<ProductionYear> ProductionYears { get; set; }
+        public virtual DbSet<CityTitle> CityTitles { get; set; }
+        public virtual DbSet<CountryTitle> CountryTitles { get; set; }
+        public virtual DbSet<SeasonTitle> SeasonTitles { get; set; } 
     }
 }

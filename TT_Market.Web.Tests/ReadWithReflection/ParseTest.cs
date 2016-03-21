@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Newtonsoft.Json.Linq;
 using TT_Market.Core.DAL;
 using TT_Market.Core.Domains;
+using TT_Market.Core.HelpClasses;
 using TT_Market.Core.Identity;
-using TT_Market.Web.Models.HelpClasses;
 
 namespace TT_Market.Web.Tests.ReadWithReflection
 {

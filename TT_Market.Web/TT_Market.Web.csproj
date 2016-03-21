@@ -212,7 +212,6 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\HelpClasses\FileImport.cs" />
     <Compile Include="Models\HelpClasses\ImportData.cs" />
-    <Compile Include="Models\HelpClasses\ReadCellSetting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

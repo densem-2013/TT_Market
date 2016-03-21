@@ -22,5 +22,6 @@ namespace TT_Market.Core.Domains
         public virtual Model Model { get; set; }
         public virtual ConvSign ConvSign { get; set; }
         public virtual Stock Stock { get; set; }
+        public virtual ProductionYear ProdactionYear { get; set; }
     }
 }

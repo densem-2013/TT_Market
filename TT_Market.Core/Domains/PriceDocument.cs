@@ -18,6 +18,6 @@ namespace TT_Market.Core.Domains
         public virtual Agent Agent { get; set; }
         public virtual PriceLanguage PriceLanguage { get; set; }
         public virtual PriceReadSetting PriceReadSetting { get; set; }
-        public virtual ICollection<Tire> Tires { get; set; } 
+        public virtual ICollection<TireProposition> TirePropositions { get; set; } 
     }
 }

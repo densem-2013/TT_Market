@@ -1,16 +1,14 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <PriceReadSetting>
     <FileName>Price160202New.xls</FileName>
+  <PriceLanguage>Russian</PriceLanguage>
+  <Agent>ТОВ «ТАЄРС-АСІСТАНС»</Agent>
     <Sheets>
-      <Sheet Name="Лист1" SkipColumn="">
-        <TitleRows>
-          <Row RowNumber="5">
+      <Sheet Name="Лист1" >
+        <TitleRow>
+        </TitleRow>
             <Columns>
-              <Column OrderNumber="0" RowSpan="1" ColSpan="3">
-                  <Transform></Transform>
-              </Column>
-              <Column OrderNumber="3" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="3">
                     <Targets>
                       <target>
                         <type>Brand</type>
@@ -19,12 +17,9 @@
                       <alternative></alternative>
                       </target>
                         <mask></mask>
-                      <norecognized></norecognized>
                     </Targets>
-              </Transform>
               </Column>
-              <Column OrderNumber="4" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="4">
                     <Targets>
                       <target>
                         <type>Brand</type>
@@ -72,13 +67,8 @@
                         <mask>
                           <![CDATA[^(((\d{2}?)((R(\d{1,2}[.,]\d{1}))|(\/(\d\.\d)R(\d{2}))\s?)(\d{3}?)([A-Z]{1}?)(\D*)(.*))|(\d{3}?)\/(\d{2,3}?)R(\d{2}[.,]\d{1}?))((((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z]))\s?([A-Z][a-z]*)([A-Z]*)([A-Z]{3})\(([^)]*)\))|((\d{3})([A-Z])([A-Z][a-z]*)([A-Z]{3})\.([A-Z]{3})([(]([^)]*)[)]))|((\d{3})([A-Z])(\d{3})([A-Z])([A-Z][a-z]*)([A-Z]*([A-Z]{3}))([(](.*[)]?)?)?)|((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z])))|((\d{3}?)\/(\d{2,3}?)R((\d{2}((\.\d)|([C]))?)+\s)?(((\d{2,3})([A-Z]))|(\d{2,3}\/\d{2,3})([A-Z])))\s?(.*)$]]>
                     </mask>
-                    <norecognized>No recognized Model!!!</norecognized>
-              </Transform>
-                  <Transform>
-              </Transform>
               </Column>
-              <Column OrderNumber="5" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="5" >
                     <Targets>
                       <target>
                         <type>Season</type>
@@ -90,11 +80,8 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>ExtendedData":"No recognized Season!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="6" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="6">
                     <Targets>
                       <target>
                         <type>AutoType</type>
@@ -108,11 +95,8 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized AutoType!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="7" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="7" >
                     <Targets>
                       <target>
                         <type>Season</type>
@@ -126,11 +110,8 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized Season!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="8" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="8">
                     <Targets>
                       <target>
                         <type>Country</type>
@@ -140,14 +121,8 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized Country!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="9" RowSpan="1" ColSpan="1">
-                  <Transform></Transform>
-              </Column>
-              <Column OrderNumber="10" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="10">
                     <Targets>
                       <target>
                         <type>TireProposition</type>
@@ -157,11 +132,9 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>"No recognized SpecialPrice!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="11" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="11">
+                  
                     <Targets>
                       <target>
                         <type>TireProposition</type>
@@ -171,11 +144,9 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized DiscountPrice!!!</norecognized>
-              </Transform>
               </Column>
-              <Column OrderNumber="12" RowSpan="2" ColSpan="1">
-                  <Transform>
+              <Column OrderNumber="12">
+                  
                     <Targets>
                       <target>
                         <type>TireProposition</type>
@@ -185,25 +156,9 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized RegularPrice!!!</norecognized>
-              </Transform>
               </Column>
-            </Columns>
-          </Row>
-          <Row RowNumber="6">
-            <Columns>
-              <Column OrderNumber="0" RowSpan="1" ColSpan="1">
-                  <Transform></Transform>
-              </Column>
-              <Column OrderNumber="1" RowSpan="1" ColSpan="1">
-                  <Transform></Transform>
-              </Column>
-              <Column OrderNumber="2" RowSpan="1" ColSpan="1">
-                  <Transform></Transform>
-              </Column>
-              <Column OrderNumber="9" RowSpan="1" ColSpan="1">
-                  <Transform>
-                    <Targets>
+              <Column OrderNumber="9">
+                  <Targets>
                       <target>
                         <type>TireProposition</type>
                         <property>Stock</property>
@@ -212,12 +167,8 @@
                       </target>
                     </Targets>
                         <mask></mask>
-                      <norecognized>No recognized Stock!!!</norecognized>
-              </Transform>
               </Column>
             </Columns>
-          </Row>
-        </TitleRows>
       </Sheet>
     </Sheets>
 </PriceReadSetting>

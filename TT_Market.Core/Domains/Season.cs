@@ -13,7 +13,7 @@ namespace TT_Market.Core.Domains
         [KeyAttribute]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string SeasonTitle { get; set; }
+        public virtual SeasonTitle SeasonTitle { get; set; }
         public virtual ICollection<Model> Models { get; set; } 
     }
 }

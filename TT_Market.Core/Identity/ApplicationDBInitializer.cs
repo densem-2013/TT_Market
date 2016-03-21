@@ -72,7 +72,7 @@ namespace TT_Market.Core.Identity
                 select new 
                 {
                     FileName = xElement.Value,
-                    Language=item.Element("Language").Value,
+                    Language = item.Element("PriceLanguage").Value,
                     Agent=item.Element("Agent").Value
                 }).ToList();
             List<PriceDocument> pds=pdlist.Select(x =>new PriceDocument
