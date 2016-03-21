@@ -107,6 +107,7 @@
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="ReadWithReflection\GetDataDynamically.cs" />
     <Compile Include="ReadWithReflection\MigrationTest.cs" />
+    <Compile Include="ReadWithReflection\ParseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

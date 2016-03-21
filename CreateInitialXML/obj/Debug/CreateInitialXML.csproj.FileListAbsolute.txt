@@ -20,3 +20,4 @@ E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.Co
 E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.Core.xml
 E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.csprojResolveAssemblyReference.cache

@@ -118,14 +118,18 @@
   <ItemGroup>
     <Compile Include="Domains\AutoType.cs" />
     <Compile Include="Domains\City.cs" />
+    <Compile Include="Domains\CityTitle.cs" />
     <Compile Include="Domains\ConvSign.cs" />
     <Compile Include="Domains\Country.cs" />
+    <Compile Include="Domains\CountryTitle.cs" />
     <Compile Include="Domains\Currency.cs" />
     <Compile Include="Domains\Diameter.cs" />
     <Compile Include="Domains\Height.cs" />
     <Compile Include="Domains\HomolAttribute.cs" />
     <Compile Include="Domains\Model.cs" />
+    <Compile Include="Domains\ProductionYear.cs" />
     <Compile Include="Domains\ProtectorType.cs" />
+    <Compile Include="Domains\SeasonTitle.cs" />
     <Compile Include="Domains\TireProposition.cs" />
     <Compile Include="Domains\PressIndex.cs" />
     <Compile Include="Domains\PriceDocument.cs" />
@@ -147,9 +151,9 @@
     <Compile Include="Identity\ApplicationDBInitializer.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
-    <Compile Include="Migrations\201603151937472_Initial.cs" />
-    <Compile Include="Migrations\201603151937472_Initial.Designer.cs">
-      <DependentUpon>201603151937472_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603211843175_Initial.cs" />
+    <Compile Include="Migrations\201603211843175_Initial.Designer.cs">
+      <DependentUpon>201603211843175_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -196,8 +200,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603151937472_Initial.resx">
-      <DependentUpon>201603151937472_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603211843175_Initial.resx">
+      <DependentUpon>201603211843175_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
