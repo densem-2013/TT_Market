@@ -14,6 +14,7 @@ namespace TT_Market.Core.Domains
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string LanguageName { get; set; }
+        public bool IsDefault { get; set; }
         public virtual ICollection<PriceDocument> PriceDocuments { get; set; }
     }
 }

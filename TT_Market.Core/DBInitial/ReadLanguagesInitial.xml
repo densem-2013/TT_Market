@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Languages>
-  <Language>Russian</Language>
-  <Language>Poland</Language>
-  <Language>Ukrainian</Language>
-  <Language>English</Language>
+  <Language isdefault="true">Russian</Language>
+  <Language isdefault="false">Poland</Language>
+  <Language isdefault="false">Ukrainian</Language>
+  <Language isdefault="false">English</Language>
 </Languages>

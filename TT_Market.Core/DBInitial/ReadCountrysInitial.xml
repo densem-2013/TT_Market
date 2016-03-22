@@ -1,25 +1,107 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Countries>
-  <Country>Сербия</Country>
-  <Country>Люксембург</Country>
-  <Country>Словения</Country>
-  <Country>Польша</Country>
-  <Country>Китай</Country>
-  <Country>Тайланд</Country>
-  <Country>Украина</Country>
-  <Country>Россия</Country>
-  <Country>Турция</Country>
-  <Country>Великобритания</Country>
-  <Country>Германия</Country>
-  <Country>Корея</Country>
-  <Country>Румыния</Country>
-  <Country>Испания</Country>
-  <Country>Япония</Country>
-  <Country>Италия</Country>
-  <Country>Франция</Country>
-  <Country>ЮАР</Country>
-  <Country>Финляндия</Country>
-  <Country>США</Country>
-  <Country>Канада</Country>
-  <Country>Венгрия</Country>
+  <Country>
+    <Lang Name="Russian">Сербия</Lang>
+    <Lang Name="Ukrainian">Сербія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Люксембург</Lang>
+    <Lang Name="Ukrainian">Люксембург</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Словения</Lang>
+    <Lang Name="Ukrainian">Словенія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Польша</Lang>
+    <Lang Name="Ukrainian">Польща</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Китай</Lang>
+    <Lang Name="Ukrainian">Китай</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Тайланд</Lang>
+    <Lang Name="Ukrainian">Тайланд</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Украина</Lang>
+    <Lang Name="Ukrainian">Україна</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Россия</Lang>
+    <Lang Name="Ukrainian">Росія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Турция</Lang>
+    <Lang Name="Ukrainian">Туреччина</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Великобритания</Lang>
+    <Lang Name="Ukrainian">Великобританія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Германия</Lang>
+    <Lang Name="Ukrainian">Німеччина</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Корея</Lang>
+    <Lang Name="Ukrainian">Корея</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Румыния</Lang>
+    <Lang Name="Ukrainian">Румунія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Испания</Lang>
+    <Lang Name="Ukrainian">Іспанія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Япония</Lang>
+    <Lang Name="Ukrainian">Японія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Италия</Lang>
+    <Lang Name="Ukrainian">Італія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Франция</Lang>
+    <Lang Name="Ukrainian">Франція</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">ЮАР</Lang>
+    <Lang Name="Ukrainian">П.А.Р.</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Финляндия</Lang>
+    <Lang Name="Ukrainian">Фінляндія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">США</Lang>
+    <Lang Name="Ukrainian">С.Ш.А.</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Канада</Lang>
+    <Lang Name="Ukrainian">Канада</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Венгрия</Lang>
+    <Lang Name="Ukrainian">Угорщина</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Индонезия</Lang>
+    <Lang Name="Ukrainian">Індонезія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Румыния</Lang>
+    <Lang Name="Ukrainian">Румунія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Беларусь</Lang>
+    <Lang Name="Ukrainian">Білорусь</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Филиппины</Lang>
+    <Lang Name="Ukrainian">Філіппіни</Lang>
+  </Country>
 </Countries>

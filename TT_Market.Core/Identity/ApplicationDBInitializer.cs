@@ -32,8 +32,8 @@ namespace TT_Market.Core.Identity
         };
 
         public static void InitializeIdentityForEf(string path, ApplicationDbContext context)
-        
         {
+            LoadLanguagesFromXml(path, context);
             LoadCountryFromXml(path,context);
             LoadCitiesFromXml(path,context);
             LoadAgentsFromXml(path, context);
@@ -42,7 +42,6 @@ namespace TT_Market.Core.Identity
             LoadCurrencyFromXml(path, context);
             LoadDiametersFromXml(path, context);
             LoadHeightsFromXml(path, context);
-            LoadLanguagesFromXml(path, context);
 
             LoadWidthsFromXml(path, context);
             LoadSpeedIndexesFromXml(path, context);
@@ -69,22 +68,27 @@ namespace TT_Market.Core.Identity
             var pdlist= (from item in collection
                 let xElement = item.Element("Filename")
                 where xElement != null
+                let element = item.Element("Agent")
+                where element != null
+                let xElement1 = item.Element("Language")
+                where xElement1 != null
                 select new 
                 {
                     FileName = xElement.Value,
-                    Language = item.Element("PriceLanguage").Value,
-                    Agent=item.Element("Agent").Value
+                    Language = xElement1.Value,
+                    Agent=element.Value
                 }).ToList();
             List<PriceDocument> pds=pdlist.Select(x =>new PriceDocument
             {
                 DownLoadDate = DateTime.Now,
                 FileName = x.FileName,
                 Agent = agents.FirstOrDefault(a=>string.Equals(a.AgentTitle,x.Agent)),
-                PriceLanguage = priceLanguages.FirstOrDefault(pl=>string.Equals(pl.LanguageName,x.Language))
+                PriceLanguage = priceLanguages.ToList().FirstOrDefault(pl=>string.Equals(pl.LanguageName,x.Language))
             }).ToList();
             context.PriceDocuments.AddRange(pds);
             context.SaveChanges();
         }
+
         public static void LoadCitiesFromXml(string path, ApplicationDbContext context)
         {
 
@@ -93,28 +97,32 @@ namespace TT_Market.Core.Identity
             var collection = xml.Root.Descendants("City");
             foreach (XElement item in collection)
             {
-                City city = context.Citys.FirstOrDefault(c => string.Equals(c.CityTitle, item.Value));
-                if (city == null)
+                List<CityTitle> cityTitles = item.Elements("Lang").ToList().Select(lang => new CityTitle
                 {
-                    Country country =
-                        context.Countrys.ToList().FirstOrDefault(
-                            c => string.Equals(c.CountryTitle, item.Attribute("Country").Value));
-                    city = new City
-                    {
-                        CityTitle = item.Value,
-                        Country = country
-                    };
-                    context.Citys.Add(city);
-                    if (country != null && country.Cities == null)
-                    {
-                        country.Cities = new List<City>();
-                    }
-                    if (country != null)
-                        if (!country.Cities.Contains(city))
-                        {
-                            country.Cities.Add(city);
-                        }
+                    Title = lang.Value,
+                    PriceLanguage =
+                        context.PriceLanguages.ToList().FirstOrDefault(
+                            pl => string.Equals(pl.LanguageName, lang.Attribute("Name").Value))
+                }).ToList();
+                Country country =
+                    context.Countrys.ToList().FirstOrDefault(
+                        c => c.CountryTitles.Any(ct => string.Equals(ct.Title, item.Attribute("Country").Value)));
+                City city = new City
+                {
+                    Country = country,
+                    CityTitles = cityTitles
+                };
+                context.Citys.Add(city);
+                if (country != null && country.Cities == null)
+                {
+                    country.Cities = new List<City>();
                 }
+                if (country != null)
+                    if (!country.Cities.Contains(city))
+                    {
+                        country.Cities.Add(city);
+                    }
+
             }
             context.SaveChanges();
         }
@@ -134,7 +142,7 @@ namespace TT_Market.Core.Identity
                         return new Agent
                         {
                             AgentTitle = xElement1.Value,
-                            City = context.Citys.ToList().FirstOrDefault(c => cityelement != null && string.Equals(c.CityTitle, cityelement.Value)),
+                            City = context.Citys.ToList().FirstOrDefault(c => cityelement != null && c.CityTitles.Any(ct=>string.Equals(ct.Title, cityelement.Value))),
                             Phone = (phoneElement!=null)?phoneElement.Value:null,
                             Email = (emailElement!=null)?emailElement.Value:null
                         };
@@ -202,9 +210,17 @@ namespace TT_Market.Core.Identity
             path = path + "CountrysInitial.xml";
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("Country");
-            Country[] countries = collection.ToList().Select(a => new Country
+            Country[] countries = collection.ToList().Select(a =>
             {
-                CountryTitle = a.Value
+                List<CountryTitle> countryTitles = a.Elements("Lang").ToList().Select(lang => new CountryTitle
+                {
+                    Title = lang.Value,
+                    PriceLanguage = context.PriceLanguages.ToList().FirstOrDefault(pl=>string.Equals(pl.LanguageName,lang.Attribute("Name").Value))
+                }).ToList();
+                return new Country
+                {
+                    CountryTitles = countryTitles
+                };
             }).ToArray();
 
             context.Countrys.AddRange(countries);
@@ -261,6 +277,7 @@ namespace TT_Market.Core.Identity
             var collection = xml.Root.Descendants("Language");
             PriceLanguage[] priceLanguages = collection.ToList().Select(a => new PriceLanguage
             {
+                IsDefault = bool.Parse(a.Attribute("isdefault").Value),
                 LanguageName = a.Value
             }).ToArray();
 
@@ -268,21 +285,37 @@ namespace TT_Market.Core.Identity
             context.SaveChanges();
         }
 
-        public static Dictionary<string,string> LoadSeasonsFromXml(string path, ApplicationDbContext context)
+        public static Dictionary<string,Season> LoadSeasonsFromXml(string path, ApplicationDbContext context)
         {
             path = path.Replace("Read", @"From1C\season.xml");
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("CatalogObject.Сезон");
             var loadSeasonsFromXml = collection as XElement[] ?? collection.ToArray();
-            Dictionary<string,string> seaDictionary=new Dictionary<string, string>();
-            Season[] seasons = loadSeasonsFromXml.ToList().Select(a =>
+            Dictionary<string, Season> seaDictionary = new Dictionary<string, Season>();
+            Season[] seasons = loadSeasonsFromXml.Select(a =>
             {
+                PriceLanguage langdefault = context.PriceLanguages.ToList().FirstOrDefault(pl => pl.IsDefault);
+                List<SeasonTitle> sesSeasonTitles=new List<SeasonTitle>();
+
+                sesSeasonTitles.Add(new SeasonTitle
+                {
+                    Title = a.Element("Description").Value,
+                    PriceLanguage = langdefault
+                });
+
+                sesSeasonTitles.AddRange(from langelem in a.Elements("Lang")
+                    let lang = context.PriceLanguages.ToList().FirstOrDefault(pl => string.Equals(langelem.Attribute("Name").Value, pl.LanguageName))
+                    select new SeasonTitle
+                    {
+                        Title = langelem.Value, PriceLanguage = lang
+                    });
+
                 Season season = new Season
                 {
-                    SeasonTitle = a.Element("Description").Value
+                    SeasonTitles = sesSeasonTitles
                 };
                 var xElement = a.Element("Ref");
-                if (xElement != null) seaDictionary.Add(xElement.Value,season.SeasonTitle);
+                if (xElement != null) seaDictionary.Add(xElement.Value,season);
                 return season;
             }).ToArray();
 
@@ -445,11 +478,10 @@ namespace TT_Market.Core.Identity
         public static void LoadModelFromXML(string path, ApplicationDbContext context)
         {
             Dictionary<string, string> Brands = LoadBrandsFromXml(path, context);
-            Dictionary<string, string> Seasons = LoadSeasonsFromXml(path, context);
+            Dictionary<string, Season> Seasons = LoadSeasonsFromXml(path, context);
             Dictionary<string, string> ProtectorTypes = LoadProtectorTypeFromXml(path, context);
             Dictionary<string, string> autotypes = LoadAutoTypesFromXml(path, context);
 
-            //path = path + "SpeedIndexsInitial.xml";
             path = path.Replace("Read", @"From1C\model.xml");
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("CatalogObject.модели");
@@ -477,18 +509,16 @@ namespace TT_Market.Core.Identity
                     }
 
                     var ptype = item.Element("типпротектора");
-                    string prottype = ProtectorTypes.FirstOrDefault(pt => ptype != null && string.Equals(pt.Key, ptype.Value)).Value;
+                    string prottype =
+                        ProtectorTypes.FirstOrDefault(pt => ptype != null && string.Equals(pt.Key, ptype.Value)).Value;
                     if (prottype != String.Empty)
                     {
                         model.ProtectorType = protectorTypes.FirstOrDefault(pt => string.Equals(pt.Title, prottype));
                     }
 
                     var seas = item.Element("сезон");
-                    string season = Seasons.FirstOrDefault(s => string.Equals(s.Key, seas.Value)).Value;
-                    if (season != String.Empty)
-                    {
-                        model.Season = seasons.FirstOrDefault(sea => string.Equals(sea.SeasonTitle, season));
-                    }
+                    Season season = Seasons.FirstOrDefault(s => string.Equals(s.Key, seas.Value)).Value;
+                    model.Season = season;
 
                     var branditem = item.Element("производитель");
                     string brandtitle = Brands.FirstOrDefault(b => string.Equals(b.Key, branditem.Value)).Value;

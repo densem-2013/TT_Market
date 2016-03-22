@@ -79,8 +79,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.4.2.3\lib\net45\NLog.dll</HintPath>
@@ -153,9 +153,9 @@
     <Compile Include="Identity\ApplicationDBInitializer.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
-    <Compile Include="Migrations\201603211843175_Initial.cs" />
-    <Compile Include="Migrations\201603211843175_Initial.Designer.cs">
-      <DependentUpon>201603211843175_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603222103049_Initial.cs" />
+    <Compile Include="Migrations\201603222103049_Initial.Designer.cs">
+      <DependentUpon>201603222103049_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -202,8 +202,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603211843175_Initial.resx">
-      <DependentUpon>201603211843175_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603222103049_Initial.resx">
+      <DependentUpon>201603222103049_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

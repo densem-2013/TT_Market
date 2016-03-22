@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Citys>
-  <City Country="Украина">Киев</City>
-  <City Country="Украина">Львов</City>
+  <City Country="Украина">
+    <Lang Name="Russian">Киев</Lang>
+    <Lang Name="Ukrainian">Київ</Lang>
+  </City>
+  <City Country="Украина">
+    <Lang Name="Russian">Львов</Lang>
+    <Lang Name="Ukrainian">Львів</Lang>
+  </City>
 </Citys>

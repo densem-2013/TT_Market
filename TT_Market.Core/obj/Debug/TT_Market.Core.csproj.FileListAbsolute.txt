@@ -61,4 +61,3 @@ E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.Cookie
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.Migrations.Initial.resources
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csproj.GenerateResource.Cache
-E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csprojResolveAssemblyReference.cache

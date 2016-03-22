@@ -151,3 +151,4 @@ C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.Migrations.I
 C:\Soft\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csproj.GenerateResource.Cache
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.xml
+E:\GitProjects\TT_Market\TT_Market.Web\bin\Newtonsoft.Json.xml
