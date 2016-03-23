@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Migrations;
 using System.Linq;
-using System.Web;
 using System.Xml;
 using System.Xml.Linq;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Newtonsoft.Json;
-using NPOI.HSSF.Record;
 using TT_Market.Core.Domains;
 
 namespace TT_Market.Core.Identity
@@ -142,7 +138,6 @@ namespace TT_Market.Core.Identity
                         return new Agent
                         {
                             AgentTitle = xElement1.Value,
-                            City = context.Citys.ToList().FirstOrDefault(c => cityelement != null && c.CityTitles.Any(ct=>string.Equals(ct.Title, cityelement.Value))),
                             Phone = (phoneElement!=null)?phoneElement.Value:null,
                             Email = (emailElement!=null)?emailElement.Value:null
                         };

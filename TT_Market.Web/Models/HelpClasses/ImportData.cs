@@ -24,7 +24,29 @@ namespace TT_Market.Web.Models.HelpClasses
 
         public static int ParseAndInsert(string path)
         {
-            Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, path);
+
+            string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
+            var firstOrDefault =
+                Db.PriceDocuments.Include("PriceReadSetting")
+                    .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
+            if (firstOrDefault != null)
+            {
+                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
+                if (priceReadSetting != null)
+                {
+                    //byte[] file = File.ReadAllBytes(path);
+                    //MemoryStream ms = new MemoryStream(file);
+
+                    firstOrDefault.DownLoadDate = DateTime.UtcNow;
+
+                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
+                    Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, jobj);
+                    foreach (var pair in docReadSettings)
+                    {
+                        ReadSheetSetting shSetting = pair.Value;
+                    }
+                }
+            }
             return 0;
         }
 
@@ -62,6 +84,14 @@ namespace TT_Market.Web.Models.HelpClasses
             Db.SaveChanges();
 
             return 0;
+        }
+
+        public static bool IsEntityExists(Assembly assembly, string entity, string property, string value)
+        {
+            var type = assembly.GetType("TT_Market.Core.Domains." + entity);
+            Db.Set(type).Load();
+            var collection = Db.Set(type).Local;
+            return false;
         }
         private static IExcelDataReader GetExcelDataReader(string path, bool isFirstRowAsColumnNames)
         {

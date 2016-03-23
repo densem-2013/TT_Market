@@ -129,37 +129,37 @@ namespace TT_Market.Core.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         TireTitle = c.String(),
                         ConvSign_Id = c.Int(),
+                        Country_Id = c.Int(),
                         Diameter_Id = c.Int(),
                         Height_Id = c.Int(),
                         AutoType_Id = c.Int(),
-                        Brand_Id = c.Int(),
                         Model_Id = c.Int(),
                         PressIndex_Id = c.Int(),
-                        ProdactionYear_Id = c.Int(),
+                        ProductionYear_Id = c.Int(),
                         SpeedIndex_Id = c.Int(),
                         Stock_Id = c.Int(),
                         Width_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ConvSigns", t => t.ConvSign_Id)
+                .ForeignKey("dbo.Countries", t => t.Country_Id)
                 .ForeignKey("dbo.Diameters", t => t.Diameter_Id)
                 .ForeignKey("dbo.Heights", t => t.Height_Id)
                 .ForeignKey("dbo.AutoTypes", t => t.AutoType_Id)
-                .ForeignKey("dbo.Brands", t => t.Brand_Id)
                 .ForeignKey("dbo.Models", t => t.Model_Id)
                 .ForeignKey("dbo.PressIndexes", t => t.PressIndex_Id)
-                .ForeignKey("dbo.ProductionYears", t => t.ProdactionYear_Id)
+                .ForeignKey("dbo.ProductionYears", t => t.ProductionYear_Id)
                 .ForeignKey("dbo.SpeedIndexes", t => t.SpeedIndex_Id)
                 .ForeignKey("dbo.Stocks", t => t.Stock_Id)
                 .ForeignKey("dbo.Widths", t => t.Width_Id)
                 .Index(t => t.ConvSign_Id)
+                .Index(t => t.Country_Id)
                 .Index(t => t.Diameter_Id)
                 .Index(t => t.Height_Id)
                 .Index(t => t.AutoType_Id)
-                .Index(t => t.Brand_Id)
                 .Index(t => t.Model_Id)
                 .Index(t => t.PressIndex_Id)
-                .Index(t => t.ProdactionYear_Id)
+                .Index(t => t.ProductionYear_Id)
                 .Index(t => t.SpeedIndex_Id)
                 .Index(t => t.Stock_Id)
                 .Index(t => t.Width_Id);
@@ -173,6 +173,29 @@ namespace TT_Market.Core.Migrations
                         Value = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Countries",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.CountryTitles",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Title = c.String(),
+                        Country_Id = c.Int(),
+                        PriceLanguage_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Countries", t => t.Country_Id)
+                .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
+                .Index(t => t.Country_Id)
+                .Index(t => t.PriceLanguage_Id);
             
             CreateTable(
                 "dbo.Diameters",
@@ -233,29 +256,6 @@ namespace TT_Market.Core.Migrations
                         BrandTitle = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.Countries",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.CountryTitles",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Title = c.String(),
-                        Country_Id = c.Int(),
-                        PriceLanguage_Id = c.Int(),
-                    })
-                .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Countries", t => t.Country_Id)
-                .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
-                .Index(t => t.Country_Id)
-                .Index(t => t.PriceLanguage_Id);
             
             CreateTable(
                 "dbo.HomolAttributes",
@@ -424,19 +424,6 @@ namespace TT_Market.Core.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.CountryBrands",
-                c => new
-                    {
-                        Country_Id = c.Int(nullable: false),
-                        Brand_Id = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Country_Id, t.Brand_Id })
-                .ForeignKey("dbo.Countries", t => t.Country_Id, cascadeDelete: true)
-                .ForeignKey("dbo.Brands", t => t.Brand_Id, cascadeDelete: true)
-                .Index(t => t.Country_Id)
-                .Index(t => t.Brand_Id);
-            
         }
         
         public override void Down()
@@ -453,7 +440,7 @@ namespace TT_Market.Core.Migrations
             DropForeignKey("dbo.Tires", "Width_Id", "dbo.Widths");
             DropForeignKey("dbo.Tires", "Stock_Id", "dbo.Stocks");
             DropForeignKey("dbo.Tires", "SpeedIndex_Id", "dbo.SpeedIndexes");
-            DropForeignKey("dbo.Tires", "ProdactionYear_Id", "dbo.ProductionYears");
+            DropForeignKey("dbo.Tires", "ProductionYear_Id", "dbo.ProductionYears");
             DropForeignKey("dbo.Tires", "PressIndex_Id", "dbo.PressIndexes");
             DropForeignKey("dbo.Tires", "Model_Id", "dbo.Models");
             DropForeignKey("dbo.SeasonTitles", "Season_Id", "dbo.Seasons");
@@ -461,17 +448,15 @@ namespace TT_Market.Core.Migrations
             DropForeignKey("dbo.Models", "Season_Id", "dbo.Seasons");
             DropForeignKey("dbo.Models", "ProtectorType_Id", "dbo.ProtectorTypes");
             DropForeignKey("dbo.Models", "Homol_Id", "dbo.HomolAttributes");
-            DropForeignKey("dbo.Tires", "Brand_Id", "dbo.Brands");
             DropForeignKey("dbo.Models", "Brand_Id", "dbo.Brands");
-            DropForeignKey("dbo.CountryTitles", "PriceLanguage_Id", "dbo.PriceLanguages");
-            DropForeignKey("dbo.CountryTitles", "Country_Id", "dbo.Countries");
-            DropForeignKey("dbo.Cities", "Country_Id", "dbo.Countries");
-            DropForeignKey("dbo.CountryBrands", "Brand_Id", "dbo.Brands");
-            DropForeignKey("dbo.CountryBrands", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Models", "AutoType_Id", "dbo.AutoTypes");
             DropForeignKey("dbo.Tires", "AutoType_Id", "dbo.AutoTypes");
             DropForeignKey("dbo.Tires", "Height_Id", "dbo.Heights");
             DropForeignKey("dbo.Tires", "Diameter_Id", "dbo.Diameters");
+            DropForeignKey("dbo.Tires", "Country_Id", "dbo.Countries");
+            DropForeignKey("dbo.CountryTitles", "PriceLanguage_Id", "dbo.PriceLanguages");
+            DropForeignKey("dbo.CountryTitles", "Country_Id", "dbo.Countries");
+            DropForeignKey("dbo.Cities", "Country_Id", "dbo.Countries");
             DropForeignKey("dbo.Tires", "ConvSign_Id", "dbo.ConvSigns");
             DropForeignKey("dbo.TirePropositions", "Stock_Id", "dbo.Stocks");
             DropForeignKey("dbo.Stocks", "City_Id", "dbo.Cities");
@@ -480,8 +465,6 @@ namespace TT_Market.Core.Migrations
             DropForeignKey("dbo.PriceDocuments", "PriceLanguage_Id", "dbo.PriceLanguages");
             DropForeignKey("dbo.PriceDocuments", "Agent_Id", "dbo.Agents");
             DropForeignKey("dbo.CityTitles", "City_Id", "dbo.Cities");
-            DropIndex("dbo.CountryBrands", new[] { "Brand_Id" });
-            DropIndex("dbo.CountryBrands", new[] { "Country_Id" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", new[] { "Agent_Id" });
@@ -491,23 +474,23 @@ namespace TT_Market.Core.Migrations
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.SeasonTitles", new[] { "Season_Id" });
             DropIndex("dbo.SeasonTitles", new[] { "PriceLanguage_Id" });
-            DropIndex("dbo.CountryTitles", new[] { "PriceLanguage_Id" });
-            DropIndex("dbo.CountryTitles", new[] { "Country_Id" });
             DropIndex("dbo.Models", new[] { "Season_Id" });
             DropIndex("dbo.Models", new[] { "ProtectorType_Id" });
             DropIndex("dbo.Models", new[] { "Homol_Id" });
             DropIndex("dbo.Models", new[] { "Brand_Id" });
             DropIndex("dbo.Models", new[] { "AutoType_Id" });
+            DropIndex("dbo.CountryTitles", new[] { "PriceLanguage_Id" });
+            DropIndex("dbo.CountryTitles", new[] { "Country_Id" });
             DropIndex("dbo.Tires", new[] { "Width_Id" });
             DropIndex("dbo.Tires", new[] { "Stock_Id" });
             DropIndex("dbo.Tires", new[] { "SpeedIndex_Id" });
-            DropIndex("dbo.Tires", new[] { "ProdactionYear_Id" });
+            DropIndex("dbo.Tires", new[] { "ProductionYear_Id" });
             DropIndex("dbo.Tires", new[] { "PressIndex_Id" });
             DropIndex("dbo.Tires", new[] { "Model_Id" });
-            DropIndex("dbo.Tires", new[] { "Brand_Id" });
             DropIndex("dbo.Tires", new[] { "AutoType_Id" });
             DropIndex("dbo.Tires", new[] { "Height_Id" });
             DropIndex("dbo.Tires", new[] { "Diameter_Id" });
+            DropIndex("dbo.Tires", new[] { "Country_Id" });
             DropIndex("dbo.Tires", new[] { "ConvSign_Id" });
             DropIndex("dbo.Stocks", new[] { "City_Id" });
             DropIndex("dbo.TirePropositions", new[] { "Currency_Id" });
@@ -521,7 +504,6 @@ namespace TT_Market.Core.Migrations
             DropIndex("dbo.CityTitles", new[] { "City_Id" });
             DropIndex("dbo.Cities", new[] { "Country_Id" });
             DropIndex("dbo.Agents", new[] { "City_Id" });
-            DropTable("dbo.CountryBrands");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
@@ -536,13 +518,13 @@ namespace TT_Market.Core.Migrations
             DropTable("dbo.Seasons");
             DropTable("dbo.ProtectorTypes");
             DropTable("dbo.HomolAttributes");
-            DropTable("dbo.CountryTitles");
-            DropTable("dbo.Countries");
             DropTable("dbo.Brands");
             DropTable("dbo.AutoTypes");
             DropTable("dbo.Models");
             DropTable("dbo.Heights");
             DropTable("dbo.Diameters");
+            DropTable("dbo.CountryTitles");
+            DropTable("dbo.Countries");
             DropTable("dbo.ConvSigns");
             DropTable("dbo.Tires");
             DropTable("dbo.Stocks");

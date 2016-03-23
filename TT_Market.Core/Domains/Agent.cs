@@ -16,7 +16,6 @@ namespace TT_Market.Core.Domains
         public string AgentTitle { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public virtual City City { get; set; }
         public virtual ICollection<PriceDocument> PriceDocuments { get; set; } 
     }
 }

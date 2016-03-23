@@ -15,6 +15,6 @@ namespace TT_Market.Core.Domains
         public int Id { get; set; }
         public virtual ICollection<CountryTitle> CountryTitles { get; set; }
         public virtual ICollection<City> Cities { get; set; } 
-        public virtual ICollection<Brand> Brands { get; set; }
+        public virtual ICollection<Tire> Tires { get; set; }
     }
 }

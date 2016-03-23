@@ -36,4 +36,11 @@ namespace TT_Market.Core.HelpClasses
         public EndRow EndRow { get; set; }
         public List<ReadCellSetting> ReadCellSettings { get; set; }
     }
+
+    public class ReadData
+    {
+        public Target Target { get; set; }
+        public dynamic Value { get; set; }
+        public Type Type { get; set; }
+    }
 }

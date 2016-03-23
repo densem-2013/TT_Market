@@ -21,7 +21,7 @@ namespace TT_Market.Core.Domains
         public virtual PressIndex PressIndex { get; set; }
         public virtual Model Model { get; set; }
         public virtual ConvSign ConvSign { get; set; }
-        public virtual Stock Stock { get; set; }
-        public virtual ProductionYear ProdactionYear { get; set; }
+        public virtual Country Country { get; set; }
+        public virtual ProductionYear ProductionYear { get; set; }
     }
 }

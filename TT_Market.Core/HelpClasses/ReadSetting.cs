@@ -12,44 +12,26 @@ namespace TT_Market.Core.HelpClasses
 {
     public static class ReadSetting
     {
-        public static Dictionary<string, ReadSheetSetting> GetReadSetting(ApplicationDbContext db, string path)
+        public static Dictionary<string, ReadSheetSetting> GetReadSetting(ApplicationDbContext db, JObject jobj)
         {
-
-            string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            var firstOrDefault =
-                db.PriceDocuments.Include("PriceReadSetting")
-                    .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
             Dictionary<string, ReadSheetSetting> records = new Dictionary<string, ReadSheetSetting>();
-            if (firstOrDefault != null)
+
+
+            JToken sheetToken = jobj.SelectToken("Sheets.Sheet");
+            if (sheetToken.Type == JTokenType.Array)
             {
-                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
-                if (priceReadSetting != null)
+                string[] sheetNames = sheetToken.Select(sh => (string) sh.SelectToken("@Name")).ToArray();
+                foreach (JToken shToken in sheetToken.Children())
                 {
-                    byte[] file = File.ReadAllBytes(path);
-                    MemoryStream ms = new MemoryStream(file);
-
-                    firstOrDefault.DownLoadDate = DateTime.UtcNow;
-
-                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-
-
-                    JToken sheetToken = jobj.SelectToken("Sheets.Sheet");
-                    if (sheetToken.Type == JTokenType.Array)
-                    {
-                        string[] sheetNames = sheetToken.Select(sh => (string) sh.SelectToken("@Name")).ToArray();
-                        foreach (JToken shToken in sheetToken.Children())
-                        {
-                            GetRecordsFromJson(shToken, records);
-                        }
-                    }
-                    else
-                    {
-                        string sheetName = sheetToken.Value<string>("@Name");
-                        GetRecordsFromJson(sheetToken, records);
-                    }
-                    db.SaveChanges();
+                    GetRecordsFromJson(shToken, records);
                 }
             }
+            else
+            {
+                string sheetName = sheetToken.Value<string>("@Name");
+                GetRecordsFromJson(sheetToken, records);
+            }
+            db.SaveChanges();
             return records;
         }
 
