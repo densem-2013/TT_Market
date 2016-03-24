@@ -22,6 +22,12 @@
               <Column OrderNumber="4">
                     <Targets>
                       <target>
+                        <type>Tire</type>
+                        <property>TireTitle</property>
+                        <group></group>
+                        <alternative></alternative>
+                      </target>
+                      <target>
                         <type>Brand</type>
                         <property>BrandTitle</property>
                         <group>12|25|32|42</group>
@@ -160,8 +166,9 @@
               <Column OrderNumber="9">
                   <Targets>
                       <target>
-                        <type>TireProposition</type>
-                        <property>Stock</property>
+                        <type>Stock</type>
+                        <property>StockValue</property>
+                        <citytitle>Киев</citytitle>
                         <group></group>
                       <alternative></alternative>
                       </target>

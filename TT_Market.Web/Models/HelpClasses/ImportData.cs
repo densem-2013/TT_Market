@@ -22,33 +22,90 @@ namespace TT_Market.Web.Models.HelpClasses
     {
         private static readonly ApplicationDbContext Db = new ApplicationDbContext();
 
-        public static int ParseAndInsert(string path)
+        public static void ParseAndInsert(string path)
         {
 
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            var firstOrDefault =
+            var priceDocument =
                 Db.PriceDocuments.Include("PriceReadSetting")
                     .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
-            if (firstOrDefault != null)
+            if (priceDocument != null)
             {
-                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
+                PriceReadSetting priceReadSetting = priceDocument.PriceReadSetting;
                 if (priceReadSetting != null)
                 {
                     //byte[] file = File.ReadAllBytes(path);
                     //MemoryStream ms = new MemoryStream(file);
 
-                    firstOrDefault.DownLoadDate = DateTime.UtcNow;
+                    priceDocument.DownLoadDate = DateTime.UtcNow;
 
                     JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
                     Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, jobj);
                     foreach (var pair in docReadSettings)
                     {
                         ReadSheetSetting shSetting = pair.Value;
+                        if (shSetting.StartRow.StartReadRow != null)
+                        {
+                            IEnumerable<DataRow> dataCollection =
+                                GetData(path, pair.Key, false).Skip(shSetting.StartRow.StartReadRow.Value - 1);
+
+                            List<ReadCellSetting> tirePropos =
+                                shSetting.ReadCellSettings.Where(
+                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TireProposition"))).ToList();
+                            foreach (DataRow row in dataCollection)
+                            {
+                                TireProposition tireProposition = new TireProposition();
+                                foreach (ReadCellSetting rcs in tirePropos)
+                                {
+                                    var orDefault =
+                                        rcs.Targets.FirstOrDefault(t => string.Equals(t.Entity, "TireProposition"));
+                                    if (orDefault != null)
+                                    {
+                                        string entity = orDefault.Entity;
+                                        switch (entity)
+                                        {
+                                            case "PriceCode":
+                                                tireProposition.PriceCode = row[rcs.CellNumber].ToString();
+                                                break;
+                                            case "ExtendedData":
+                                                tireProposition.ExtendedData = row[rcs.CellNumber].ToString();
+                                                break;
+                                            case "RegularPrice":
+                                                tireProposition.RegularPrice =
+                                                    double.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "DiscountPrice":
+                                                tireProposition.DiscountPrice =
+                                                    double.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "SpecialPrice":
+                                                tireProposition.SpecialPrice =
+                                                    double.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "RegionCount":
+                                                tireProposition.RegionCount = int.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "PartnersCount":
+                                                tireProposition.PartnersCount = int.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "WaitingCount":
+                                                tireProposition.WaitingCount = int.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                            case "ReservCount":
+                                                tireProposition.ReservCount = int.Parse(row[rcs.CellNumber].ToString());
+                                                break;
+                                        }
+                                    }
+                                }
+                                priceDocument.TirePropositions.Add(tireProposition);
+                            }
+                        }
                     }
                 }
             }
-            return 0;
         }
+
+
 
         public static int ReadDataFromDataRows(JObject jobj, IEnumerable<DataRow> datarows)
         {

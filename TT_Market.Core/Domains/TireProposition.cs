@@ -16,8 +16,12 @@ namespace TT_Market.Core.Domains
         public string PriceCode { get; set; }
         public string ExtendedData { get; set; }
         public double RegularPrice { get; set; }
-        public double DiscountPrice { get; set; }
-        public double SpecialPrice { get; set; }
+        public double? DiscountPrice { get; set; }
+        public double? SpecialPrice { get; set; }
+        public int? RegionCount { get; set; }
+        public int? PartnersCount { get; set; }
+        public int? WaitingCount { get; set; }
+        public int? ReservCount { get; set; }
         public virtual Tire Tire { get; set; }
         public virtual PriceDocument PriceDocument { get; set; }
         public virtual Stock Stock { get; set; }
