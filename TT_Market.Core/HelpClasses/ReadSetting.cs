@@ -119,6 +119,7 @@ namespace TT_Market.Core.HelpClasses
             }
             string strEntity = (string) tok["type"];
             string tpString = (string) tok["property"];
+            string valueString = (string)tok["value"];
             return new Target
             {
                 Entity = strEntity,
@@ -127,7 +128,8 @@ namespace TT_Market.Core.HelpClasses
                     (!string.Equals(groupstring, string.Empty))
                         ? groupstring.Split('|').Select(int.Parse).ToList()
                         : null,
-                AlterValue = alterDict
+                AlterValue = alterDict,
+                Value = valueString
             };
 
         }

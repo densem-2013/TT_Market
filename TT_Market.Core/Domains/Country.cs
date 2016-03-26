@@ -1,20 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
-    public class Country
+    public sealed class Country
     {
+        public Country()
+        {
+            Tires = new List<Tire>();
+            CountryTitles = new List<CountryTitle>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual ICollection<CountryTitle> CountryTitles { get; set; }
-        public virtual ICollection<City> Cities { get; set; } 
-        public virtual ICollection<Tire> Tires { get; set; }
+
+        public ICollection<CountryTitle> CountryTitles { get; set; }
+        public ICollection<Tire> Tires { get; set; }
     }
 }

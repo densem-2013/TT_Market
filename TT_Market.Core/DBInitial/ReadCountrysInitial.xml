@@ -104,4 +104,16 @@
     <Lang Name="Russian">Филиппины</Lang>
     <Lang Name="Ukrainian">Філіппіни</Lang>
   </Country>
+  <Country>
+    <Lang Name="Russian">Словакия</Lang>
+    <Lang Name="Ukrainian">Словаччина</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Чехия</Lang>
+    <Lang Name="Ukrainian">Чехія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Португалия</Lang>
+    <Lang Name="Ukrainian">Португалія</Lang>
+  </Country>
 </Countries>

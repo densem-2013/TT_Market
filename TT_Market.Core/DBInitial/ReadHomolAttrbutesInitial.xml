@@ -549,10 +549,6 @@
     <Description>	</Description>
   </HomolAttribute>
   <HomolAttribute>
-    <Value>RunFlat</Value>
-    <Description>are provided for flat running. Only fits vehicles with Run Flat.</Description>
-  </HomolAttribute>
-  <HomolAttribute>
     <Value>S1</Value>
     <Description>	</Description>
   </HomolAttribute>

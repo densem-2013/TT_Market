@@ -8,7 +8,8 @@ namespace TT_Market.Core.HelpClasses
         public string Entity { get; set; }
         public string TypeProperty { get; set; }
         public List<int> GroupNumbers { get; set; }
-        public Dictionary<string, string> AlterValue { get; set; } 
+        public Dictionary<string, string> AlterValue { get; set; }
+        public string Value { get; set; }
     }
     public class ReadCellSetting
     {

@@ -50,6 +50,8 @@ namespace TT_Market.Core.Identity
             LoadPriceDocInitials(path, context);
             LoadPricesReadSettingsFromXml(path, context);
 
+            LoadHomolAttriFromXml(path, context);
+
             AddStartUserIdentityCridentials(context);
         }
 
@@ -100,24 +102,24 @@ namespace TT_Market.Core.Identity
                         context.PriceLanguages.ToList().FirstOrDefault(
                             pl => string.Equals(pl.LanguageName, lang.Attribute("Name").Value))
                 }).ToList();
-                Country country =
-                    context.Countrys.ToList().FirstOrDefault(
-                        c => c.CountryTitles.Any(ct => string.Equals(ct.Title, item.Attribute("Country").Value)));
+                //Country country =
+                //    context.Countrys.ToList().FirstOrDefault(
+                //        c => c.CountryTitles.Any(ct => string.Equals(ct.Title, item.Attribute("Country").Value)));
                 City city = new City
                 {
-                    Country = country,
+                    //Country = country,
                     CityTitles = cityTitles
                 };
                 context.Citys.Add(city);
-                if (country != null && country.Cities == null)
-                {
-                    country.Cities = new List<City>();
-                }
-                if (country != null)
-                    if (!country.Cities.Contains(city))
-                    {
-                        country.Cities.Add(city);
-                    }
+                //if (country != null && country.Cities == null)
+                //{
+                //    country.Cities = new List<City>();
+                //}
+                //if (country != null)
+                //    if (!country.Cities.Contains(city))
+                //    {
+                //        country.Cities.Add(city);
+                //    }
 
             }
             context.SaveChanges();
@@ -229,6 +231,7 @@ namespace TT_Market.Core.Identity
             var collection = xml.Root.Descendants("Currency");
             Currency[] currencies = collection.ToList().Select(a => new Currency
             {
+                IsDefault = bool.Parse(a.Attribute("isdefault").Value),
                 CurrencyTitle = a.Value
             }).ToArray();
 

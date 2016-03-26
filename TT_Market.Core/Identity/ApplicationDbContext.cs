@@ -31,6 +31,7 @@ namespace TT_Market.Core.Identity
         public virtual DbSet<Height> Heights { get; set; }
         public virtual DbSet<HomolAttribute> HomolAttributes { get; set; }
         public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<Tire> Tires { get; set; } 
         public virtual DbSet<TireProposition> TirePropositions { get; set; }
         public virtual DbSet<PressIndex> PressIndexs { get; set; }
         public virtual DbSet<Season> Seasons { get; set; }

@@ -1,29 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
-    public class TireProposition
+    public sealed class TireProposition
     {
+        public TireProposition()
+        {
+            TirePrices = new List<TirePrice>();
+            Stocks = new List<Stock>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public string PriceCode { get; set; }
+
+        public string TirePriceCode { get; set; }
         public string ExtendedData { get; set; }
-        public double RegularPrice { get; set; }
-        public double? DiscountPrice { get; set; }
-        public double? SpecialPrice { get; set; }
         public int? RegionCount { get; set; }
         public int? PartnersCount { get; set; }
         public int? WaitingCount { get; set; }
         public int? ReservCount { get; set; }
-        public virtual Tire Tire { get; set; }
-        public virtual PriceDocument PriceDocument { get; set; }
-        public virtual Stock Stock { get; set; }
+        public PriceDocument PriceDocument { get; set; }
+        public ICollection<Stock> Stocks { get; set; }
+        public ICollection<TirePrice> TirePrices { get; set; }
+
     }
 }

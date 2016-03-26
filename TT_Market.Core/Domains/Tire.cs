@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
@@ -14,6 +9,7 @@ namespace TT_Market.Core.Domains
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string TireTitle { get; set; }
+        public virtual TireProposition TireProposition { get; set; }
         public virtual Width Width { get; set; }
         public virtual Height Height { get; set; }
         public virtual Diameter Diameter { get; set; }
@@ -23,5 +19,6 @@ namespace TT_Market.Core.Domains
         public virtual ConvSign ConvSign { get; set; }
         public virtual Country Country { get; set; }
         public virtual ProductionYear ProductionYear { get; set; }
+
     }
 }

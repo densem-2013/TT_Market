@@ -60,3 +60,5 @@ E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OpenXml4Net.xml
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.pdb
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csprojResolveAssemblyReference.cache
+E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.Migrations.Initial.resources
+E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csproj.GenerateResource.Cache

@@ -8,12 +8,18 @@ using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
-    public class ProtectorType
+    public sealed class ProtectorType
     {
+        public ProtectorType()
+        {
+            Models = new List<Model>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         public string Title { get; set; }
-        public virtual ICollection<Model> Models { get; set; } 
+        public ICollection<Model> Models { get; set; }
     }
 }

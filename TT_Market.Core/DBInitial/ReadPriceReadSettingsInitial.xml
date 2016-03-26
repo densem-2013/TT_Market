@@ -13,10 +13,7 @@
                       <target>
                         <type>Brand</type>
                         <property>BrandTitle</property>
-                        <group></group>
-                      <alternative></alternative>
                       </target>
-                        <mask></mask>
                     </Targets>
               </Column>
               <Column OrderNumber="4">
@@ -24,50 +21,41 @@
                       <target>
                         <type>Tire</type>
                         <property>TireTitle</property>
-                        <group></group>
-                        <alternative></alternative>
                       </target>
                       <target>
                         <type>Brand</type>
                         <property>BrandTitle</property>
                         <group>12|25|32|42</group>
-                        <alternative></alternative>
                       </target>
                       <target>
                         <type>Width</type>
                         <property>Value</property>
                         <group>14|54</group>
-                      <alternative></alternative>
                       </target>
                       <target>
                         <type>Height</type>
                         <property>Value</property>
                         <group>15|3|55</group>
-                      <alternative></alternative>
                       </target>
                       <target>
                         <type>Diameter</type>
                         <property>DSize</property>
                         <group>16|57|6</group>
-                      <alternative></alternative>
                       </target>
                       <target>
                         <type>PressIndex</type>
                         <property>Value</property>
                         <group>10|22|30|38|40|64|66</group>
-                        <alternative></alternative>
                       </target>
                       <target>
                         <type>SpeedIndex</type>
                         <property>Value</property>
                         <group>65|67|39|41|31|24|11</group>
-                      <alternative></alternative>
                       </target>
                       <target>
                         <type>Model</type>
                         <property>ModelTitle</property>
                         <group>26|33|43|68</group>
-                      <alternative></alternative>
                       </target>
                     </Targets>
                         <mask>
@@ -79,20 +67,14 @@
                       <target>
                         <type>Season</type>
                         <property>SeasonTitle</property>
-                        <group></group>
-                      <alternative>
-                        
-                      </alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="6">
                     <Targets>
                       <target>
                         <type>AutoType</type>
                         <property>TypeValue</property>
-                        <group></group>
                       <alternative>
                         <alter value="Джипы">4x4</alter>
                         <alter value="Грузовые-универсальные">Грузовые</alter>
@@ -100,80 +82,69 @@
                       </alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="7" >
                     <Targets>
                       <target>
                         <type>Season</type>
                         <property>SeasonTitle</property>
-                        <group></group>
-                      <alternative>
+                        <alternative>
                         <alter value="зимняя">зима</alter>
                         <alter value="летняя">лето</alter>
                         <alter value="всесезонная">всесез</alter>
                       </alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="8">
                     <Targets>
                       <target>
                         <type>Country</type>
                         <property>CountryTitle</property>
-                        <group></group>
-                      <alternative></alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="10">
                     <Targets>
                       <target>
-                        <type>TireProposition</type>
+                        <type>TirePrice</type>
                         <property>SpecialPrice</property>
-                        <group></group>
-                      <alternative></alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="11">
-                  
-                    <Targets>
+                <Targets>
                       <target>
-                        <type>TireProposition</type>
+                        <type>TirePrice</type>
                         <property>DiscountPrice</property>
-                        <group></group>
-                      <alternative></alternative>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
               <Column OrderNumber="12">
-                  
-                    <Targets>
-                      <target>
-                        <type>TireProposition</type>
-                        <property>RegularPrice</property>
-                        <group></group>
-                      <alternative></alternative>
-                      </target>
-                    </Targets>
-                        <mask></mask>
+                <Targets>
+                  <target>
+                    <type>TirePrice</type>
+                    <property>RegularPrice</property>
+                  </target>
+                    <target>
+                    <type>Currency</type>
+                    <property>CurrencyTitle</property>
+                      <value>UAH</value>
+                </target>
+                </Targets>
               </Column>
               <Column OrderNumber="9">
                   <Targets>
                       <target>
                         <type>Stock</type>
                         <property>StockValue</property>
-                        <citytitle>Киев</citytitle>
-                        <group></group>
-                      <alternative></alternative>
+                      </target>
+                    <target>
+                        <type>CityTitle</type>
+                        <property>Title</property>
+                        <value>Киев</value>
                       </target>
                     </Targets>
-                        <mask></mask>
               </Column>
             </Columns>
       </Sheet>

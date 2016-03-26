@@ -8,12 +8,17 @@ using System.Threading.Tasks;
 
 namespace TT_Market.Core.Domains
 {
-    public class City
+    public sealed class City
     {
+        public City()
+        {
+            CityTitles = new List<CityTitle>();
+        }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        public virtual ICollection<CityTitle> CityTitles { get; set; }
-        public virtual Country Country { get; set; }
+
+        public ICollection<CityTitle> CityTitles { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Currencies>
-  <Currency>EU</Currency>
-  <Currency>RUR</Currency>
-  <Currency>UAH</Currency>
-  <Currency>$</Currency>
-  <Currency>PLN</Currency>
+  <Currency isdefault="false">EU</Currency>
+  <Currency isdefault="false">RUR</Currency>
+  <Currency isdefault="true">UAH</Currency>
+  <Currency isdefault="false">$</Currency>
+  <Currency isdefault="false">PLN</Currency>
 </Currencies>
