@@ -7,15 +7,14 @@ namespace TT_Market.Core.HelpClasses
     {
         public string Entity { get; set; }
         public string TypeProperty { get; set; }
-        public List<int> GroupNumbers { get; set; }
-        public Dictionary<string, string> AlterValue { get; set; }
+        public List<string> Groups { get; set; }
         public string Value { get; set; }
+        public string Mask { get; set; }
     }
     public class ReadCellSetting
     {
         public int CellNumber { get; set; }
         public List<Target> Targets { get; set; }
-        public string Mask { get; set; }
     }
 
     public class StartRow

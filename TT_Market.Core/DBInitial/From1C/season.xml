@@ -6,6 +6,7 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000001</Code>
 			<Description>зимняя</Description>
+      <alterkey>зима</alterkey>
     <Lang Name="Ukrainian">зимова</Lang>
 		</CatalogObject.Сезон>
 		<CatalogObject.Сезон>
@@ -13,6 +14,7 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000002</Code>
 			<Description>летняя</Description>
+      <alterkey>лето</alterkey>
     <Lang Name="Ukrainian">літня</Lang>
 		</CatalogObject.Сезон>
 		<CatalogObject.Сезон>
@@ -20,6 +22,7 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000003</Code>
 			<Description>всесезонная</Description>
+      <alterkey>всесез</alterkey>
     <Lang Name="Ukrainian">всесезонна</Lang>
 		</CatalogObject.Сезон>
 		<CatalogObject.Сезон>

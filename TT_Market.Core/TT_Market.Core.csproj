@@ -117,8 +117,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domains\AutoType.cs" />
+    <Compile Include="Domains\AutoTypeAlter.cs" />
     <Compile Include="Domains\City.cs" />
     <Compile Include="Domains\CityTitle.cs" />
+    <Compile Include="Domains\ConvAlter.cs" />
     <Compile Include="Domains\ConvSign.cs" />
     <Compile Include="Domains\Country.cs" />
     <Compile Include="Domains\CountryTitle.cs" />
@@ -129,6 +131,7 @@
     <Compile Include="Domains\Model.cs" />
     <Compile Include="Domains\ProductionYear.cs" />
     <Compile Include="Domains\ProtectorType.cs" />
+    <Compile Include="Domains\SeasonTitleAlter.cs" />
     <Compile Include="Domains\SeasonTitle.cs" />
     <Compile Include="Domains\TirePrice.cs" />
     <Compile Include="Domains\TireProposition.cs" />
@@ -155,9 +158,9 @@
     <Compile Include="Identity\ApplicationDBInitializer.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
-    <Compile Include="Migrations\201603261726449_Initial.cs" />
-    <Compile Include="Migrations\201603261726449_Initial.Designer.cs">
-      <DependentUpon>201603261726449_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603271338533_Initial.cs" />
+    <Compile Include="Migrations\201603271338533_Initial.Designer.cs">
+      <DependentUpon>201603271338533_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,7 +176,9 @@
     <Content Include="DBInitial\From1C\season.xml" />
     <Content Include="DBInitial\From1C\speed.xml" />
     <Content Include="DBInitial\From1C\type.xml" />
-    <Content Include="DBInitial\From1C\uslov.xml" />
+    <Content Include="DBInitial\From1C\uslov.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="DBInitial\From1C\w.xml" />
     <Content Include="DBInitial\ReadAutoTypesInitial.xml" />
     <Content Include="DBInitial\ReadBrandsInitial.xml" />
@@ -184,7 +189,7 @@
     <Content Include="DBInitial\ReadHomolAttrbutesInitial.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="DBInitial\ReadPriceReadSettingsInitial.xml">
+    <Content Include="DocReadSettings\Price160202New.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DBInitial\ReadAgentsInitial.xml">
@@ -204,8 +209,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603261726449_Initial.resx">
-      <DependentUpon>201603261726449_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603271338533_Initial.resx">
+      <DependentUpon>201603271338533_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Text.RegularExpressions;
 using Excel;
 using Newtonsoft.Json.Linq;
 using NPOI.SS.Formula;
@@ -19,7 +20,7 @@ namespace TT_Market.Web.Models.HelpClasses
         private static readonly ApplicationDbContext Db = new ApplicationDbContext();
         private static PriceLanguage PriceLanguage { get; set; }
         private static PriceDocument PriceDocument { get; set; }
-
+        private static ReadSheetSetting curSheetSetting { get; set; }
         private static bool PrevDocumentExists { get; set; }
 
         public static void ParseAndInsert(string path)
@@ -46,7 +47,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, jobj);
                     foreach (var pair in docReadSettings)
                     {
-                        ReadSheetSetting curSheetSetting = pair.Value;
+                        curSheetSetting = pair.Value;
                         if (curSheetSetting.StartRow.StartReadRow != null)
                         {
                             IEnumerable<DataRow> dataCollection =
@@ -78,6 +79,8 @@ namespace TT_Market.Web.Models.HelpClasses
                                 }
 
                                 PriceDocument.TirePropositions.Add(tireProposition);
+
+
                             }
                         }
                     }
@@ -107,13 +110,296 @@ namespace TT_Market.Web.Models.HelpClasses
                     tire.Height = prevtire.Height;
                     tire.SpeedIndex = prevtire.SpeedIndex;
                     tire.Width = prevtire.Width;
+                    tire.Country = prevtire.Country;
                 }
                 else
                 {
-                        
+                    tire.TireTitle = tiretitle;
+                    tire.Country = GetCountry(row);
+
                 }
             }
             return tire;
+        }
+
+        public static Model GetModel(DataRow row)
+        {
+            ReadCellSetting modelsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Model")));
+            Model model = null;
+            if (modelsetting != null)
+            {
+                string mdstring = row[modelsetting.CellNumber - 1].ToString().Trim();
+                Target modelTarget = modelsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Model"));
+                if (modelTarget != null)
+                {
+                    string modvalue = "";
+                    string mdmask = modelTarget.Mask;
+                    if (mdmask != null)
+                    {
+                        Regex reg = new Regex(mdmask);
+                        modelTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(mdstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                modvalue = val;
+                            }
+                        });
+
+                        model = Db.Models.ToList().FirstOrDefault(mod => string.Equals(mod.ModelTitle, modvalue)) ??
+                                 new Model
+                                 {
+                                     ModelTitle = modvalue
+                                 };
+                    }
+                }
+            }
+            return model;
+        }
+
+        public static ConvSign GetConvSign(ref string modstring)
+        {
+            List<ConvSign> convs = Db.ConvSigns.Include("convAlters").ToList();
+            ConvSign convSign = null;
+
+            foreach (ConvSign item in convs)
+            {
+                string pattern = item.Key + "$";
+                Regex reg = new Regex(pattern);
+                if (reg.IsMatch(modstring))
+                {
+                    modstring = Regex.Replace(modstring, pattern, "");
+                    return item;
+                }
+                foreach (ConvAlter alter in item.ConvAlters)
+                {
+                    string patalter = alter.AlterKey + "$";
+                    Regex regalter = new Regex(patalter);
+                    if (reg.IsMatch(modstring))
+                    {
+                        modstring = Regex.Replace(modstring, patalter, "");
+                        return item;
+                    }
+                    
+                }
+            }
+
+            return convSign;
+        }
+
+        public static SpeedIndex GetSpeedIndex(DataRow row)
+        {
+            ReadCellSetting sisetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "SpeedIndex")));
+            SpeedIndex speed = null;
+            if (sisetting != null)
+            {
+                string sistring = row[sisetting.CellNumber - 1].ToString().Trim();
+                Target speedTarget = sisetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "SpeedIndex"));
+                if (speedTarget != null)
+                {
+                    string sivalue = "";
+                    string simask = speedTarget.Mask;
+                    if (simask != null)
+                    {
+                        Regex reg = new Regex(simask);
+                        speedTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(sistring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                sivalue = val;
+                            }
+                        });
+                        speed = Db.SpeedIndexs.ToList().FirstOrDefault(si => string.Equals(si.Key, sivalue)) ??
+                                 new SpeedIndex
+                                 {
+                                     Key = sivalue
+                                 };
+                    }
+                }
+            }
+            return speed;
+        }
+        public static PressIndex GetPressIndex(DataRow row)
+        {
+            ReadCellSetting pisetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "PressIndex")));
+            PressIndex press = null;
+            if (pisetting != null)
+            {
+                string pistring = row[pisetting.CellNumber - 1].ToString().Trim();
+                Target pressTarget = pisetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "PressIndex"));
+                if (pressTarget != null)
+                {
+                    string pivalue = "";
+                    string pimask = pressTarget.Mask;
+                    if (pimask != null)
+                    {
+                        Regex reg = new Regex(pimask);
+                        pressTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(pistring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                pivalue = val;
+                            }
+                        });
+                        press = Db.PressIndexs.ToList().FirstOrDefault(pi => string.Equals(pi.Key, pivalue)) ??
+                                 new PressIndex
+                                 {
+                                     Key = pivalue
+                                 };
+                    }
+                }
+            }
+            return press;
+        }
+        public static Diameter GetdDiameter(DataRow row)
+        {
+
+            ReadCellSetting diamsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Diameter")));
+            Diameter diameter = null;
+            if (diamsetting != null)
+            {
+                string diastring = row[diamsetting.CellNumber - 1].ToString().Trim();
+                Target diaTarget = diamsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Diameter"));
+                if (diaTarget != null)
+                {
+                    string dmvalue = "";
+                    string heimask = diaTarget.Mask;
+                    if (heimask != null)
+                    {
+                        Regex reg = new Regex(heimask);
+                        diaTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(diastring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                dmvalue = val;
+                            }
+                        });
+                        diameter = Db.Diameters.ToList().FirstOrDefault(d => string.Equals(d.DSize, dmvalue)) ??
+                                 new Diameter
+                                 {
+                                     DSize = dmvalue
+                                 };
+                    }
+                }
+            }
+            return diameter;
+        }
+        public static Width GetWidth(DataRow row)
+        {
+
+            ReadCellSetting widthsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Width")));
+            Width width = null;
+            if (widthsetting != null)
+            {
+                string heistring = row[widthsetting.CellNumber - 1].ToString().Trim();
+                Target widthTarget = widthsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Width"));
+                if (widthTarget != null)
+                {
+                    string widthvalue = "";
+                    string heimask = widthTarget.Mask;
+                    if (heimask != null)
+                    {
+                        Regex reg = new Regex(heimask);
+                        widthTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(heistring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                widthvalue = val;
+                            }
+                        });
+                        double widthVal;
+                        double.TryParse(widthvalue, out widthVal);
+                        width = Db.Widths.ToList().FirstOrDefault(h => Math.Abs(h.Value - widthVal) < 0.001) ??
+                                 new Width
+                                 {
+                                     Value = widthVal
+                                 };
+                    }
+                }
+            }
+            return width;
+        }
+        public static Height GetHeight(DataRow row)
+        {
+            ReadCellSetting heightsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Height")));
+            Height height = null;
+            if (heightsetting != null)
+            {
+                string heistring = row[heightsetting.CellNumber - 1].ToString().Trim();
+                Target heiTarget = heightsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Height"));
+                if (heiTarget != null)
+                {
+                    string heivalue = "";
+                    string heimask = heiTarget.Mask;
+                    if (heimask != null)
+                    {
+                        Regex reg = new Regex(heimask);
+                        heiTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(heistring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                heivalue = val;
+                            }
+                        });
+                        double heightVal;
+                        double.TryParse(heivalue, out heightVal);
+                        height = Db.Heights.ToList().FirstOrDefault(h => Math.Abs(h.Value - heightVal) < 0.001) ??
+                                 new Height
+                                 {
+                                     Value = heightVal
+                                 };
+                    }
+                }
+            }
+            return height;
+        }
+
+        public static Country GetCountry(DataRow row)
+        {
+            ReadCellSetting countrysetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "CountryTitle")));
+
+            Country country = null;
+
+            if (countrysetting != null)
+            {
+                string ctstring = row[countrysetting.CellNumber - 1].ToString().Trim();
+                CountryTitle countryTitle =
+                    Db.CountryTitles.Include("Country").FirstOrDefault(
+                        ct => ct.PriceLanguage.Id == PriceLanguage.Id && string.Equals(ct.Title, ctstring));
+                if (countryTitle != null)
+                {
+                    country = countryTitle.Country;
+                }
+                else
+                {
+                    country = new Country();
+                    country.CountryTitles.Add(new CountryTitle
+                    {
+                        Title = ctstring,
+                        PriceLanguage = PriceLanguage
+                    });
+                }
+            }
+            return country;
         }
 
         public static Stock ReadStock(ReadCellSetting celsetting, DataRow row)
@@ -132,7 +418,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static City ReadCity(ReadCellSetting celsetting, DataRow row)
         {
             Target cityTarget = celsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "CityTitle"));
-            CityTitle cityTitle = Db.CityTitles.FirstOrDefault(st => st.PriceLanguage.Id == PriceLanguage.Id &&
+            CityTitle cityTitle = Db.CityTitles.Include("City").FirstOrDefault(st => st.PriceLanguage.Id == PriceLanguage.Id &&
                                                                      string.Equals(st.Title, cityTarget.Value));
             City city;
             if (cityTitle != null)

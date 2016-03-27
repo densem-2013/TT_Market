@@ -124,16 +124,11 @@ namespace TT_Market.Web.Tests.ReadWithReflection
                 {
                     targets.Add(ParseTarget(targetToken));
                 }
-                JToken maskToken = item.SelectToken("mask");
-
-                string mmsk = (maskToken != null && maskToken.HasValues)
-                    ? maskToken.Value<string>("#cdata-section")
-                    : string.Empty;
 
                 ReadCellSetting cellSetting = new ReadCellSetting
                 {
                     CellNumber = (int) item["@OrderNumber"],
-                    Mask = mmsk,
+                    //Mask = mmsk,
                     Targets = targets
                 };
                 cellSettings.Add(cellSetting);
@@ -146,27 +141,28 @@ namespace TT_Market.Web.Tests.ReadWithReflection
 
         private static Target ParseTarget(JToken tok)
         {
-            string groupstring = (string) tok["group"];
-            JToken alterToken = tok["alternative"];
-            Dictionary<string, string> alterDict = new Dictionary<string, string>();
-            if (alterToken.HasValues)
-            {
-                foreach (JToken alt in alterToken.SelectToken("alter").Children())
-                {
-                    alterDict.Add(alt["@value"].Value<string>(), alt["#text"].Value<string>());
-                }
-            }
-            string strEntity = (string) tok["type"];
-            string tpString = (string) tok["property"];
+            string groupstring = (string)tok["group"];
+            string strEntity = (string)tok["type"];
+            string tpString = (string)tok["property"];
+            string valueString = (string)tok["value"];
+            JToken maskToken = tok.SelectToken("mask");
+
+            string mmsk = (maskToken != null && maskToken.HasValues)
+                ? maskToken.Value<string>("#cdata-section")
+                : string.Empty;
+            int grIndex = (groupstring!=null)?groupstring.IndexOf("|", StringComparison.Ordinal):-1;
+            List<string> groups = (groupstring!=null&&!string.Equals(groupstring, string.Empty))
+                ? ((grIndex < 0)
+                    ? new List<string>(new[] {groupstring})
+                    : groupstring.Split('|').ToList())
+                : null;
             return new Target
             {
                 Entity = strEntity,
                 TypeProperty = tpString,
-                GroupNumbers =
-                    (!string.Equals(groupstring, string.Empty))
-                        ? groupstring.Split('|').Select(int.Parse).ToList()
-                        : null,
-                AlterValue = alterDict
+                Mask = mmsk,
+                Groups = groups,
+                Value = valueString
             };
 
         }

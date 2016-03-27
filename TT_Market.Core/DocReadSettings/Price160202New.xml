@@ -5,10 +5,16 @@
   <Agent>ТОВ «ТАЄРС-АСІСТАНС»</Agent>
     <Sheets>
       <Sheet Name="Лист1" >
-        <TitleRow>
+        <TitleRow RowNumber="5" RowSpan="2">
+          <Column>5</Column>
+          <Condition>Описание</Condition>
         </TitleRow>
+        <EndRow>
+          <Column></Column>
+          <Condition></Condition>
+        </EndRow>
             <Columns>
-              <Column OrderNumber="3">
+              <Column OrderNumber="4">
                     <Targets>
                       <target>
                         <type>Brand</type>
@@ -16,7 +22,7 @@
                       </target>
                     </Targets>
               </Column>
-              <Column OrderNumber="4">
+              <Column OrderNumber="5">
                     <Targets>
                       <target>
                         <type>Tire</type>
@@ -25,48 +31,44 @@
                       <target>
                         <type>Brand</type>
                         <property>BrandTitle</property>
-                        <group>12|25|32|42</group>
+                        <mask><![CDATA[.*R[0-9\/.,A-Z]+[A-Z](?<brand>[A-Z][a-z]+)([A-Z]+|\d+).*]]></mask>
+                        <group>brand</group>
                       </target>
                       <target>
                         <type>Width</type>
                         <property>Value</property>
-                        <group>14|54</group>
+                        <mask><![CDATA[(?<width>\d{2,3})\/?((\d{2,3})|(\d\.\d))?R.*]]></mask>
+                        <group>width</group>
                       </target>
                       <target>
                         <type>Height</type>
                         <property>Value</property>
-                        <group>15|3|55</group>
+                        <mask><![CDATA[\d{2,3}\/?(?<height>(\d{2,3})|(\d\.\d))?R.*]]></mask>
+                        <group>height</group>
                       </target>
                       <target>
                         <type>Diameter</type>
                         <property>DSize</property>
-                        <group>16|57|6</group>
+                        <mask><![CDATA[.*R(?<diameter>\d{2}(([.,]\d)|\s|([C]\s)))]]></mask>
+                        <group>diameter</group>
                       </target>
                       <target>
                         <type>PressIndex</type>
                         <property>Value</property>
-                        <group>10|22|30|38|40|64|66</group>
+                        <mask><![CDATA[.*R\d{2}(([.,]\d)|\s|([C]\s))(?<pressindex>((\d{2,3})(\/?\d{3})?))[A-Z]*\s?.*]]></mask>
+                        <group>pressindex</group>
                       </target>
                       <target>
                         <type>SpeedIndex</type>
                         <property>Value</property>
-                        <group>65|67|39|41|31|24|11</group>
+                        <mask><![CDATA[.*R\d{2}(([.,]\d\s?)|\s|([C]\s))((\d{2,3})(\/?\d{3})?)(?<speedindex>[A-Z])[A-Z]*\s?.*]]></mask>
+                        <group>speedindex</group>
                       </target>
                       <target>
                         <type>Model</type>
                         <property>ModelTitle</property>
-                        <group>26|33|43|68</group>
-                      </target>
-                    </Targets>
-                        <mask>
-                          <![CDATA[^(((\d{2}?)((R(\d{1,2}[.,]\d{1}))|(\/(\d\.\d)R(\d{2}))\s?)(\d{3}?)([A-Z]{1}?)(\D*)(.*))|(\d{3}?)\/(\d{2,3}?)R(\d{2}[.,]\d{1}?))((((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z]))\s?([A-Z][a-z]*)([A-Z]*)([A-Z]{3})\(([^)]*)\))|((\d{3})([A-Z])([A-Z][a-z]*)([A-Z]{3})\.([A-Z]{3})([(]([^)]*)[)]))|((\d{3})([A-Z])(\d{3})([A-Z])([A-Z][a-z]*)([A-Z]*([A-Z]{3}))([(](.*[)]?)?)?)|((\d{3})([A-Z]?)|((\d{3})\/\d{3})([A-Z])))|((\d{3}?)\/(\d{2,3}?)R((\d{2}((\.\d)|([C]))?)+\s)?(((\d{2,3})([A-Z]))|(\d{2,3}\/\d{2,3})([A-Z])))\s?(.*)$]]>
-                    </mask>
-              </Column>
-              <Column OrderNumber="5" >
-                    <Targets>
-                      <target>
-                        <type>Season</type>
-                        <property>SeasonTitle</property>
+                        <mask><![CDATA[.*R\d{2}(([.,]\d\s?)|\s|([C]\s))((\d{2,3})(\/?\d{3})?[A-Z]){0,2}(([A-Z][a-z]+)?)?\s?(?<model>.*)]]></mask>
+                        <group>model</group>
                       </target>
                     </Targets>
               </Column>
@@ -75,11 +77,6 @@
                       <target>
                         <type>AutoType</type>
                         <property>TypeValue</property>
-                      <alternative>
-                        <alter value="Джипы">4x4</alter>
-                        <alter value="Грузовые-универсальные">Грузовые</alter>
-                        <alter value="Легкогрузовые">LT</alter>
-                      </alternative>
                       </target>
                     </Targets>
               </Column>
@@ -88,11 +85,6 @@
                       <target>
                         <type>Season</type>
                         <property>SeasonTitle</property>
-                        <alternative>
-                        <alter value="зимняя">зима</alter>
-                        <alter value="летняя">лето</alter>
-                        <alter value="всесезонная">всесез</alter>
-                      </alternative>
                       </target>
                     </Targets>
               </Column>

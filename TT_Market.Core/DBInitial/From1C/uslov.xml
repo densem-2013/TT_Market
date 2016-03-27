@@ -6,25 +6,22 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000030</Code>
 			<Description>ШИП</Description>
-      <Alternative>
-        <Key>шип</Key>
-        <Key>ad</Key>
-        <Key>stud</Key>
-      </Alternative>
-		</CatalogObject.УслОбозначения>
+        <alterkey>шип</alterkey>
+        <alterkey>ad</alterkey>
+        <alterkey>stud</alterkey>
+      <Значение/>
+    </CatalogObject.УслОбозначения>
 		<CatalogObject.УслОбозначения>
 			<Ref>945bd1dd-9d62-11e2-a0ad-00173196f75b</Ref>
 			<DeletionMark>false</DeletionMark>
 			<Code>000000002</Code>
 			<Description>RFT</Description>
 			<Значение>безопасные после прокола шины</Значение>
-        <Alternative>
-          <Key>Run Flat</Key>
-          <Key>Runflat</Key>
-          <Key>RunOnFlat</Key>
-          <Key>ROF</Key>
-        </Alternative>
-		</CatalogObject.УслОбозначения>
+      <alterkey>Run Flat</alterkey>
+      <alterkey>Runflat</alterkey>
+      <alterkey>RunOnFlat</alterkey>
+      <alterkey>ROF</alterkey>
+    </CatalogObject.УслОбозначения>
 		<CatalogObject.УслОбозначения>
 			<Ref>00c882c3-9d63-11e2-a0ad-00173196f75b</Ref>
 			<DeletionMark>false</DeletionMark>
@@ -58,18 +55,18 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000032</Code>
 			<Description>dot</Description>
+      <Значение/>
 		</CatalogObject.УслОбозначения>
 		<CatalogObject.УслОбозначения>
 			<Ref>e028bcb6-7d56-11e5-ba88-000d609a645a</Ref>
 			<DeletionMark>false</DeletionMark>
 			<Code>000000031</Code>
 			<Description>под шип</Description>
-      <Alternative>
-        <Key>под.</Key>
-        <Key>под.шип</Key>
-        <Key>п.</Key>
-        <Key>п.ш</Key>
-      </Alternative>
+        <alterkey>под.</alterkey>
+        <alterkey>под.шип</alterkey>
+        <alterkey>п.</alterkey>
+        <alterkey>п.ш</alterkey>
+      <Значение/>
 		</CatalogObject.УслОбозначения>
 	</V8Exch:Data>
 </V8Exch:_1CV8DtUD>

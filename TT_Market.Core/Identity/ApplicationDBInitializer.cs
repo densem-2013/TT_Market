@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -151,26 +152,41 @@ namespace TT_Market.Core.Identity
 
         }
 
-        public static Dictionary<string, string> LoadAutoTypesFromXml(string path, ApplicationDbContext context)
+        public static Dictionary<string, AutoType> LoadAutoTypesFromXml(string path, ApplicationDbContext context)
         {
 
             path = path.Replace("Read", @"From1C\for.xml");
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("CatalogObject.приминимость");
             var loadAutoTypesFromXml = collection as XElement[] ?? collection.ToArray();
-            Dictionary<string,string> atsDictionary=new Dictionary<string, string>();
+            Dictionary<string, AutoType> atsDictionary = new Dictionary<string, AutoType>();
             AutoType[] autotypes = loadAutoTypesFromXml.ToList().Select(a =>
             {
                 var element = a.Element("Description");
+                var altel = a.Elements("alterkey");
+                List<AutoTypeAlter> alters = null;
+                if (altel.Any())
+                {
+                    alters=new List<AutoTypeAlter>();
+                    foreach (XElement item in altel)
+                    {
+                        alters.Add(new AutoTypeAlter
+                        {
+                            AlterValue = item.Value
+                        });
+                    }
+
+                }
                 AutoType atype = null;
                 if (element != null)
                 {
                     atype = new AutoType
                     {
-                        TypeValue = element.Value
+                        TypeValue = element.Value,
+                        AutoTypeAlters = alters
                     };
                     var xElement = a.Element("Ref");
-                    if (xElement != null) atsDictionary.Add(xElement.Value,atype.TypeValue);
+                    if (xElement != null) atsDictionary.Add(xElement.Value,atype);
                 }
                 return atype;
             }).ToArray();
@@ -292,14 +308,32 @@ namespace TT_Market.Core.Identity
             Dictionary<string, Season> seaDictionary = new Dictionary<string, Season>();
             Season[] seasons = loadSeasonsFromXml.Select(a =>
             {
+                var altel = a.Elements("alterkey");
+                List<SeasonTitleAlter> alters = null;
+                if (altel.Any())
+                {
+                    alters = new List<SeasonTitleAlter>();
+                    foreach (XElement item in altel)
+                    {
+                        alters.Add(new SeasonTitleAlter
+                        {
+                            TitleAlterValue = item.Value
+                        });
+                    }
+
+                }
                 PriceLanguage langdefault = context.PriceLanguages.ToList().FirstOrDefault(pl => pl.IsDefault);
                 List<SeasonTitle> sesSeasonTitles=new List<SeasonTitle>();
 
-                sesSeasonTitles.Add(new SeasonTitle
-                {
-                    Title = a.Element("Description").Value,
-                    PriceLanguage = langdefault
-                });
+                var element = a.Element("Description");
+                if (element != null)
+                    sesSeasonTitles.Add(new SeasonTitle
+                    {
+                        Title = element.Value,
+                        PriceLanguage = langdefault,
+                        SeasonTitleAlters = alters
+                        
+                    });
 
                 sesSeasonTitles.AddRange(from langelem in a.Elements("Lang")
                     let lang = context.PriceLanguages.ToList().FirstOrDefault(pl => string.Equals(langelem.Attribute("Name").Value, pl.LanguageName))
@@ -404,11 +438,33 @@ namespace TT_Market.Core.Identity
             var xml = XDocument.Load(path);
             var collection = xml.Root.Descendants("CatalogObject.УслОбозначения");
             var loadConvSignsFromXml = collection as XElement[] ?? collection.ToArray();
-            ConvSign[] convindexes = loadConvSignsFromXml.ToList().Select(a => new ConvSign
+            ConvSign[] convindexes = loadConvSignsFromXml.ToList().Select(a =>
             {
+                var altel = a.Elements("alterkey");
+                List<ConvAlter> alters = null;
+                var xElements = altel as XElement[] ?? altel.ToArray();
+                if (xElements.Any())
+                {
+                    alters = xElements.Select(item => new ConvAlter
+                    {
+                        AlterKey = item.Value
+                    }).ToList();
+                }
+                ConvSign conv = null;
+                var xElement = a.Element("Description");
+                if (xElement != null)
+                {
+                    var convSign = a.Element("Значение");
+                    if (convSign != null)
+                        conv = new ConvSign
+                        {
 
-                Key = a.Element("Description").Value,
-                Value = a.Element("Значение").Value
+                            Key = xElement.Value,
+                            Value = convSign.Value,
+                            ConvAlters = alters
+                        };
+                }
+                return conv;
             }).ToArray();
 
             context.ConvSigns.AddRange(convindexes);
@@ -465,8 +521,24 @@ namespace TT_Market.Core.Identity
                 }
                 return null;
             }).ToArray();
-            IEnumerable<string> exsists = homls.Select(h => h.Key);
-            addhomls = addhomls.Where(hom => !exsists.Contains(hom.Key)).Concat(homls).OrderBy(ha => ha.Key).ToArray();
+            List<string> exsists=new List<string>();
+            //exsists = homls.Where(hk=>hk.Key!=String.Empty).Select(h => h.Key).ToList();
+            for (int i = 0; i < homls.Length; i++)
+            {
+                string key = homls.ElementAt(i).Key;
+                exsists.Add(key);
+            }
+
+            try
+            {
+                addhomls = addhomls.Where(hom => !exsists.Contains(hom.Key)).Concat(homls).OrderBy(ha => ha.Key).ToArray();
+
+            }
+            catch (Exception)
+            {
+                    
+                throw;
+            }
 
             context.HomolAttributes.AddRange(addhomls);
             context.SaveChanges();
@@ -478,7 +550,7 @@ namespace TT_Market.Core.Identity
             Dictionary<string, string> Brands = LoadBrandsFromXml(path, context);
             Dictionary<string, Season> Seasons = LoadSeasonsFromXml(path, context);
             Dictionary<string, string> ProtectorTypes = LoadProtectorTypeFromXml(path, context);
-            Dictionary<string, string> autotypes = LoadAutoTypesFromXml(path, context);
+            Dictionary<string, AutoType> autotypes = LoadAutoTypesFromXml(path, context);
 
             path = path.Replace("Read", @"From1C\model.xml");
             var xml = XDocument.Load(path);
@@ -498,13 +570,8 @@ namespace TT_Market.Core.Identity
                     model.ModelTitle = xElement.Value;
 
                     var atypeatr = item.Element("приминимость");
-                    string autotype =
-                        autotypes.FirstOrDefault(h => atypeatr != null && string.Equals(h.Key, atypeatr.Value)).Value;
-
-                    if (autotype != String.Empty)
-                    {
-                        model.AutoType = autoTypes.FirstOrDefault(at => string.Equals(at.TypeValue, autotype));
-                    }
+                    AutoType autoType = autotypes.FirstOrDefault(at => string.Equals(at.Key, atypeatr.Value)).Value;
+                    model.AutoType = autoType;
 
                     var ptype = item.Element("типпротектора");
                     string prottype =
@@ -543,41 +610,36 @@ namespace TT_Market.Core.Identity
 
         public static void LoadPricesReadSettingsFromXml(string path, ApplicationDbContext context)
         {
+            IEnumerable<PriceDocument> prisedocs = context.PriceDocuments;
 
-            path = path + "PriceReadSettingsInitial.xml";
-            XmlDocument doc = new XmlDocument();
-            doc.Load(path);
-            XmlNode priceList = doc.DocumentElement;
-            List<PriceReadSetting> lists = new List<PriceReadSetting>();
-            var selectSingleNode = priceList.SelectSingleNode("FileName");
-            if (selectSingleNode != null)
+            foreach (PriceDocument pdoc in prisedocs)
             {
-                string fn = selectSingleNode.InnerText;
-
-                    try
+                string filepath = path.Replace(@"DBinitial\Read", @"DocReadSettings\") +
+                                  pdoc.FileName.Substring(0,
+                                      pdoc.FileName.Length -
+                                      (pdoc.FileName.Length - pdoc.FileName.LastIndexOf(".", StringComparison.Ordinal))) + ".xml";
+                if (File.Exists(filepath))
+                {
+                    XmlDocument doc = new XmlDocument();
+                    doc.Load(filepath);
+                    XmlNode priceList = doc.DocumentElement;
+                    var selectSingleNode = priceList.SelectSingleNode("FileName");
+                    if (selectSingleNode != null)
                     {
+                        string fn = selectSingleNode.InnerText;
+
                         XmlNode sheets = priceList.SelectSingleNode("Sheets");
                         string trmask = JsonConvert.SerializeXmlNode(sheets);
                         PriceReadSetting pricers = new PriceReadSetting
                         {
                             TransformMask = trmask
                         };
-                        PriceDocument pdoc = context.PriceDocuments.FirstOrDefault(pd => string.Equals(pd.FileName, fn));
-                        if (pricers.PriceDocuments==null)
-                        {
-                            pricers.PriceDocuments=new List<PriceDocument>();
-                        }
-                        pricers.PriceDocuments.Add(pdoc);
-                        lists.Add(pricers);
-
+                        pdoc.PriceReadSetting = pricers;
                     }
-                    catch (Exception ex)
-                    {
-
-                        throw new Exception(ex.Message);
-                    }
+                    
+                }
             }
-            context.PriceReadSettings.AddRange(lists);
+
             context.SaveChanges();
         }
 

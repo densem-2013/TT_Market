@@ -9,6 +9,7 @@ namespace TT_Market.Core.Domains
         public ConvSign()
         {
             Tires = new List<Tire>();
+            ConvAlters = new List<ConvAlter>();
         }
 
         [Key]
@@ -18,5 +19,6 @@ namespace TT_Market.Core.Domains
         public string Key { get; set; }
         public string Value { get; set; }
         public ICollection<Tire> Tires { get; set; }
+        public ICollection<ConvAlter> ConvAlters { get; set; }
     }
 }

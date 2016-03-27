@@ -12,18 +12,21 @@
 			<DeletionMark>false</DeletionMark>
 			<Code>000000002</Code>
 			<Description>Джипы</Description>
+        <alterkey>4x4</alterkey>
 		</CatalogObject.приминимость>
 		<CatalogObject.приминимость>
 			<Ref>4db81aa0-fd9d-11e0-91df-00173196f75b</Ref>
 			<DeletionMark>false</DeletionMark>
 			<Code>000000003</Code>
 			<Description>Легкогрузовые</Description>
+      <alterkey>LT</alterkey>
 		</CatalogObject.приминимость>
 		<CatalogObject.приминимость>
 			<Ref>4db81aa1-fd9d-11e0-91df-00173196f75b</Ref>
 			<DeletionMark>false</DeletionMark>
 			<Code>000000004</Code>
 			<Description>Грузовые-универсальные</Description>
+      <alterkey>Грузовые</alterkey>
 		</CatalogObject.приминимость>
 		<CatalogObject.приминимость>
 			<Ref>4db81aa2-fd9d-11e0-91df-00173196f75b</Ref>

@@ -43,6 +43,9 @@ namespace TT_Market.Core.Identity
         public virtual DbSet<ProductionYear> ProductionYears { get; set; }
         public virtual DbSet<CityTitle> CityTitles { get; set; }
         public virtual DbSet<CountryTitle> CountryTitles { get; set; }
-        public virtual DbSet<SeasonTitle> SeasonTitles { get; set; } 
+        public virtual DbSet<SeasonTitle> SeasonTitles { get; set; }
+        public virtual DbSet<SeasonTitleAlter> SeasonTitleAlters { get; set; }
+        public virtual DbSet<AutoTypeAlter> AutoTypeAlters { get; set; }
+        public virtual DbSet<ConvAlter> ConvAlters { get; set; } 
     }
 }
