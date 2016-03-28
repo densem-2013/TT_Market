@@ -77,29 +77,28 @@ namespace TT_Market.Web.Tests.ReadWithReflection
             Dictionary<string, ReadSheetSetting> targetDict)
         {
             string sheetname = sourceToken.Value<string>("@Name");
+
+            bool rnhasVal = sourceToken.SelectToken("TitleRow")["@RowNumber"] != null;
+            bool rsHasVal = sourceToken.SelectToken("TitleRow")["@RowSpan"] != null;
+
+            int? rn = (int?)sourceToken.SelectToken("TitleRow")["@RowNumber"];
+            int? rs = (int?)sourceToken.SelectToken("TitleRow")["@RowSpan"];
+            string trpat = (string) sourceToken.SelectToken("TitleRow")["Condition"];
             StartRow startRow = new StartRow
             {
-                StartReadRow =
-                    (int?)
-                        ((sourceToken.SelectToken("TitleRow")["@RowNumber"].HasValues &&
-                          sourceToken.SelectToken("TitleRow")["@RowSpan"].HasValues)
-                            ? (int?) sourceToken.SelectToken("TitleRow")["@RowNumber"] +
-                              (int?) sourceToken.SelectToken("TitleRow")["@RowSpan"]
-                            : null),
+                StartReadRow = ((rnhasVal && rsHasVal) ? rn + rs : null),
                 RewievColumn =
                     (int?)
-                        ((sourceToken.SelectToken("TitleRow")["Column"].HasValues)
-                            ? sourceToken.SelectToken("TitleRow")["Column"]
-                            : null),
-                TitleRowPattern = (string) sourceToken.SelectToken("TitleRow")["Condition"]
+                        (sourceToken.SelectToken("TitleRow")["Column"] ?? null),
+                TitleRowPattern = trpat
             };
-
+            var ercol = sourceToken.SelectToken("EndRow")["Column"].HasValues;
             EndRow endRow = new EndRow
             {
                 RewievColumn =
                     (int?)
-                        ((sourceToken["EndRow"].SelectToken("Column").HasValues)
-                            ? sourceToken["EndRow"].SelectToken("Column")
+                        ((sourceToken.SelectToken("EndRow")["Column"].HasValues)
+                            ? sourceToken.SelectToken("EndRow")["Column"]
                             : null),
                 StopReadPattern = (string) sourceToken.SelectToken("EndRow")["Condition"]
             };
@@ -124,11 +123,9 @@ namespace TT_Market.Web.Tests.ReadWithReflection
                 {
                     targets.Add(ParseTarget(targetToken));
                 }
-
                 ReadCellSetting cellSetting = new ReadCellSetting
                 {
-                    CellNumber = (int) item["@OrderNumber"],
-                    //Mask = mmsk,
+                    CellNumber = (int)item["@OrderNumber"],
                     Targets = targets
                 };
                 cellSettings.Add(cellSetting);
@@ -137,6 +134,7 @@ namespace TT_Market.Web.Tests.ReadWithReflection
 
             targetDict.Add(sheetname, readSeting);
             return targetDict.Count;
+
         }
 
         private static Target ParseTarget(JToken tok)
@@ -147,7 +145,7 @@ namespace TT_Market.Web.Tests.ReadWithReflection
             string valueString = (string)tok["value"];
             JToken maskToken = tok.SelectToken("mask");
 
-            string mmsk = (maskToken != null && maskToken.HasValues)
+            string mmsk = (maskToken != null)
                 ? maskToken.Value<string>("#cdata-section")
                 : string.Empty;
             int grIndex = (groupstring!=null)?groupstring.IndexOf("|", StringComparison.Ordinal):-1;

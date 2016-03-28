@@ -108,6 +108,7 @@
     <Compile Include="ReadWithReflection\GetDataDynamically.cs" />
     <Compile Include="ReadWithReflection\MigrationTest.cs" />
     <Compile Include="ReadWithReflection\ParseTest.cs" />
+    <Compile Include="ReadTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />

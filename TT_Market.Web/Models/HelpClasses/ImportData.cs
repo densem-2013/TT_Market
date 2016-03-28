@@ -28,7 +28,7 @@ namespace TT_Market.Web.Models.HelpClasses
 
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
             PriceDocument =
-                Db.PriceDocuments.Include("PriceReadSetting")
+                Db.PriceDocuments.Include("PriceReadSetting").Include("PriceLanguage").Include("Agent")
                     .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
             PrevDocumentExists = false;
             if (PriceDocument != null)
@@ -44,14 +44,14 @@ namespace TT_Market.Web.Models.HelpClasses
                     PriceDocument.DownLoadDate = DateTime.UtcNow;
 
                     JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-                    Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(Db, jobj);
+                    Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(jobj);
                     foreach (var pair in docReadSettings)
                     {
                         curSheetSetting = pair.Value;
                         if (curSheetSetting.StartRow.StartReadRow != null)
                         {
                             IEnumerable<DataRow> dataCollection =
-                                GetData(path, pair.Key, false).Skip(curSheetSetting.StartRow.StartReadRow.Value - 1);
+                                GetData(path, pair.Key, false).Skip(curSheetSetting.StartRow.StartReadRow.Value - 1).ToList();
 
                             List<ReadCellSetting> tirePropos =
                                 curSheetSetting.ReadCellSettings.Where(
@@ -64,6 +64,9 @@ namespace TT_Market.Web.Models.HelpClasses
                             List<ReadCellSetting> stockValues =
                                 curSheetSetting.ReadCellSettings.Where(
                                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Stock"))).ToList();
+                            List<ReadCellSetting> brandValues =
+                                curSheetSetting.ReadCellSettings.Where(
+                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Brand"))).ToList();
 
                             foreach (DataRow row in dataCollection)
                             {
@@ -79,8 +82,11 @@ namespace TT_Market.Web.Models.HelpClasses
                                 }
 
                                 PriceDocument.TirePropositions.Add(tireProposition);
+                                Tire tire = ReadTire(row);
+                                tire.TireProposition = tireProposition;
 
-
+                                Db.Tires.Add(tire);
+                                Db.SaveChanges();
                             }
                         }
                     }
@@ -88,12 +94,16 @@ namespace TT_Market.Web.Models.HelpClasses
             }
         }
 
-        public static Tire ReadTire(ReadCellSetting celsetting, DataRow row)
+        public static Tire ReadTire(DataRow row)
         {
+            ReadCellSetting celsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Tire")));
+
             Tire tire = new Tire();
             if (PrevDocumentExists)
             {
-                string tiretitle = row[celsetting.CellNumber].ToString().Trim();
+                string tiretitle = row[celsetting.CellNumber - 1].ToString().Trim();
                 Tire prevtire =
                     Db.Tires.Include("TireProposition.PriceDocument")
                         .FirstOrDefault(
@@ -103,7 +113,6 @@ namespace TT_Market.Web.Models.HelpClasses
                 if (prevtire != null)
                 {
                     tire.Model = prevtire.Model;
-                    tire.ConvSign = prevtire.ConvSign;
                     tire.Diameter = prevtire.Diameter;
                     tire.PressIndex = prevtire.PressIndex;
                     tire.TireTitle = tiretitle;
@@ -116,18 +125,193 @@ namespace TT_Market.Web.Models.HelpClasses
                 {
                     tire.TireTitle = tiretitle;
                     tire.Country = GetCountry(row);
-
+                    tire.Width = GetWidth(row);
+                    tire.Height = GetHeight(row);
+                    tire.Diameter = GetdDiameter(row);
+                    tire.SpeedIndex = GetSpeedIndex(row);
+                    tire.PressIndex = GetPressIndex(row);
+                    tire.ProductionYear = GetProductionYear(row);
+                    tire.Model = GetModel(row);
                 }
             }
             return tire;
         }
 
+        public static ProductionYear GetProductionYear(DataRow row)
+        {
+            ReadCellSetting pysetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "ProductionYear")));
+            ProductionYear prodYear = null;
+            if (pysetting != null)
+            {
+                string pystring = row[pysetting.CellNumber - 1].ToString().Trim();
+                Target pyTarget = pysetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "ProductionYear"));
+                if (pyTarget != null)
+                {
+                    string pyvalue = "";
+                    string pymask = pyTarget.Mask;
+                    if (pymask != null)
+                    {
+                        Regex reg = new Regex(pymask);
+                        pyTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(pystring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                pyvalue = val;
+                            }
+                        });
+                        prodYear = Db.ProductionYears.ToList().FirstOrDefault(py => string.Equals(py.Year, pyvalue)) ??
+                                 new ProductionYear
+                                 {
+                                     Year = pyvalue
+                                 };
+                    }
+                }
+            }
+            return prodYear;
+            
+        }
+        public static Brand GetBrand(List<ReadCellSetting> brandssettings, DataRow row)
+        {
+            foreach (ReadCellSetting setting in brandssettings)
+            {
+                string brandstring = row[setting.CellNumber - 1].ToString().Trim();
+                Target brandTarget = setting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Brand"));
+                if (setting.Targets.Count > 1)
+                {
+                    string brandvalue = "";
+                    string pimask = brandTarget.Mask;
+                    if (pimask != null)
+                    {
+                        Regex reg = new Regex(pimask);
+                        brandTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(brandstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                brandvalue = val;
+                            }
+                        });
+                        return Db.Brands.ToList().FirstOrDefault(b => string.Equals(b.BrandTitle, brandvalue)) ??
+                               new Brand { BrandTitle = brandvalue };
+                    }
+                }
+                else
+                {
+                    return Db.Brands.ToList().FirstOrDefault(b => string.Equals(b.BrandTitle, brandstring)) ??
+                           new Brand {BrandTitle = brandstring};
+                }
+            }
+            return null;
+        }
+
+        public static Season GetSeason(DataRow row)
+        {
+
+            ReadCellSetting seasonsetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Season")));
+            Season season = null;
+            SeasonTitle seasontitle = null;
+            if (seasonsetting != null)
+            {
+                string seasonstring = row[seasonsetting.CellNumber - 1].ToString().Trim();
+                Target seasonTarget = seasonsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Season"));
+                if (seasonTarget != null)
+                {
+                    string seasvalue = "";
+                    string seasmask = seasonTarget.Mask;
+                    if (seasmask != null)
+                    {
+                        Regex reg = new Regex(seasmask);
+                        seasonTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(seasonstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                seasvalue = val;
+                            }
+                        });
+
+                        seasontitle = (Db.SeasonTitles.ToList().FirstOrDefault(st => string.Equals(st.Title, seasvalue)) ??
+                                    Db.SeasonTitles.Include("SeasonTitleAlters").ToList().FirstOrDefault(at => at.SeasonTitleAlters.Any(ata => string.Equals(ata.TitleAlterValue, seasvalue)))) ??
+                                   new SeasonTitle
+                                   {
+                                       Title = seasvalue,
+                                       PriceLanguage = PriceLanguage
+                                   };
+                    }
+                    else
+                    {
+                        seasontitle = Db.SeasonTitles.ToList().FirstOrDefault(st => string.Equals(st.Title, seasonstring)) ??
+                             new SeasonTitle
+                             {
+                                 Title = seasonstring,
+                                 PriceLanguage = PriceLanguage
+                             };
+                    }
+                    season =
+                        Db.Seasons.Include("SeasonTitles")
+                            .ToList()
+                            .FirstOrDefault(
+                                s => s.SeasonTitles.Any(st => string.Equals(st.Title, seasontitle.Title)));
+                    if (season == null)
+                    {
+                        season = new Season();
+                        season.SeasonTitles.Add(seasontitle);
+                    }
+                }
+            }
+            return season;
+        }
+        public static ProtectorType GetProtectorType(DataRow row)
+        {
+            ReadCellSetting protTypeSetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "ProtectorType")));
+            ProtectorType ptType = null;
+            if (protTypeSetting!=null)
+            {
+                string ptstring = row[protTypeSetting.CellNumber - 1].ToString().Trim();
+                Target pTarget = protTypeSetting.Targets.FirstOrDefault(pt => string.Equals(pt.Entity, "ProtectorType"));
+                if (pTarget!=null)
+                {
+                    string ptValue = "";
+                    string ptMask = pTarget.Mask;
+                    if (ptMask != null)
+                    {
+                        Regex reg = new Regex(ptMask);
+                        pTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(ptstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                ptValue = val;
+                            }
+                        });
+                        ptType = Db.ProtectorTypes.ToList().FirstOrDefault(pt => string.Equals(pt.Title, ptValue)) ??
+                                 new ProtectorType {Title = ptValue};
+                    }
+                    else
+                    {
+                        ptType = Db.ProtectorTypes.ToList().FirstOrDefault(pt => string.Equals(pt.Title, ptValue)) ??
+                             new ProtectorType { Title = ptstring };
+                    }
+                }
+            }
+            return ptType;
+        }
         public static Model GetModel(DataRow row)
         {
             ReadCellSetting modelsetting =
                 curSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Model")));
             Model model = null;
+            ConvSign convSign = null;
+            HomolAttribute ha = null;
+            HomolAttribute homAttribute = null;
             if (modelsetting != null)
             {
                 string mdstring = row[modelsetting.CellNumber - 1].ToString().Trim();
@@ -147,21 +331,93 @@ namespace TT_Market.Web.Models.HelpClasses
                                 modvalue = val;
                             }
                         });
-
+                        convSign = GetConvSignFromModelString(ref modvalue);
+                        ha = GetHomolAttributeFromModelString(ref modvalue);
+                        modvalue = modvalue.Trim();
                         model = Db.Models.ToList().FirstOrDefault(mod => string.Equals(mod.ModelTitle, modvalue)) ??
                                  new Model
                                  {
                                      ModelTitle = modvalue
                                  };
+                        if (model.Homol==null)
+                        {
+                            model.Homol = ha;
+                        }
+                        if (model.ConvSign==null)
+                        {
+                            model.ConvSign = convSign;
+                        }
                     }
                 }
             }
+
             return model;
         }
 
-        public static ConvSign GetConvSign(ref string modstring)
+        public static HomolAttribute GetHomolAttributeFromModelString(ref string modelstring)
         {
-            List<ConvSign> convs = Db.ConvSigns.Include("convAlters").ToList();
+            List<HomolAttribute> homols = Db.HomolAttributes.ToList();
+            foreach (HomolAttribute item in homols)
+            {
+                string pattern = item.Key + "$";
+                Regex reg = new Regex(pattern);
+                if (reg.IsMatch(modelstring))
+                {
+                    modelstring = Regex.Replace(modelstring, pattern, "");
+                    return item;
+                }
+            }
+
+            return null;
+        }
+        public static AutoType GetAutoType(DataRow row)
+        {
+            ReadCellSetting autotypesetting =
+                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "AutoType")));
+            AutoType autotype = null;
+            if (autotypesetting != null)
+            {
+                string atstring = row[autotypesetting.CellNumber - 1].ToString().Trim();
+                Target atTarget = autotypesetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "AutoType"));
+                if (atTarget != null)
+                {
+                    string atvalue = "";
+                    string atmask = atTarget.Mask;
+                    if (atmask != null)
+                    {
+                        Regex reg = new Regex(atmask);
+                        atTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(atstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                atvalue = val;
+                            }
+                        });
+
+                        autotype = (Db.AutoTypes.ToList().FirstOrDefault(at => string.Equals(at.TypeValue, atvalue)) ??
+                                    Db.AutoTypes.Include("AutoTypeAlters").ToList().FirstOrDefault(at => at.AutoTypeAlters.Any(ata => string.Equals(ata.AlterValue, atvalue)))) ??
+                                   new AutoType
+                                    {
+                                        TypeValue = atvalue
+                                    };
+                    }
+                    else
+                    {
+                        autotype = Db.AutoTypes.ToList().FirstOrDefault(at => string.Equals(at.TypeValue, atstring)) ??
+                             new AutoType
+                             {
+                                 TypeValue = atstring
+                             };
+                    }
+                }
+            }
+            return autotype;
+        }
+        public static ConvSign GetConvSignFromModelString(ref string modstring)
+        {
+            List<ConvSign> convs = Db.ConvSigns.Include("ConvAlters").ToList();
             ConvSign convSign = null;
 
             foreach (ConvSign item in convs)
@@ -458,16 +714,24 @@ namespace TT_Market.Web.Models.HelpClasses
                             tireProposition.ExtendedData = row[rcs.CellNumber].ToString().Trim();
                             break;
                         case "RegionCount":
-                            tireProposition.RegionCount = int.Parse(row[rcs.CellNumber].ToString().Trim());
+                            int regcount;
+                            int.TryParse(row[rcs.CellNumber].ToString().Trim(), out regcount);
+                            tireProposition.RegionCount = regcount;
                             break;
                         case "PartnersCount":
-                            tireProposition.PartnersCount = int.Parse(row[rcs.CellNumber].ToString().Trim());
+                            int partcount;
+                            int.TryParse(row[rcs.CellNumber].ToString().Trim(), out partcount);
+                            tireProposition.PartnersCount = partcount;
                             break;
                         case "WaitingCount":
-                            tireProposition.WaitingCount = int.Parse(row[rcs.CellNumber].ToString().Trim());
+                            int wait;
+                            int.TryParse(row[rcs.CellNumber].ToString().Trim(), out wait);
+                            tireProposition.WaitingCount = wait;
                             break;
                         case "ReservCount":
-                            tireProposition.ReservCount = int.Parse(row[rcs.CellNumber].ToString().Trim());
+                            int rescount;
+                            int.TryParse(row[rcs.CellNumber].ToString().Trim(), out rescount);
+                            tireProposition.ReservCount = rescount;
                             break;
                     }
                 }
@@ -488,22 +752,24 @@ namespace TT_Market.Web.Models.HelpClasses
                     switch (property)
                     {
                         case "RegularPrice":
-                            tirePrice.RegularPrice =
-                                double.Parse(row[price.CellNumber].ToString().Trim());
+                            double regprice;
+                            double.TryParse(row[price.CellNumber].ToString().Trim(), out regprice);
+                            tirePrice.RegularPrice = regprice;
                             break;
                         case "DiscountPrice":
-                            tirePrice.DiscountPrice =
-                                double.Parse(row[price.CellNumber].ToString().Trim());
+                            double disc;
+                            double.TryParse(row[price.CellNumber].ToString().Trim(), out disc);
+                            tirePrice.DiscountPrice = disc;
                             break;
                         case "SpecialPrice":
-                            tirePrice.SpecialPrice =
-                                double.Parse(row[price.CellNumber].ToString().Trim());
+                            double specpr=double.Epsilon;
+                            double.TryParse(row[price.CellNumber].ToString().Trim(), out specpr);
+                            tirePrice.SpecialPrice = specpr;
                             break;
                     }
                 }
                 var curValue = price.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Currency"));
-                tirePrice.Currency =
-                        Db.Currencys.FirstOrDefault(
+                tirePrice.Currency = Db.Currencys.ToList().FirstOrDefault(
                             c =>
                                 (curValue != null)
                                     ? string.Equals(c.CurrencyTitle, curValue.Value)

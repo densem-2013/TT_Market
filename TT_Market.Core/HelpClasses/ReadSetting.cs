@@ -12,7 +12,7 @@ namespace TT_Market.Core.HelpClasses
 {
     public static class ReadSetting
     {
-        public static Dictionary<string, ReadSheetSetting> GetReadSetting(ApplicationDbContext db, JObject jobj)
+        public static Dictionary<string, ReadSheetSetting> GetReadSetting( JObject jobj)
         {
             Dictionary<string, ReadSheetSetting> records = new Dictionary<string, ReadSheetSetting>();
 
@@ -31,38 +31,37 @@ namespace TT_Market.Core.HelpClasses
                 string sheetName = sheetToken.Value<string>("@Name");
                 GetRecordsFromJson(sheetToken, records);
             }
-            db.SaveChanges();
+            //db.SaveChanges();
             return records;
         }
 
         private static int GetRecordsFromJson(JToken sourceToken, Dictionary<string, ReadSheetSetting> targetDict)
         {
             string sheetname = sourceToken.Value<string>("@Name");
+
+            bool rnhasVal = sourceToken.SelectToken("TitleRow")["@RowNumber"] != null;
+            bool rsHasVal = sourceToken.SelectToken("TitleRow")["@RowSpan"] != null;
+
+            int? rn = (int?)sourceToken.SelectToken("TitleRow")["@RowNumber"];
+            int? rs = (int?)sourceToken.SelectToken("TitleRow")["@RowSpan"];
+            string trpat = (string)sourceToken.SelectToken("TitleRow")["Condition"];
             StartRow startRow = new StartRow
             {
-                StartReadRow =
-                    (int?)
-                        ((sourceToken.SelectToken("TitleRow")["@RowNumber"].HasValues &&
-                          sourceToken.SelectToken("TitleRow")["@RowSpan"].HasValues)
-                            ? (int?) sourceToken.SelectToken("TitleRow")["@RowNumber"] +
-                              (int?) sourceToken.SelectToken("TitleRow")["@RowSpan"]
-                            : null),
+                StartReadRow = ((rnhasVal && rsHasVal) ? rn + rs : null),
                 RewievColumn =
                     (int?)
-                        ((sourceToken.SelectToken("TitleRow")["Column"].HasValues)
-                            ? sourceToken.SelectToken("TitleRow")["Column"]
-                            : null),
-                TitleRowPattern = (string) sourceToken.SelectToken("TitleRow")["Condition"]
+                        (sourceToken.SelectToken("TitleRow")["Column"] ?? null),
+                TitleRowPattern = trpat
             };
-
+            var ercol = sourceToken.SelectToken("EndRow")["Column"].HasValues;
             EndRow endRow = new EndRow
             {
                 RewievColumn =
                     (int?)
-                        ((sourceToken["EndRow"].SelectToken("Column").HasValues)
-                            ? sourceToken["EndRow"].SelectToken("Column")
+                        ((sourceToken.SelectToken("EndRow")["Column"].HasValues)
+                            ? sourceToken.SelectToken("EndRow")["Column"]
                             : null),
-                StopReadPattern = (string) sourceToken.SelectToken("EndRow")["Condition"]
+                StopReadPattern = (string)sourceToken.SelectToken("EndRow")["Condition"]
             };
             ReadSheetSetting readSeting = new ReadSheetSetting
             {
@@ -85,16 +84,9 @@ namespace TT_Market.Core.HelpClasses
                 {
                     targets.Add(ParseTarget(targetToken));
                 }
-                //JToken maskToken = item.SelectToken("mask");
-
-                //string mmsk = (maskToken != null && maskToken.HasValues)
-                //    ? maskToken.Value<string>("#cdata-section")
-                //    : string.Empty;
-
                 ReadCellSetting cellSetting = new ReadCellSetting
                 {
-                    CellNumber = (int) item["@OrderNumber"],
-                    //Mask = mmsk,
+                    CellNumber = (int)item["@OrderNumber"],
                     Targets = targets
                 };
                 cellSettings.Add(cellSetting);
@@ -103,6 +95,7 @@ namespace TT_Market.Core.HelpClasses
 
             targetDict.Add(sheetname, readSeting);
             return targetDict.Count;
+
         }
 
         private static Target ParseTarget(JToken tok)

@@ -21,6 +21,7 @@ namespace TT_Market.Core.Domains
         public AutoType AutoType { get; set; }
         public ProtectorType ProtectorType { get; set; }
         public Season Season { get; set; }
+        public ConvSign ConvSign { get; set; }
         public ICollection<Tire> Tires { get; set; }
 
     }

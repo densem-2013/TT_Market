@@ -64,25 +64,27 @@ namespace TT_Market.Core.Identity
             var collection = xml.Root.Descendants("PriceDocument");
             List<Agent> agents = context.Agents.ToList();
             List<PriceLanguage> priceLanguages = context.PriceLanguages.ToList();
-            var pdlist= (from item in collection
+            var pdlist = (from item in collection
                 let xElement = item.Element("Filename")
                 where xElement != null
                 let element = item.Element("Agent")
                 where element != null
                 let xElement1 = item.Element("Language")
                 where xElement1 != null
-                select new 
+                select new
                 {
                     FileName = xElement.Value,
                     Language = xElement1.Value,
-                    Agent=element.Value
+                    Agent = element.Value
                 }).ToList();
-            List<PriceDocument> pds=pdlist.Select(x =>new PriceDocument
+            List<PriceDocument> pds = pdlist.Select(x => new PriceDocument
             {
                 DownLoadDate = DateTime.Now,
                 FileName = x.FileName,
-                Agent = agents.FirstOrDefault(a=>string.Equals(a.AgentTitle,x.Agent)),
-                PriceLanguage = priceLanguages.ToList().FirstOrDefault(pl=>string.Equals(pl.LanguageName,x.Language))
+                Agent = agents.FirstOrDefault(a => string.Equals(a.AgentTitle, x.Agent)),
+                PriceLanguage =
+                    priceLanguages.ToList().FirstOrDefault(pl => string.Equals(pl.LanguageName, x.Language)) ??
+                    priceLanguages.ToList().FirstOrDefault(pl => pl.IsDefault)
             }).ToList();
             context.PriceDocuments.AddRange(pds);
             context.SaveChanges();
