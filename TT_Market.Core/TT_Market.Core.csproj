@@ -158,9 +158,9 @@
     <Compile Include="Identity\ApplicationDBInitializer.cs" />
     <Compile Include="Identity\ApplicationDbContext.cs" />
     <Compile Include="Identity\IdentityConfig.cs" />
-    <Compile Include="Migrations\201603281924220_Initial.cs" />
-    <Compile Include="Migrations\201603281924220_Initial.Designer.cs">
-      <DependentUpon>201603281924220_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201603292016383_Initial.cs" />
+    <Compile Include="Migrations\201603292016383_Initial.Designer.cs">
+      <DependentUpon>201603292016383_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -201,16 +201,17 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="DBInitial\ReadWidthsInitial.xml" />
-    <Content Include="DBInitial\ReadPriceDocumentsInitial.xml" />
     <Content Include="DBInitial\ReadCitiesInitial.xml" />
+    <Content Include="DocReadSettings\склад №1.xml" />
+    <Content Include="DocReadSettings\шипшина.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603281924220_Initial.resx">
-      <DependentUpon>201603281924220_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603292016383_Initial.resx">
+      <DependentUpon>201603292016383_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

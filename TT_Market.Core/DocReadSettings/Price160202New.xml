@@ -91,8 +91,8 @@
               <Column OrderNumber="8">
                     <Targets>
                       <target>
-                        <type>Country</type>
-                        <property>CountryTitle</property>
+                        <type>CountryTitle</type>
+                        <property>Title</property>
                       </target>
                     </Targets>
               </Column>

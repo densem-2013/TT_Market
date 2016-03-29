@@ -8,7 +8,7 @@ namespace TT_Market.Core.Domains
     {
         public Agent()
         {
-            PriceDocuments = new List<PriceDocument>();
+            PriceReadSettings = new List<PriceReadSetting>();
         }
 
         [Key]
@@ -18,6 +18,6 @@ namespace TT_Market.Core.Domains
         public string AgentTitle { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
-        public ICollection<PriceDocument> PriceDocuments { get; set; }
+        public ICollection<PriceReadSetting> PriceReadSettings { get; set; }
     }
 }

@@ -18,7 +18,9 @@ namespace TT_Market.Core.Domains
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-
+        public string FileName { get; set; }
+        public Agent Agent { get; set; }
+        public PriceLanguage PriceLanguage { get; set; }
         public string TransformMask { get; set; }
         public ICollection<PriceDocument> PriceDocuments { get; set; }
     }

@@ -19,42 +19,32 @@ namespace TT_Market.Core.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
+                "dbo.PriceReadSettings",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        FileName = c.String(),
+                        TransformMask = c.String(),
+                        Agent_Id = c.Int(),
+                        PriceLanguage_Id = c.Int(),
+                    })
+                .PrimaryKey(t => t.Id)
+                .ForeignKey("dbo.Agents", t => t.Agent_Id)
+                .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
+                .Index(t => t.Agent_Id)
+                .Index(t => t.PriceLanguage_Id);
+            
+            CreateTable(
                 "dbo.PriceDocuments",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
                         DownLoadDate = c.DateTime(nullable: false),
-                        FileName = c.String(),
-                        Agent_Id = c.Int(),
-                        PriceLanguage_Id = c.Int(),
                         PriceReadSetting_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Agents", t => t.Agent_Id)
-                .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
                 .ForeignKey("dbo.PriceReadSettings", t => t.PriceReadSetting_Id)
-                .Index(t => t.Agent_Id)
-                .Index(t => t.PriceLanguage_Id)
                 .Index(t => t.PriceReadSetting_Id);
-            
-            CreateTable(
-                "dbo.PriceLanguages",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        LanguageName = c.String(),
-                        IsDefault = c.Boolean(nullable: false),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
-                "dbo.PriceReadSettings",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        TransformMask = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.TirePropositions",
@@ -110,6 +100,16 @@ namespace TT_Market.Core.Migrations
                 .ForeignKey("dbo.PriceLanguages", t => t.PriceLanguage_Id)
                 .Index(t => t.City_Id)
                 .Index(t => t.PriceLanguage_Id);
+            
+            CreateTable(
+                "dbo.PriceLanguages",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        LanguageName = c.String(),
+                        IsDefault = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
             
             CreateTable(
                 "dbo.TirePrices",
@@ -499,6 +499,7 @@ namespace TT_Market.Core.Migrations
             DropForeignKey("dbo.Models", "Brand_Id", "dbo.Brands");
             DropForeignKey("dbo.Models", "AutoType_Id", "dbo.AutoTypes");
             DropForeignKey("dbo.AutoTypeAlters", "AutoType_Id", "dbo.AutoTypes");
+            DropForeignKey("dbo.PriceReadSettings", "PriceLanguage_Id", "dbo.PriceLanguages");
             DropForeignKey("dbo.TirePrices", "TireProposition_Id", "dbo.TirePropositions");
             DropForeignKey("dbo.TirePrices", "Currency_Id", "dbo.Currencies");
             DropForeignKey("dbo.Stocks", "TireProposition_Id", "dbo.TirePropositions");
@@ -507,8 +508,7 @@ namespace TT_Market.Core.Migrations
             DropForeignKey("dbo.CityTitles", "City_Id", "dbo.Cities");
             DropForeignKey("dbo.TirePropositions", "PriceDocument_Id", "dbo.PriceDocuments");
             DropForeignKey("dbo.PriceDocuments", "PriceReadSetting_Id", "dbo.PriceReadSettings");
-            DropForeignKey("dbo.PriceDocuments", "PriceLanguage_Id", "dbo.PriceLanguages");
-            DropForeignKey("dbo.PriceDocuments", "Agent_Id", "dbo.Agents");
+            DropForeignKey("dbo.PriceReadSettings", "Agent_Id", "dbo.Agents");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", new[] { "Agent_Id" });
@@ -547,8 +547,8 @@ namespace TT_Market.Core.Migrations
             DropIndex("dbo.Stocks", new[] { "City_Id" });
             DropIndex("dbo.TirePropositions", new[] { "PriceDocument_Id" });
             DropIndex("dbo.PriceDocuments", new[] { "PriceReadSetting_Id" });
-            DropIndex("dbo.PriceDocuments", new[] { "PriceLanguage_Id" });
-            DropIndex("dbo.PriceDocuments", new[] { "Agent_Id" });
+            DropIndex("dbo.PriceReadSettings", new[] { "PriceLanguage_Id" });
+            DropIndex("dbo.PriceReadSettings", new[] { "Agent_Id" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
@@ -576,13 +576,13 @@ namespace TT_Market.Core.Migrations
             DropTable("dbo.AutoTypeAlters");
             DropTable("dbo.Currencies");
             DropTable("dbo.TirePrices");
+            DropTable("dbo.PriceLanguages");
             DropTable("dbo.CityTitles");
             DropTable("dbo.Cities");
             DropTable("dbo.Stocks");
             DropTable("dbo.TirePropositions");
-            DropTable("dbo.PriceReadSettings");
-            DropTable("dbo.PriceLanguages");
             DropTable("dbo.PriceDocuments");
+            DropTable("dbo.PriceReadSettings");
             DropTable("dbo.Agents");
         }
     }

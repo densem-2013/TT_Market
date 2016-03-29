@@ -33,39 +33,36 @@ namespace TT_Market.Web.Tests.ReadWithReflection
         {
             string filename = _pathXls.Substring(_pathXls.LastIndexOf("\\", StringComparison.Ordinal) + 1);
             var firstOrDefault =
-                _db.PriceDocuments.Include("PriceReadSetting")
+                _db.PriceReadSettings
                     .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
             Dictionary<string, ReadSheetSetting> records = new Dictionary<string, ReadSheetSetting>();
-            if (firstOrDefault != null)
+            PriceReadSetting priceReadSetting = firstOrDefault;
+            if (priceReadSetting != null)
             {
-                PriceReadSetting priceReadSetting = firstOrDefault.PriceReadSetting;
-                if (priceReadSetting != null)
+                byte[] file = File.ReadAllBytes(_pathXls);
+                MemoryStream ms = new MemoryStream(file);
+                //PriceDocument priceDocument = new PriceDocument
+                //{
+                //    DownLoadDate = DateTime.UtcNow,
+                //    FileName = filename
+                //};
+
+                JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
+
+
+                JToken sheetToken = jobj.SelectToken("Sheets.Sheet");
+                if (sheetToken.Type == JTokenType.Array)
                 {
-                    byte[] file = File.ReadAllBytes(_pathXls);
-                    MemoryStream ms = new MemoryStream(file);
-                    PriceDocument priceDocument = new PriceDocument
+                    string[] sheetNames = sheetToken.Select(sh => (string) sh.SelectToken("@Name")).ToArray();
+                    foreach (JToken shToken in sheetToken.Children())
                     {
-                        DownLoadDate = DateTime.UtcNow,
-                        FileName = filename
-                    };
-
-                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-
-
-                    JToken sheetToken = jobj.SelectToken("Sheets.Sheet");
-                    if (sheetToken.Type == JTokenType.Array)
-                    {
-                        string[] sheetNames = sheetToken.Select(sh => (string) sh.SelectToken("@Name")).ToArray();
-                        foreach (JToken shToken in sheetToken.Children())
-                        {
-                            GetRecordsFromJson(shToken, records);
-                        }
+                        GetRecordsFromJson(shToken, records);
                     }
-                    else
-                    {
-                        string sheetName = sheetToken.Value<string>("@Name");
-                        GetRecordsFromJson(sheetToken, records);
-                    }
+                }
+                else
+                {
+                    string sheetName = sheetToken.Value<string>("@Name");
+                    GetRecordsFromJson(sheetToken, records);
                 }
             }
             //Debug.Assert(records != null, "records != null");

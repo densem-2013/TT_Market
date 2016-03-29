@@ -14,6 +14,7 @@ namespace TT_Market.Web.Tests.ReadWithReflection
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Model> _modelRepository;
         private readonly IRepository<PriceDocument> _pdocRepository;
+        private readonly IRepository<PriceReadSetting> _readSetRepo; 
 
         private static readonly string _path =
             AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web.Tests\bin\Debug", "") +
@@ -24,6 +25,7 @@ namespace TT_Market.Web.Tests.ReadWithReflection
             _unitOfWork = new UnitOfWork();
             _modelRepository = _unitOfWork.Repository<Model>();
             _pdocRepository = _unitOfWork.Repository<PriceDocument>();
+            _readSetRepo = _unitOfWork.Repository<PriceReadSetting>();
         }
 
         [TestMethod]
@@ -34,16 +36,11 @@ namespace TT_Market.Web.Tests.ReadWithReflection
         }
 
         [TestMethod]
-        public void GetReadSettingPath()
+        public void GetReadSetting()
         {
-            List<PriceDocument> prisedocs = _pdocRepository.GetAll().ToList();
-            List<string> paths=new List<string>();
-            foreach (PriceDocument pdoc in prisedocs)
-            {
-                string filepath = _path.Replace(@"DBinitial\Read", @"DocReadSettings\") + pdoc.FileName.Substring(0, pdoc.FileName.Length - (pdoc.FileName.Length - pdoc.FileName.LastIndexOf("."))) + ".xml";
-                paths.Add(filepath);
-            }
-            Assert.IsTrue(paths.Any());
+            ApplicationDbInitializer.LoadPricesReadSettingsFromXml(_path, new ApplicationDbContext());
+            int count = _readSetRepo.GetAll().Count();
+            Assert.IsTrue(count>1);
         }
     }
 }

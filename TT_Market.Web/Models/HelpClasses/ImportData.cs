@@ -20,95 +20,93 @@ namespace TT_Market.Web.Models.HelpClasses
         private static readonly ApplicationDbContext Db = new ApplicationDbContext();
         private static PriceLanguage PriceLanguage { get; set; }
         private static PriceDocument PriceDocument { get; set; }
-        private static ReadSheetSetting curSheetSetting { get; set; }
+        private static ReadSheetSetting CurSheetSetting { get; set; }
         private static bool PrevDocumentExists { get; set; }
 
         public static void ParseAndInsert(string path)
         {
 
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceDocument =
-                Db.PriceDocuments.Include("PriceReadSetting").Include("PriceLanguage").Include("Agent")
-                    .FirstOrDefault(pd => string.Equals(pd.FileName, filename));
+            PriceDocument pdoc=new PriceDocument();
+            PriceDocument = pdoc;
+            PriceReadSetting priceReadSetting = Db.PriceReadSettings.Include("PriceLanguage").Include("Agent")
+                .FirstOrDefault(prs => string.Equals(prs.FileName, filename));
             PrevDocumentExists = false;
-            if (PriceDocument != null)
+
+            if (priceReadSetting != null)
             {
-                PrevDocumentExists = true;
-                PriceLanguage = PriceDocument.PriceLanguage;
-                PriceReadSetting priceReadSetting = PriceDocument.PriceReadSetting;
-                if (priceReadSetting != null)
+                Db.PriceDocuments.Add(pdoc);
+                PrevDocumentExists = priceReadSetting.PriceDocuments.Any();
+                PriceLanguage = priceReadSetting.PriceLanguage;
+                PriceDocument.DownLoadDate = DateTime.UtcNow;
+
+                JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
+                Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(jobj);
+                foreach (var pair in docReadSettings)
                 {
-                    //byte[] file = File.ReadAllBytes(path);
-                    //MemoryStream ms = new MemoryStream(file);
-
-                    PriceDocument.DownLoadDate = DateTime.UtcNow;
-
-                    JObject jobj = JObject.Parse(priceReadSetting.TransformMask);
-                    Dictionary<string, ReadSheetSetting> docReadSettings = ReadSetting.GetReadSetting(jobj);
-                    foreach (var pair in docReadSettings)
+                    CurSheetSetting = pair.Value;
+                    if (CurSheetSetting.StartRow.StartReadRow != null)
                     {
-                        curSheetSetting = pair.Value;
-                        if (curSheetSetting.StartRow.StartReadRow != null)
+                        IEnumerable<DataRow> dataCollection =
+                            GetData(path, pair.Key, false)
+                                .Skip(CurSheetSetting.StartRow.StartReadRow.Value - 1)
+                                .ToList();
+
+                        List<ReadCellSetting> tirePropos =
+                            CurSheetSetting.ReadCellSettings.Where(
+                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TireProposition"))).ToList();
+
+                        List<ReadCellSetting> tirePrices =
+                            CurSheetSetting.ReadCellSettings.Where(
+                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TirePrice"))).ToList();
+
+                        List<ReadCellSetting> stockValues =
+                            CurSheetSetting.ReadCellSettings.Where(
+                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Stock"))).ToList();
+                        List<ReadCellSetting> brandValues =
+                            CurSheetSetting.ReadCellSettings.Where(
+                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Brand"))).ToList();
+
+                        foreach (DataRow row in dataCollection)
                         {
-                            IEnumerable<DataRow> dataCollection =
-                                GetData(path, pair.Key, false).Skip(curSheetSetting.StartRow.StartReadRow.Value - 1).ToList();
+                            TireProposition tireProposition = ReadTireProposition(tirePropos, row);
 
-                            List<ReadCellSetting> tirePropos =
-                                curSheetSetting.ReadCellSettings.Where(
-                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TireProposition"))).ToList();
+                            TirePrice tirePrice = ReadTirePrice(tirePrices, row);
 
-                            List<ReadCellSetting> tirePrices =
-                                curSheetSetting.ReadCellSettings.Where(
-                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TirePrice"))).ToList();
+                            tireProposition.TirePrices.Add(tirePrice);
 
-                            List<ReadCellSetting> stockValues =
-                                curSheetSetting.ReadCellSettings.Where(
-                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Stock"))).ToList();
-                            List<ReadCellSetting> brandValues =
-                                curSheetSetting.ReadCellSettings.Where(
-                                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Brand"))).ToList();
-
-                            foreach (DataRow row in dataCollection)
+                            foreach (ReadCellSetting rcs in stockValues)
                             {
-                                TireProposition tireProposition = ReadTireProposition(tirePropos, row);
-
-                                TirePrice tirePrice = ReadTirePrice(tirePrices, row);
-
-                                tireProposition.TirePrices.Add(tirePrice);
-
-                                foreach (ReadCellSetting rcs in stockValues)
-                                {
-                                    tireProposition.Stocks.Add(ReadStock(rcs,row));
-                                }
-
-                                PriceDocument.TirePropositions.Add(tireProposition);
-                                Tire tire = ReadTire(row);
-                                tire.TireProposition = tireProposition;
-
-                                Db.Tires.Add(tire);
-                                Db.SaveChanges();
+                                tireProposition.Stocks.Add(ReadStock(rcs, row));
                             }
+
+                            pdoc.TirePropositions.Add(tireProposition);
+                            Tire tire = ReadTire(row);
+                            tire.TireProposition = tireProposition;
+
+                            Db.Tires.Add(tire);
                         }
                     }
                 }
+                Db.SaveChanges();
             }
         }
 
         public static Tire ReadTire(DataRow row)
         {
             ReadCellSetting celsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Tire")));
 
             Tire tire = new Tire();
+            string tiretitle = row[celsetting.CellNumber - 1].ToString().Trim();
             if (PrevDocumentExists)
             {
-                string tiretitle = row[celsetting.CellNumber - 1].ToString().Trim();
                 Tire prevtire =
-                    Db.Tires.Include("TireProposition.PriceDocument")
-                        .FirstOrDefault(
+                    Db.Tires.Include("TireProposition.PriceDocument.PriceReadSetting")
+                        .ToList().FirstOrDefault(
                             t =>
-                                string.Equals(t.TireProposition.PriceDocument.FileName, PriceDocument.FileName) &&
+                                string.Equals(t.TireProposition.PriceDocument.PriceReadSetting.FileName, PriceDocument.PriceReadSetting.FileName) &&
                                 string.Equals(t.TireTitle, tiretitle));
                 if (prevtire != null)
                 {
@@ -121,18 +119,18 @@ namespace TT_Market.Web.Models.HelpClasses
                     tire.Width = prevtire.Width;
                     tire.Country = prevtire.Country;
                 }
-                else
-                {
-                    tire.TireTitle = tiretitle;
-                    tire.Country = GetCountry(row);
-                    tire.Width = GetWidth(row);
-                    tire.Height = GetHeight(row);
-                    tire.Diameter = GetdDiameter(row);
-                    tire.SpeedIndex = GetSpeedIndex(row);
-                    tire.PressIndex = GetPressIndex(row);
-                    tire.ProductionYear = GetProductionYear(row);
-                    tire.Model = GetModel(row);
-                }
+            }
+            else
+            {
+                tire.TireTitle = tiretitle;
+                tire.Country = GetCountry(row);
+                tire.Width = GetWidth(row);
+                tire.Height = GetHeight(row);
+                tire.Diameter = GetdDiameter(row);
+                tire.SpeedIndex = GetSpeedIndex(row);
+                tire.PressIndex = GetPressIndex(row);
+                tire.ProductionYear = GetProductionYear(row);
+                tire.Model = GetModel(row);
             }
             return tire;
         }
@@ -140,7 +138,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static ProductionYear GetProductionYear(DataRow row)
         {
             ReadCellSetting pysetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "ProductionYear")));
             ProductionYear prodYear = null;
             if (pysetting != null)
@@ -211,7 +209,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
 
             ReadCellSetting seasonsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Season")));
             Season season = null;
             SeasonTitle seasontitle = null;
@@ -269,7 +267,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static ProtectorType GetProtectorType(DataRow row)
         {
             ReadCellSetting protTypeSetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "ProtectorType")));
             ProtectorType ptType = null;
             if (protTypeSetting!=null)
@@ -306,7 +304,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static Model GetModel(DataRow row)
         {
             ReadCellSetting modelsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Model")));
             Model model = null;
             ConvSign convSign = null;
@@ -359,6 +357,10 @@ namespace TT_Market.Web.Models.HelpClasses
             List<HomolAttribute> homols = Db.HomolAttributes.ToList();
             foreach (HomolAttribute item in homols)
             {
+                if (item.Key.StartsWith("*"))
+                {
+                    item.Key = @"\" + item.Key;
+                }
                 string pattern = item.Key + "$";
                 Regex reg = new Regex(pattern);
                 if (reg.IsMatch(modelstring))
@@ -373,7 +375,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static AutoType GetAutoType(DataRow row)
         {
             ReadCellSetting autotypesetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "AutoType")));
             AutoType autotype = null;
             if (autotypesetting != null)
@@ -448,7 +450,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static SpeedIndex GetSpeedIndex(DataRow row)
         {
             ReadCellSetting sisetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "SpeedIndex")));
             SpeedIndex speed = null;
             if (sisetting != null)
@@ -483,7 +485,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static PressIndex GetPressIndex(DataRow row)
         {
             ReadCellSetting pisetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "PressIndex")));
             PressIndex press = null;
             if (pisetting != null)
@@ -519,7 +521,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
 
             ReadCellSetting diamsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Diameter")));
             Diameter diameter = null;
             if (diamsetting != null)
@@ -555,7 +557,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
 
             ReadCellSetting widthsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Width")));
             Width width = null;
             if (widthsetting != null)
@@ -592,7 +594,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static Height GetHeight(DataRow row)
         {
             ReadCellSetting heightsetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Height")));
             Height height = null;
             if (heightsetting != null)
@@ -630,7 +632,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static Country GetCountry(DataRow row)
         {
             ReadCellSetting countrysetting =
-                curSheetSetting.ReadCellSettings.FirstOrDefault(
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "CountryTitle")));
 
             Country country = null;
@@ -639,7 +641,7 @@ namespace TT_Market.Web.Models.HelpClasses
             {
                 string ctstring = row[countrysetting.CellNumber - 1].ToString().Trim();
                 CountryTitle countryTitle =
-                    Db.CountryTitles.Include("Country").FirstOrDefault(
+                    Db.CountryTitles.Include("Country").ToList().FirstOrDefault(
                         ct => ct.PriceLanguage.Id == PriceLanguage.Id && string.Equals(ct.Title, ctstring));
                 if (countryTitle != null)
                 {
@@ -674,7 +676,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static City ReadCity(ReadCellSetting celsetting, DataRow row)
         {
             Target cityTarget = celsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "CityTitle"));
-            CityTitle cityTitle = Db.CityTitles.Include("City").FirstOrDefault(st => st.PriceLanguage.Id == PriceLanguage.Id &&
+            CityTitle cityTitle = Db.CityTitles.Include("City").ToList().FirstOrDefault(st => st.PriceLanguage.Id == PriceLanguage.Id &&
                                                                      string.Equals(st.Title, cityTarget.Value));
             City city;
             if (cityTitle != null)
@@ -753,17 +755,17 @@ namespace TT_Market.Web.Models.HelpClasses
                     {
                         case "RegularPrice":
                             double regprice;
-                            double.TryParse(row[price.CellNumber].ToString().Trim(), out regprice);
+                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out regprice);
                             tirePrice.RegularPrice = regprice;
                             break;
                         case "DiscountPrice":
                             double disc;
-                            double.TryParse(row[price.CellNumber].ToString().Trim(), out disc);
+                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out disc);
                             tirePrice.DiscountPrice = disc;
                             break;
                         case "SpecialPrice":
-                            double specpr=double.Epsilon;
-                            double.TryParse(row[price.CellNumber].ToString().Trim(), out specpr);
+                            double specpr;
+                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out specpr);
                             tirePrice.SpecialPrice = specpr;
                             break;
                     }

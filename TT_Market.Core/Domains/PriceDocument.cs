@@ -17,9 +17,6 @@ namespace TT_Market.Core.Domains
         public int Id { get; set; }
 
         public DateTime DownLoadDate { get; set; }
-        public string FileName { get; set; }
-        public Agent Agent { get; set; }
-        public PriceLanguage PriceLanguage { get; set; }
         public PriceReadSetting PriceReadSetting { get; set; }
         public ICollection<TireProposition> TirePropositions { get; set; }
     }

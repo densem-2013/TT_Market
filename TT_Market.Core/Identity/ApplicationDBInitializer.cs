@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Xml;
@@ -48,7 +49,7 @@ namespace TT_Market.Core.Identity
 
             LoadModelFromXML(path, context);
 
-            LoadPriceDocInitials(path, context);
+            //LoadPriceDocInitials(path, context);
             LoadPricesReadSettingsFromXml(path, context);
 
             LoadHomolAttriFromXml(path, context);
@@ -56,39 +57,6 @@ namespace TT_Market.Core.Identity
             AddStartUserIdentityCridentials(context);
         }
 
-        public static void LoadPriceDocInitials(string path, ApplicationDbContext context)
-        {
-
-            path = path + "PriceDocumentsInitial.xml";
-            var xml = XDocument.Load(path);
-            var collection = xml.Root.Descendants("PriceDocument");
-            List<Agent> agents = context.Agents.ToList();
-            List<PriceLanguage> priceLanguages = context.PriceLanguages.ToList();
-            var pdlist = (from item in collection
-                let xElement = item.Element("Filename")
-                where xElement != null
-                let element = item.Element("Agent")
-                where element != null
-                let xElement1 = item.Element("Language")
-                where xElement1 != null
-                select new
-                {
-                    FileName = xElement.Value,
-                    Language = xElement1.Value,
-                    Agent = element.Value
-                }).ToList();
-            List<PriceDocument> pds = pdlist.Select(x => new PriceDocument
-            {
-                DownLoadDate = DateTime.Now,
-                FileName = x.FileName,
-                Agent = agents.FirstOrDefault(a => string.Equals(a.AgentTitle, x.Agent)),
-                PriceLanguage =
-                    priceLanguages.ToList().FirstOrDefault(pl => string.Equals(pl.LanguageName, x.Language)) ??
-                    priceLanguages.ToList().FirstOrDefault(pl => pl.IsDefault)
-            }).ToList();
-            context.PriceDocuments.AddRange(pds);
-            context.SaveChanges();
-        }
 
         public static void LoadCitiesFromXml(string path, ApplicationDbContext context)
         {
@@ -610,38 +578,74 @@ namespace TT_Market.Core.Identity
             context.SaveChanges();
         }
 
+        //public static void LoadPriceDocInitials(string path, ApplicationDbContext context)
+        //{
+
+        //    path = path + "PriceDocumentsInitial.xml";
+        //    var xml = XDocument.Load(path);
+        //    var collection = xml.Root.Descendants("PriceDocument");
+        //    List<Agent> agents = context.Agents.ToList();
+        //    List<PriceLanguage> priceLanguages = context.PriceLanguages.ToList();
+        //    var pdlist = (from item in collection
+        //                  let xElement = item.Element("Filename")
+        //                  where xElement != null
+        //                  let element = item.Element("Agent")
+        //                  where element != null
+        //                  let xElement1 = item.Element("Language")
+        //                  where xElement1 != null
+        //                  select new
+        //                  {
+        //                      FileName = xElement.Value,
+        //                      Language = xElement1.Value,
+        //                      Agent = element.Value
+        //                  }).ToList();
+        //    List<PriceDocument> pds = pdlist.Select(x => new PriceDocument
+        //    {
+        //        DownLoadDate = DateTime.Now,
+        //        FileName = x.FileName,
+        //        Agent = agents.FirstOrDefault(a => string.Equals(a.AgentTitle, x.Agent)),
+        //        PriceLanguage =
+        //            priceLanguages.ToList().FirstOrDefault(pl => string.Equals(pl.LanguageName, x.Language)) ??
+        //            priceLanguages.ToList().FirstOrDefault(pl => pl.IsDefault)
+        //    }).ToList();
+        //    context.PriceDocuments.AddRange(pds);
+        //    context.SaveChanges();
+        //}
         public static void LoadPricesReadSettingsFromXml(string path, ApplicationDbContext context)
         {
-            IEnumerable<PriceDocument> prisedocs = context.PriceDocuments;
-
-            foreach (PriceDocument pdoc in prisedocs)
+            List<string> filenames = Directory.EnumerateFiles(path.Replace(@"DBinitial\Read", @"DocReadSettings")).ToList();
+            List<PriceReadSetting> plist=new List<PriceReadSetting>();
+            foreach (string file in filenames)
             {
-                string filepath = path.Replace(@"DBinitial\Read", @"DocReadSettings\") +
-                                  pdoc.FileName.Substring(0,
-                                      pdoc.FileName.Length -
-                                      (pdoc.FileName.Length - pdoc.FileName.LastIndexOf(".", StringComparison.Ordinal))) + ".xml";
-                if (File.Exists(filepath))
+                XmlDocument doc = new XmlDocument();
+                doc.Load(file);
+                XmlNode priceList = doc.DocumentElement;
+                var selectSingleNode = priceList.SelectSingleNode("FileName");
+                if (selectSingleNode != null)
                 {
-                    XmlDocument doc = new XmlDocument();
-                    doc.Load(filepath);
-                    XmlNode priceList = doc.DocumentElement;
-                    var selectSingleNode = priceList.SelectSingleNode("FileName");
-                    if (selectSingleNode != null)
-                    {
-                        string fn = selectSingleNode.InnerText;
+                    string fn = selectSingleNode.InnerText;
 
-                        XmlNode sheets = priceList.SelectSingleNode("Sheets");
+                    XmlNode sheets = priceList.SelectSingleNode("Sheets");
+                    var singleNode = priceList.SelectSingleNode("Agent");
+                    if (singleNode != null)
+                    {
+                        string agent = singleNode.InnerText;
+                        XmlNode lang = priceList.SelectSingleNode("PriceLanguage");
                         string trmask = JsonConvert.SerializeXmlNode(sheets);
+                        List<Agent> agents = context.Agents.ToList();
                         PriceReadSetting pricers = new PriceReadSetting
                         {
+                            FileName = fn,
+                            PriceLanguage = context.PriceLanguages.ToList().FirstOrDefault(pl => lang != null && string.Equals(pl.LanguageName, lang.InnerText)),
+                            Agent = agents.FirstOrDefault(a => string.Equals(a.AgentTitle, agent)),
                             TransformMask = trmask
                         };
-                        pdoc.PriceReadSetting = pricers;
+                        plist.Add(pricers);
+                        //context.PriceReadSettings.AddOrUpdate(prs => prs.FileName, pricers);
                     }
-                    
                 }
             }
-
+            context.PriceReadSettings.AddRange(plist);
             context.SaveChanges();
         }
 

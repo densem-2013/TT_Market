@@ -6,10 +6,6 @@ namespace TT_Market.Core.Domains
 {
     public sealed class PriceLanguage
     {
-        public PriceLanguage()
-        {
-            PriceDocuments = new List<PriceDocument>();
-        }
 
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -17,6 +13,5 @@ namespace TT_Market.Core.Domains
 
         public string LanguageName { get; set; }
         public bool IsDefault { get; set; }
-        public ICollection<PriceDocument> PriceDocuments { get; set; }
     }
 }

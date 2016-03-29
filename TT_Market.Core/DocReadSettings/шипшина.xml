@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<PriceReadSetting>
+  <FileName>шипшина.xls</FileName>
+  <Agent>ПП "ШипШина"</Agent>
+  <PriceLanguage>Ukrainian</PriceLanguage>
+  <Sheets>
+  </Sheets>
+</PriceReadSetting>
