@@ -4,5 +4,81 @@
   <Agent>ПП "ШипШина"</Agent>
   <PriceLanguage>Ukrainian</PriceLanguage>
   <Sheets>
+    <Sheet Name="TDSheet" >
+      <TitleRow RowNumber="7" RowSpan="1">
+        <Column>8</Column>
+        <Condition check="has">Товар</Condition>
+      </TitleRow>
+      <EndRow>
+        <Column>7</Column>
+        <Condition check="miss"><![CDATA[\sшина\s?$]]></Condition>
+      </EndRow>
+      <Columns>
+        <Column OrderNumber="1">
+          <Targets>
+            <target>
+              <type>TireProposition</type>
+              <property>TirePriceCode</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="2">
+          <Targets>
+            <target>
+              <type>Width</type>
+              <property>Value</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="3">
+          <Targets>
+            <target>
+              <type>Height</type>
+              <property>Value</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="4">
+          <Targets>
+            <target>
+              <type>Diameter</type>
+              <property>DSize</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="5">
+          <Targets>
+            <target>
+              <type>SeasonTitle</type>
+              <property>Title</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="6">
+          <Targets>
+            <target>
+              <type>Brand</type>
+              <property>BrandTitle</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="7">
+          <Targets>
+            <target>
+              <type>ProductionYear</type>
+              <property>Year</property>
+              <mask><![CDATA[(?<year>\d{2}(([-]|([,]\s?))\d{2})|(((\d{2}[,]){2})?\d{2}))?\S?\w?\s?(?<country>\S*)\s*$]]></mask>
+              <group>year</group>
+            </target>
+            <target>
+              <type>CountryTitle</type>
+              <property>Title</property>
+              <mask><![CDATA[(?<year>\d{2}(([-]|([,]\s?))\d{2})|(((\d{2}[,]){2})?\d{2}))?\S?\w?\s?(?<country>\S*)\s*$]]></mask>
+              <group>country</group>
+            </target>
+          </Targets>
+        </Column>
+      </Columns>
+    </Sheet>
   </Sheets>
 </PriceReadSetting>

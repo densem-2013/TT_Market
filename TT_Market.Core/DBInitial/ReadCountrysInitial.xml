@@ -38,7 +38,7 @@
   </Country>
   <Country>
     <Lang Name="Russian">Великобритания</Lang>
-    <Lang Name="Ukrainian">Великобританія</Lang>
+    <Lang Name="Ukrainian">Англiя</Lang>
   </Country>
   <Country>
     <Lang Name="Russian">Германия</Lang>
@@ -115,5 +115,9 @@
   <Country>
     <Lang Name="Russian">Португалия</Lang>
     <Lang Name="Ukrainian">Португалія</Lang>
+  </Country>
+  <Country>
+    <Lang Name="Russian">Европа</Lang>
+    <Lang Name="Ukrainian">Європа</Lang>
   </Country>
 </Countries>

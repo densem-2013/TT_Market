@@ -23,6 +23,8 @@
 			<Code>000000003</Code>
 			<Description>всесезонная</Description>
       <alterkey>всесез</alterkey>
+      <alterkey>all-s</alterkey>
+      <alterkey>AS</alterkey>
     <Lang Name="Ukrainian">всесезонна</Lang>
 		</CatalogObject.Сезон>
 		<CatalogObject.Сезон>

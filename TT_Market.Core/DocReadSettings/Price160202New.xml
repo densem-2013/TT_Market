@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <PriceReadSetting>
-    <FileName>Price160202New.xls</FileName>
+  <FileName>Price160202New.xls</FileName>
   <PriceLanguage>Russian</PriceLanguage>
   <Agent>ТОВ «ТАЄРС-АСІСТАНС»</Agent>
     <Sheets>
       <Sheet Name="Лист1" >
         <TitleRow RowNumber="5" RowSpan="2">
           <Column>5</Column>
-          <Condition>Описание</Condition>
+          <Condition check="has">Описание</Condition>
         </TitleRow>
         <EndRow>
           <Column></Column>
@@ -83,8 +83,8 @@
               <Column OrderNumber="7" >
                     <Targets>
                       <target>
-                        <type>Season</type>
-                        <property>SeasonTitle</property>
+                        <type>SeasonTitle</type>
+                        <property>Title</property>
                       </target>
                     </Targets>
               </Column>

@@ -9,6 +9,7 @@
         <alterkey>шип</alterkey>
         <alterkey>ad</alterkey>
         <alterkey>stud</alterkey>
+      <alterkey>ШИПОВАНА</alterkey>
       <Значение/>
     </CatalogObject.УслОбозначения>
 		<CatalogObject.УслОбозначения>
@@ -66,7 +67,15 @@
         <alterkey>под.шип</alterkey>
         <alterkey>п.</alterkey>
         <alterkey>п.ш</alterkey>
+      <alterkey>під\шип</alterkey>
       <Значение/>
 		</CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>5555555555555555</Ref>
+      <Description>M+S</Description>
+      <alterkey>m+s</alterkey>
+      <alterkey>M.S</alterkey>
+      <Значение>Грязь и снег</Значение>
+    </CatalogObject.УслОбозначения>
 	</V8Exch:Data>
 </V8Exch:_1CV8DtUD>

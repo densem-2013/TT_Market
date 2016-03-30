@@ -210,13 +210,13 @@ namespace TT_Market.Web.Models.HelpClasses
 
             ReadCellSetting seasonsetting =
                 CurSheetSetting.ReadCellSettings.FirstOrDefault(
-                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Season")));
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "SeasonTitle")));
             Season season = null;
             SeasonTitle seasontitle = null;
             if (seasonsetting != null)
             {
                 string seasonstring = row[seasonsetting.CellNumber - 1].ToString().Trim();
-                Target seasonTarget = seasonsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Season"));
+                Target seasonTarget = seasonsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "SeasonTitle"));
                 if (seasonTarget != null)
                 {
                     string seasvalue = "";
@@ -531,10 +531,10 @@ namespace TT_Market.Web.Models.HelpClasses
                 if (diaTarget != null)
                 {
                     string dmvalue = "";
-                    string heimask = diaTarget.Mask;
-                    if (heimask != null)
+                    string dmmask = diaTarget.Mask;
+                    if (dmmask != null)
                     {
-                        Regex reg = new Regex(heimask);
+                        Regex reg = new Regex(dmmask);
                         diaTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(diastring).Groups[x].Value;
@@ -543,16 +543,21 @@ namespace TT_Market.Web.Models.HelpClasses
                                 dmvalue = val;
                             }
                         });
-                        diameter = Db.Diameters.ToList().FirstOrDefault(d => string.Equals(d.DSize, dmvalue)) ??
-                                 new Diameter
-                                 {
-                                     DSize = dmvalue
-                                 };
                     }
+                    else
+                    {
+                        dmvalue = diastring;
+                    }
+                    diameter = Db.Diameters.ToList().FirstOrDefault(d => string.Equals(d.DSize, dmvalue)) ??
+                             new Diameter
+                             {
+                                 DSize = dmvalue
+                             };
                 }
             }
             return diameter;
         }
+
         public static Width GetWidth(DataRow row)
         {
 
@@ -562,35 +567,40 @@ namespace TT_Market.Web.Models.HelpClasses
             Width width = null;
             if (widthsetting != null)
             {
-                string heistring = row[widthsetting.CellNumber - 1].ToString().Trim();
+                string widthstring = row[widthsetting.CellNumber - 1].ToString().Trim();
                 Target widthTarget = widthsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Width"));
                 if (widthTarget != null)
                 {
                     string widthvalue = "";
-                    string heimask = widthTarget.Mask;
-                    if (heimask != null)
+                    string widthmask = widthTarget.Mask;
+                    if (widthmask != null)
                     {
-                        Regex reg = new Regex(heimask);
+                        Regex reg = new Regex(widthmask);
                         widthTarget.Groups.ForEach(x =>
                         {
-                            string val = reg.Match(heistring).Groups[x].Value;
+                            string val = reg.Match(widthstring).Groups[x].Value;
                             if (val != null && !string.Equals(val, string.Empty))
                             {
                                 widthvalue = val;
                             }
                         });
-                        double widthVal;
-                        double.TryParse(widthvalue, out widthVal);
-                        width = Db.Widths.ToList().FirstOrDefault(h => Math.Abs(h.Value - widthVal) < 0.001) ??
-                                 new Width
-                                 {
-                                     Value = widthVal
-                                 };
                     }
+                    else
+                    {
+                        widthvalue = widthstring;
+                    }
+                    double widthVal;
+                    double.TryParse(widthvalue, out widthVal);
+                    width = Db.Widths.ToList().FirstOrDefault(h => Math.Abs(h.Value - widthVal) < 0.001) ??
+                            new Width
+                            {
+                                Value = widthVal
+                            };
                 }
             }
             return width;
         }
+
         public static Height GetHeight(DataRow row)
         {
             ReadCellSetting heightsetting =
@@ -616,14 +626,18 @@ namespace TT_Market.Web.Models.HelpClasses
                                 heivalue = val;
                             }
                         });
-                        double heightVal;
-                        double.TryParse(heivalue, out heightVal);
-                        height = Db.Heights.ToList().FirstOrDefault(h => Math.Abs(h.Value - heightVal) < 0.001) ??
-                                 new Height
-                                 {
-                                     Value = heightVal
-                                 };
                     }
+                    else
+                    {
+                        heivalue = heistring;
+                    }
+                    double heightVal;
+                    double.TryParse(heivalue, out heightVal);
+                    height = Db.Heights.ToList().FirstOrDefault(h => Math.Abs(h.Value - heightVal) < 0.001) ??
+                             new Height
+                             {
+                                 Value = heightVal
+                             };
                 }
             }
             return height;
