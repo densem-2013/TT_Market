@@ -18,6 +18,7 @@ namespace TT_Market.Core.Domains
 
         public string Key { get; set; }
         public string Value { get; set; }
+        public Model Model { get; set; }
         public ICollection<Tire> Tires { get; set; }
         public ICollection<ConvAlter> ConvAlters { get; set; }
     }

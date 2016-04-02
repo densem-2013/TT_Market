@@ -19,8 +19,8 @@ namespace TT_Market.Core.Domains
         public string TirePriceCode { get; set; }
         public string ExtendedData { get; set; }
         public int? RegionCount { get; set; }
-        public int? PartnersCount { get; set; }
         public int? WaitingCount { get; set; }
+        public int? PartnersCount { get; set; }
         public int? ReservCount { get; set; }
         public PriceDocument PriceDocument { get; set; }
         public ICollection<Stock> Stocks { get; set; }

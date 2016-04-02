@@ -9,6 +9,7 @@
         <Column>8</Column>
         <Condition check="has">Товар</Condition>
       </TitleRow>
+      <SkipColumn>8</SkipColumn>
       <EndRow>
         <Column>7</Column>
         <Condition check="miss"><![CDATA[\sшина\s?$]]></Condition>
@@ -75,6 +76,97 @@
               <property>Title</property>
               <mask><![CDATA[(?<year>\d{2}(([-]|([,]\s?))\d{2})|(((\d{2}[,]){2})?\d{2}))?\S?\w?\s?(?<country>\S*)\s*$]]></mask>
               <group>country</group>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="8">
+          <Targets>
+            <target>
+              <type>Tire</type>
+              <property>TireTitle</property>
+            </target>
+            <target>
+              <type>ConvSign</type>
+              <property>Key</property>
+              <mask><![CDATA[^(\S*)\s((?<conv1>\D*)\s(?<conv2>\D*)\s)?((?<press>\d{2,3}([\/\\]\d{2,3})?)(?<speed>[A-Z])|((?<conv3>\D*)\s(?<press2>\d{2,3}([\/\\]\d{2,3}))(?<speed2>[A-Z])))\s(?<model>.*)\s(?<brand>\w*)\s(шина)\s?(.*)$]]></mask>
+              <group>conv1|conv2|conv3</group>
+            </target>
+            <target>
+              <type>Model</type>
+              <property>ModelTitle</property>
+              <mask><![CDATA[^(\S*)\s((?<conv1>\D*)\s(?<conv2>\D*)\s)?((?<press>\d{2,3}([\/\\]\d{2,3})?)(?<speed>[A-Z])|((?<conv3>\D*)\s(?<press2>\d{2,3}([\/\\]\d{2,3}))(?<speed2>[A-Z])))\s(?<model>.*)\s(?<brand>\w*)\s(шина)\s?(.*)$]]></mask>
+              <group>model</group>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="9">
+          <Targets>
+            <target>
+              <type>Stock</type>
+              <property>StockValue</property>
+            </target>
+            <target>
+              <type>CityTitle</type>
+              <property>Title</property>
+              <value>Львів</value>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="10">
+          <Targets>
+            <target>
+              <type>Stock</type>
+              <property>StockValue</property>
+            </target>
+            <target>
+              <type>CityTitle</type>
+              <property>Title</property>
+              <value>Київ</value>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="11">
+          <Targets>
+            <target>
+              <type>TireProposition</type>
+              <property>RegionCount</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="12">
+          <Targets>
+            <target>
+              <type>TireProposition</type>
+              <property>WaitingCount</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="13">
+          <Targets>
+            <target>
+              <type>TireProposition</type>
+              <property>PartnersCount</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="14">
+          <Targets>
+            <target>
+              <type>TireProposition</type>
+              <property>ReservCount</property>
+            </target>
+          </Targets>
+        </Column>
+        <Column OrderNumber="15">
+          <Targets>
+            <target>
+              <type>TirePrice</type>
+              <property>RegularPrice</property>
+            </target>
+            <target>
+              <type>Currency</type>
+              <property>CurrencyTitle</property>
+              <value>UAH</value>
             </target>
           </Targets>
         </Column>

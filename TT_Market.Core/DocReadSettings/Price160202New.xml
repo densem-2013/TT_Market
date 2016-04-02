@@ -9,6 +9,7 @@
           <Column>5</Column>
           <Condition check="has">Описание</Condition>
         </TitleRow>
+        <SkipColumn>5</SkipColumn>
         <EndRow>
           <Column></Column>
           <Condition></Condition>

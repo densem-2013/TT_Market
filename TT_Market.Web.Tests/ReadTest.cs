@@ -13,7 +13,7 @@ namespace TT_Market.Web.Tests
     {
         private static readonly string _pathXls =
             AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web.Tests\bin\Debug", "") +
-            @"TT_Market.Web\App_Data\Uploads\Price160202New.xls";
+            @"TT_Market.Web\App_Data\Uploads\шипшина.xls";
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<Tire> _tireRepository;

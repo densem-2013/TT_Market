@@ -19,7 +19,8 @@ namespace TT_Market.Core.HelpClasses
 
     public class StartRow
     {
-        public int? StartReadRow { get; set; }
+        public int? TitleRow { get; set; }
+        public int? TitleRowSpan { get; set; }
         public int? RewievColumn { get; set; }
         public string TitleRowPattern { get; set; }
     }
@@ -32,6 +33,7 @@ namespace TT_Market.Core.HelpClasses
     public class ReadSheetSetting
     {
         public string  SheetName { get; set; }
+        public int? SkipColumn { get; set; }
         public StartRow StartRow { get; set; }
         public EndRow EndRow { get; set; }
         public List<ReadCellSetting> ReadCellSettings { get; set; }

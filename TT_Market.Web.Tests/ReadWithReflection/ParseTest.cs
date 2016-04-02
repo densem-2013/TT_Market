@@ -20,7 +20,7 @@ namespace TT_Market.Web.Tests.ReadWithReflection
 
         private static readonly string _pathXls =
             AppDomain.CurrentDomain.BaseDirectory.Replace(@"TT_Market.Web.Tests\bin\Debug", "") +
-            @"TT_Market.Web\App_Data\Uploads\Price160202New.xls";
+            @"TT_Market.Web\App_Data\Uploads\шипшина.xls";
 
         public ParseTest()
         {
@@ -77,13 +77,13 @@ namespace TT_Market.Web.Tests.ReadWithReflection
 
             bool rnhasVal = sourceToken.SelectToken("TitleRow")["@RowNumber"] != null;
             bool rsHasVal = sourceToken.SelectToken("TitleRow")["@RowSpan"] != null;
-
             int? rn = (int?)sourceToken.SelectToken("TitleRow")["@RowNumber"];
             int? rs = (int?)sourceToken.SelectToken("TitleRow")["@RowSpan"];
-            string trpat = (string) sourceToken.SelectToken("TitleRow")["Condition"];
+            string trpat = sourceToken.SelectToken("TitleRow.Condition").Value<string>("#text");
             StartRow startRow = new StartRow
             {
-                StartReadRow = ((rnhasVal && rsHasVal) ? rn + rs : null),
+                TitleRow = rn,
+                TitleRowSpan = rs,
                 RewievColumn =
                     (int?)
                         (sourceToken.SelectToken("TitleRow")["Column"] ?? null),
@@ -97,12 +97,13 @@ namespace TT_Market.Web.Tests.ReadWithReflection
                         ((sourceToken.SelectToken("EndRow")["Column"].HasValues)
                             ? sourceToken.SelectToken("EndRow")["Column"]
                             : null),
-                StopReadPattern = (string) sourceToken.SelectToken("EndRow")["Condition"]
+                StopReadPattern = (string)sourceToken.SelectToken("EndRow")["Condition"]
             };
             ReadSheetSetting readSeting = new ReadSheetSetting
             {
                 SheetName = sheetname,
                 StartRow = startRow,
+                SkipColumn = (int?)sourceToken["SkipColumn"],
                 EndRow = endRow
             };
 
@@ -131,7 +132,6 @@ namespace TT_Market.Web.Tests.ReadWithReflection
 
             targetDict.Add(sheetname, readSeting);
             return targetDict.Count;
-
         }
 
         private static Target ParseTarget(JToken tok)

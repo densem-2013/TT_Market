@@ -7,8 +7,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using Excel;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json.Linq;
-using NPOI.SS.Formula;
+using NLog;
 using TT_Market.Core.Domains;
 using TT_Market.Core.HelpClasses;
 using TT_Market.Core.Identity;
@@ -17,6 +18,7 @@ namespace TT_Market.Web.Models.HelpClasses
 {
     public static class ImportData
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         private static readonly ApplicationDbContext Db = new ApplicationDbContext();
         private static PriceLanguage PriceLanguage { get; set; }
         private static PriceDocument PriceDocument { get; set; }
@@ -27,7 +29,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
 
             string filename = path.Substring(path.LastIndexOf("\\", StringComparison.Ordinal) + 1);
-            PriceDocument pdoc=new PriceDocument();
+            PriceDocument pdoc = new PriceDocument();
             PriceDocument = pdoc;
             PriceReadSetting priceReadSetting = Db.PriceReadSettings.Include("PriceLanguage").Include("Agent")
                 .FirstOrDefault(prs => string.Equals(prs.FileName, filename));
@@ -37,6 +39,7 @@ namespace TT_Market.Web.Models.HelpClasses
             {
                 Db.PriceDocuments.Add(pdoc);
                 PrevDocumentExists = priceReadSetting.PriceDocuments.Any();
+                logger.Trace("{0} - PrevDocument {1} Exists", priceReadSetting.FileName, PrevDocumentExists ? "" : "not");
                 PriceLanguage = priceReadSetting.PriceLanguage;
                 PriceDocument.DownLoadDate = DateTime.UtcNow;
 
@@ -45,53 +48,117 @@ namespace TT_Market.Web.Models.HelpClasses
                 foreach (var pair in docReadSettings)
                 {
                     CurSheetSetting = pair.Value;
-                    if (CurSheetSetting.StartRow.StartReadRow != null)
+
+                    IEnumerable<DataRow> dataCollection = GetRealDataRows(path, pair.Key);
+
+                    List<ReadCellSetting> tirePropos =
+                        CurSheetSetting.ReadCellSettings.Where(
+                            rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TireProposition"))).ToList();
+
+                    List<ReadCellSetting> tirePrices =
+                        CurSheetSetting.ReadCellSettings.Where(
+                            rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TirePrice"))).ToList();
+
+                    List<ReadCellSetting> stockValues =
+                        CurSheetSetting.ReadCellSettings.Where(
+                            rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Stock"))).ToList();
+                    List<ReadCellSetting> brandValues =
+                        CurSheetSetting.ReadCellSettings.Where(
+                            rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Brand"))).ToList();
+
+                    foreach (DataRow row in dataCollection)
                     {
-                        IEnumerable<DataRow> dataCollection =
-                            GetData(path, pair.Key, false)
-                                .Skip(CurSheetSetting.StartRow.StartReadRow.Value - 1)
-                                .ToList();
-
-                        List<ReadCellSetting> tirePropos =
-                            CurSheetSetting.ReadCellSettings.Where(
-                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TireProposition"))).ToList();
-
-                        List<ReadCellSetting> tirePrices =
-                            CurSheetSetting.ReadCellSettings.Where(
-                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "TirePrice"))).ToList();
-
-                        List<ReadCellSetting> stockValues =
-                            CurSheetSetting.ReadCellSettings.Where(
-                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Stock"))).ToList();
-                        List<ReadCellSetting> brandValues =
-                            CurSheetSetting.ReadCellSettings.Where(
-                                rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Brand"))).ToList();
-
-                        foreach (DataRow row in dataCollection)
+                        if (CurSheetSetting.SkipColumn != null &&
+                            (string.Equals(row[(int) CurSheetSetting.SkipColumn - 1].ToString(), string.Empty)))
                         {
-                            TireProposition tireProposition = ReadTireProposition(tirePropos, row);
-
-                            TirePrice tirePrice = ReadTirePrice(tirePrices, row);
-
-                            tireProposition.TirePrices.Add(tirePrice);
-
-                            foreach (ReadCellSetting rcs in stockValues)
-                            {
-                                tireProposition.Stocks.Add(ReadStock(rcs, row));
-                            }
-
-                            pdoc.TirePropositions.Add(tireProposition);
-                            Tire tire = ReadTire(row);
-                            tire.TireProposition = tireProposition;
-
-                            Db.Tires.Add(tire);
+                            continue;
                         }
+                        TireProposition tireProposition = ReadTireProposition(tirePropos, row);
+
+                        TirePrice tirePrice = ReadTirePrice(tirePrices, row);
+
+                        tireProposition.TirePrices.Add(tirePrice);
+
+                        foreach (ReadCellSetting rcs in stockValues)
+                        {
+                            tireProposition.Stocks.Add(ReadStock(rcs, row));
+                        }
+                        if (tireProposition.Stocks.Count == 0)
+                        {
+                            logger.Trace("Stocks was not recognised at line {0}", row.Table.Rows.IndexOf(row));
+                        }
+                        pdoc.TirePropositions.Add(tireProposition);
+                        Tire tire = ReadTire(row);
+                        tire.TireProposition = tireProposition;
+
+                        Db.Tires.Add(tire);
                     }
                 }
                 Db.SaveChanges();
             }
         }
 
+        public static int? CheckStartReadRow(IEnumerable<DataRow> rows)
+        {
+            if (CurSheetSetting.StartRow.TitleRow != null)
+            {
+                int definedStart = CurSheetSetting.StartRow.TitleRow.Value;
+                int? rowspan = CurSheetSetting.StartRow.TitleRowSpan;
+                if (CurSheetSetting.StartRow.RewievColumn != null)
+                {
+                    IEnumerable<DataRow> dataRows = rows as IList<DataRow> ?? rows.ToList();
+                    string controlTitle =
+                        dataRows.ElementAt(definedStart - 1).ItemArray[CurSheetSetting.StartRow.RewievColumn.Value - 1]
+                            .ToString
+                            ().Trim();
+                    if (string.Equals(CurSheetSetting.StartRow.TitleRowPattern, controlTitle))
+                    {
+                        return definedStart + (rowspan ?? 0);
+                    }
+                    IEnumerable<DataRow> startDataRows = dataRows.Take(10);
+                    foreach (
+                        DataRow row in
+                            startDataRows.Where(
+                                row =>
+                                    string.Equals(CurSheetSetting.StartRow.TitleRowPattern,
+                                        row.ItemArray[CurSheetSetting.StartRow.RewievColumn.Value - 1].ToString())))
+                    {
+                        return row.Table.Rows.IndexOf(row) + 1;
+                    }
+                }
+            }
+            return null;
+        }
+
+        public static List<DataRow> GetRealDataRows(string path,string sheetname)
+        {
+            List<DataRow> datacollection = GetData(path, sheetname, false).ToList();
+            int? startrow = CheckStartReadRow(datacollection);
+            if (startrow != null) datacollection = datacollection.Skip(startrow.Value).ToList();
+
+            if (CurSheetSetting.EndRow != null)
+            {
+                if (CurSheetSetting.EndRow.RewievColumn != null)
+                {
+                    int rewColumn = CurSheetSetting.EndRow.RewievColumn.Value;
+                    string stopPattern = CurSheetSetting.EndRow.StopReadPattern;
+                    if (!string.Equals(stopPattern,string.Empty))
+                    {
+                        Regex stopReg = new Regex(stopPattern,RegexOptions.Compiled|RegexOptions.Multiline);
+                        int? skipCol = CurSheetSetting.SkipColumn;
+                        if (skipCol!=null)
+                        {
+                            datacollection =
+                                datacollection.FindAll(row => !string.IsNullOrEmpty(row[(int) skipCol - 1].ToString()));
+                        }
+
+                        datacollection = datacollection.FindAll(row => stopReg.IsMatch(row[rewColumn].ToString().Trim()));
+                        //datacollection.TakeWhile(row => stopReg.IsMatch(row[rewColumn - 1].ToString())).ToList();
+                    }
+                }
+            }
+            return datacollection;
+        }
         public static Tire ReadTire(DataRow row)
         {
             ReadCellSetting celsetting =
@@ -151,7 +218,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string pymask = pyTarget.Mask;
                     if (pymask != null)
                     {
-                        Regex reg = new Regex(pymask);
+                        Regex reg = new Regex(pymask, RegexOptions.Compiled);
                         pyTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(pystring).Groups[x].Value;
@@ -183,7 +250,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string pimask = brandTarget.Mask;
                     if (pimask != null)
                     {
-                        Regex reg = new Regex(pimask);
+                        Regex reg = new Regex(pimask, RegexOptions.Compiled);
                         brandTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(brandstring).Groups[x].Value;
@@ -223,7 +290,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string seasmask = seasonTarget.Mask;
                     if (seasmask != null)
                     {
-                        Regex reg = new Regex(seasmask);
+                        Regex reg = new Regex(seasmask, RegexOptions.Compiled);
                         seasonTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(seasonstring).Groups[x].Value;
@@ -280,7 +347,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string ptMask = pTarget.Mask;
                     if (ptMask != null)
                     {
-                        Regex reg = new Regex(ptMask);
+                        Regex reg = new Regex(ptMask, RegexOptions.Compiled);
                         pTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(ptstring).Groups[x].Value;
@@ -307,7 +374,7 @@ namespace TT_Market.Web.Models.HelpClasses
                 CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Model")));
             Model model = null;
-            ConvSign convSign = null;
+            List<ConvSign> convSigns = null;
             HomolAttribute ha = null;
             HomolAttribute homAttribute = null;
             if (modelsetting != null)
@@ -320,7 +387,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string mdmask = modelTarget.Mask;
                     if (mdmask != null)
                     {
-                        Regex reg = new Regex(mdmask);
+                        Regex reg = new Regex(mdmask, RegexOptions.Compiled);
                         modelTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(mdstring).Groups[x].Value;
@@ -329,7 +396,7 @@ namespace TT_Market.Web.Models.HelpClasses
                                 modvalue = val;
                             }
                         });
-                        convSign = GetConvSignFromModelString(ref modvalue);
+                        convSigns = GetConvSignFromModelString(ref modvalue);
                         ha = GetHomolAttributeFromModelString(ref modvalue);
                         modvalue = modvalue.Trim();
                         model = Db.Models.ToList().FirstOrDefault(mod => string.Equals(mod.ModelTitle, modvalue)) ??
@@ -341,9 +408,9 @@ namespace TT_Market.Web.Models.HelpClasses
                         {
                             model.Homol = ha;
                         }
-                        if (model.ConvSign==null)
+                        if (model.ConvSigns==null)
                         {
-                            model.ConvSign = convSign;
+                            model.ConvSigns = convSigns;
                         }
                     }
                 }
@@ -361,11 +428,11 @@ namespace TT_Market.Web.Models.HelpClasses
                 {
                     item.Key = @"\" + item.Key;
                 }
-                string pattern = item.Key + "$";
-                Regex reg = new Regex(pattern);
+                string pattern = string.Format(@"\s{0}\s?",item.Key);
+                Regex reg = new Regex(pattern,RegexOptions.Compiled);
                 if (reg.IsMatch(modelstring))
                 {
-                    modelstring = Regex.Replace(modelstring, pattern, "");
+                    modelstring = Regex.Replace(modelstring, pattern, " ");
                     return item;
                 }
             }
@@ -388,7 +455,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string atmask = atTarget.Mask;
                     if (atmask != null)
                     {
-                        Regex reg = new Regex(atmask);
+                        Regex reg = new Regex(atmask, RegexOptions.Compiled);
                         atTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(atstring).Groups[x].Value;
@@ -417,34 +484,74 @@ namespace TT_Market.Web.Models.HelpClasses
             }
             return autotype;
         }
-        public static ConvSign GetConvSignFromModelString(ref string modstring)
+        public static List<ConvSign> GetConvSignFromModelString(ref string modstring)
         {
+            ReadCellSetting convSigSetting =
+                CurSheetSetting.ReadCellSettings.FirstOrDefault(
+                    rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "ConvSign")));
+
+            List<ConvSign> convSigns = new List<ConvSign>();
+            if (convSigSetting != null)
+            {
+                string csstring = modstring.Trim();
+                Target csTarget = convSigSetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "ConvSign"));
+                if (csTarget != null)
+                {
+                    List<string> csvalues = new List<string>();
+                    string csmask = csTarget.Mask;
+                    if (csmask != null)
+                    {
+                        Regex reg = new Regex(csmask, RegexOptions.Compiled);
+                        csTarget.Groups.ForEach(x =>
+                        {
+                            string val = reg.Match(csstring).Groups[x].Value;
+                            if (val != null && !string.Equals(val, string.Empty))
+                            {
+                                csvalues.Add(val);
+                            }
+                        });
+                        convSigns.AddRange(
+                            csvalues.Select(
+                                sign =>
+                                    (Db.ConvSigns.ToList().FirstOrDefault(cs => string.Equals(cs.Key, sign)) ??
+                                     Db.ConvSigns.Include("ConvAlters")
+                                         .ToList()
+                                         .FirstOrDefault(
+                                             at => at.ConvAlters.Any(csa => string.Equals(csa.AlterKey, sign)))) ??
+                                    new ConvSign
+                                    {
+                                        Key = sign
+                                    }));
+                    }
+                    return convSigns;
+                }
+            }
+
             List<ConvSign> convs = Db.ConvSigns.Include("ConvAlters").ToList();
-            ConvSign convSign = null;
 
             foreach (ConvSign item in convs)
             {
-                string pattern = item.Key + "$";
-                Regex reg = new Regex(pattern);
+                string pattern = string.Format(@"\s{0}\s?", item.Key);
+                Regex reg = new Regex(pattern, RegexOptions.Compiled);
                 if (reg.IsMatch(modstring))
                 {
-                    modstring = Regex.Replace(modstring, pattern, "");
-                    return item;
+                    modstring = Regex.Replace(modstring, pattern, " ");
+                    convSigns.Add(item);
                 }
                 foreach (ConvAlter alter in item.ConvAlters)
                 {
-                    string patalter = alter.AlterKey + "$";
-                    Regex regalter = new Regex(patalter);
+                    string patalter = string.Format(@"\s{0}\s?",alter.AlterKey) ;
+
                     if (reg.IsMatch(modstring))
                     {
-                        modstring = Regex.Replace(modstring, patalter, "");
-                        return item;
+                        modstring = Regex.Replace(modstring, patalter, " ");
+                        convSigns.Add(item);
                     }
                     
                 }
             }
 
-            return convSign;
+            return convSigns;
         }
 
         public static SpeedIndex GetSpeedIndex(DataRow row)
@@ -463,7 +570,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string simask = speedTarget.Mask;
                     if (simask != null)
                     {
-                        Regex reg = new Regex(simask);
+                        Regex reg = new Regex(simask, RegexOptions.Compiled);
                         speedTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(sistring).Groups[x].Value;
@@ -498,7 +605,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string pimask = pressTarget.Mask;
                     if (pimask != null)
                     {
-                        Regex reg = new Regex(pimask);
+                        Regex reg = new Regex(pimask, RegexOptions.Compiled);
                         pressTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(pistring).Groups[x].Value;
@@ -519,8 +626,7 @@ namespace TT_Market.Web.Models.HelpClasses
         }
         public static Diameter GetdDiameter(DataRow row)
         {
-
-            ReadCellSetting diamsetting =
+                        ReadCellSetting diamsetting =
                 CurSheetSetting.ReadCellSettings.FirstOrDefault(
                     rcs => rcs.Targets.Any(t => string.Equals(t.Entity, "Diameter")));
             Diameter diameter = null;
@@ -534,7 +640,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string dmmask = diaTarget.Mask;
                     if (dmmask != null)
                     {
-                        Regex reg = new Regex(dmmask);
+                        Regex reg = new Regex(dmmask, RegexOptions.Compiled);
                         diaTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(diastring).Groups[x].Value;
@@ -575,7 +681,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string widthmask = widthTarget.Mask;
                     if (widthmask != null)
                     {
-                        Regex reg = new Regex(widthmask);
+                        Regex reg = new Regex(widthmask, RegexOptions.Compiled);
                         widthTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(widthstring).Groups[x].Value;
@@ -617,7 +723,7 @@ namespace TT_Market.Web.Models.HelpClasses
                     string heimask = heiTarget.Mask;
                     if (heimask != null)
                     {
-                        Regex reg = new Regex(heimask);
+                        Regex reg = new Regex(heimask, RegexOptions.Compiled);
                         heiTarget.Groups.ForEach(x =>
                         {
                             string val = reg.Match(heistring).Groups[x].Value;
@@ -690,8 +796,11 @@ namespace TT_Market.Web.Models.HelpClasses
         public static City ReadCity(ReadCellSetting celsetting, DataRow row)
         {
             Target cityTarget = celsetting.Targets.FirstOrDefault(t => string.Equals(t.Entity, "CityTitle"));
-            CityTitle cityTitle = Db.CityTitles.Include("City").ToList().FirstOrDefault(st => st.PriceLanguage.Id == PriceLanguage.Id &&
-                                                                     string.Equals(st.Title, cityTarget.Value));
+            CityTitle cityTitle =
+                Db.CityTitles.Include("City")
+                    .ToList()
+                    .FirstOrDefault(st => cityTarget != null && (st.PriceLanguage.Id == PriceLanguage.Id &&
+                                                                 string.Equals(st.Title, cityTarget.Value)));
             City city;
             if (cityTitle != null)
             {
@@ -707,6 +816,10 @@ namespace TT_Market.Web.Models.HelpClasses
                         PriceLanguage = PriceLanguage
                     });
             }
+            if (city == null || city.CityTitles.Count == 0)
+            {
+                logger.Trace("CityTitle was not recognised at line {0}", row.Table.Rows.IndexOf(row));
+            }
             return city;
         }
 
@@ -714,6 +827,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
 
             TireProposition tireProposition = new TireProposition();
+            bool wasRecognized = false;
             foreach (ReadCellSetting rcs in celsettings)
             {
                 var orDefault =
@@ -725,32 +839,42 @@ namespace TT_Market.Web.Models.HelpClasses
                     {
                         case "TirePriceCode":
                             tireProposition.TirePriceCode = row[rcs.CellNumber].ToString().Trim();
+                            wasRecognized = true;
                             break;
                         case "ExtendedData":
                             tireProposition.ExtendedData = row[rcs.CellNumber].ToString().Trim();
+                            wasRecognized = true;
                             break;
                         case "RegionCount":
                             int regcount;
                             int.TryParse(row[rcs.CellNumber].ToString().Trim(), out regcount);
                             tireProposition.RegionCount = regcount;
+                            wasRecognized = true;
                             break;
                         case "PartnersCount":
                             int partcount;
                             int.TryParse(row[rcs.CellNumber].ToString().Trim(), out partcount);
                             tireProposition.PartnersCount = partcount;
+                            wasRecognized = true;
                             break;
                         case "WaitingCount":
                             int wait;
                             int.TryParse(row[rcs.CellNumber].ToString().Trim(), out wait);
                             tireProposition.WaitingCount = wait;
+                            wasRecognized = true;
                             break;
                         case "ReservCount":
                             int rescount;
                             int.TryParse(row[rcs.CellNumber].ToString().Trim(), out rescount);
                             tireProposition.ReservCount = rescount;
+                            wasRecognized = true;
                             break;
                     }
                 }
+            }
+            if (!wasRecognized)
+            {
+                logger.Trace("TireProposition was not recognised at line {0}", row.Table.Rows.IndexOf(row));
             }
             return tireProposition;
         }
@@ -758,6 +882,7 @@ namespace TT_Market.Web.Models.HelpClasses
         public static TirePrice ReadTirePrice(List<ReadCellSetting> celsettings, DataRow row)
         {
             TirePrice tirePrice = new TirePrice();
+            bool wasRecognized = false;
             foreach (ReadCellSetting price in celsettings)
             {
                 var firstOrDefault = price.Targets.FirstOrDefault(t => string.Equals(t.Entity, "TirePrice"));
@@ -769,28 +894,35 @@ namespace TT_Market.Web.Models.HelpClasses
                     {
                         case "RegularPrice":
                             double regprice;
-                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out regprice);
+                            double.TryParse(row[price.CellNumber - 1].ToString().Trim(), out regprice);
                             tirePrice.RegularPrice = regprice;
+                            wasRecognized = true;
                             break;
                         case "DiscountPrice":
                             double disc;
-                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out disc);
+                            double.TryParse(row[price.CellNumber - 1].ToString().Trim(), out disc);
                             tirePrice.DiscountPrice = disc;
+                            wasRecognized = true;
                             break;
                         case "SpecialPrice":
                             double specpr;
-                            double.TryParse(row[price.CellNumber-1].ToString().Trim(), out specpr);
+                            double.TryParse(row[price.CellNumber - 1].ToString().Trim(), out specpr);
                             tirePrice.SpecialPrice = specpr;
+                            wasRecognized = true;
                             break;
                     }
                 }
                 var curValue = price.Targets.FirstOrDefault(t => string.Equals(t.Entity, "Currency"));
                 tirePrice.Currency = Db.Currencys.ToList().FirstOrDefault(
-                            c =>
-                                (curValue != null)
-                                    ? string.Equals(c.CurrencyTitle, curValue.Value)
-                                    : c.IsDefault);
+                    c =>
+                        (curValue != null)
+                            ? string.Equals(c.CurrencyTitle, curValue.Value)
+                            : c.IsDefault);
 
+            }
+            if (!wasRecognized)
+            {
+                logger.Trace("TirePrice was not recognised at line {0}", row.Table.Rows.IndexOf(row));
             }
             return tirePrice;
         }
@@ -838,20 +970,24 @@ namespace TT_Market.Web.Models.HelpClasses
             var collection = Db.Set(type).Local;
             return false;
         }
+
         private static IExcelDataReader GetExcelDataReader(string path, bool isFirstRowAsColumnNames)
         {
             using (FileStream fileStream = File.Open(path, FileMode.Open, FileAccess.Read))
             {
-                IExcelDataReader dataReader;
+                IExcelDataReader dataReader = null;
 
                 if (path.EndsWith(".xls"))
                     dataReader = ExcelReaderFactory.CreateBinaryReader(fileStream);
                 else if (path.EndsWith(".xlsx"))
                     dataReader = ExcelReaderFactory.CreateOpenXmlReader(fileStream);
                 else
-                    throw new FileLoadException("The file to be processed is not an Excel file");
+                    logger.Error("The file to be processed is not an Excel file");
 
-                dataReader.IsFirstRowAsColumnNames = isFirstRowAsColumnNames;
+                if (dataReader != null)
+                {
+                    dataReader.IsFirstRowAsColumnNames = isFirstRowAsColumnNames;
+                }
                 return dataReader;
             }
         }
@@ -865,7 +1001,7 @@ namespace TT_Market.Web.Models.HelpClasses
         {
             DataTable workSheet = GetExcelDataAsDataSet(path, isFirstRowAsColumnNames).Tables[workSheetName];
             if (workSheet == null)
-                throw new WorkbookNotFoundException(string.Format("The worksheet {0} does not exist, has an incorrect name, or does not have any data in the worksheet", workSheetName));
+                logger.Error("The worksheet {0} does not exist, has an incorrect name, or does not have any data in the worksheet", workSheetName);
             return workSheet;
         }
 

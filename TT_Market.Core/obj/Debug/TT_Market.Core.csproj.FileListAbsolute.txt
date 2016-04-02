@@ -26,7 +26,6 @@ E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\EntityFramework.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\EntityFramework.SqlServer.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\EPPlus.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Excel.dll
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\ICSharpCode.SharpZipLib.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
@@ -36,10 +35,6 @@ E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.OAuth.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Newtonsoft.Json.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NLog.dll
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.dll
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OOXML.dll
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OpenXml4Net.dll
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OpenXmlFormats.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Owin.dll
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\EntityFramework.xml
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\EntityFramework.SqlServer.xml
@@ -54,11 +49,8 @@ E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.Cookie
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\Newtonsoft.Json.xml
 E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NLog.xml
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.xml
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OOXML.xml
-E:\GitProjects\TT_Market\TT_Market.Core\bin\Debug\NPOI.OpenXml4Net.xml
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.pdb
-E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csprojResolveAssemblyReference.cache
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.Migrations.Initial.resources
 E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csproj.GenerateResource.Cache
+E:\GitProjects\TT_Market\TT_Market.Core\obj\Debug\TT_Market.Core.csprojResolveAssemblyReference.cache

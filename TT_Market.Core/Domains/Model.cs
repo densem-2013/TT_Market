@@ -9,6 +9,7 @@ namespace TT_Market.Core.Domains
         public Model()
         {
             Tires = new List<Tire>();
+            ConvSigns = new List<ConvSign>();
         }
 
         [Key]
@@ -21,7 +22,7 @@ namespace TT_Market.Core.Domains
         public AutoType AutoType { get; set; }
         public ProtectorType ProtectorType { get; set; }
         public Season Season { get; set; }
-        public ConvSign ConvSign { get; set; }
+        public ICollection<ConvSign> ConvSigns { get; set; }
         public ICollection<Tire> Tires { get; set; }
 
     }

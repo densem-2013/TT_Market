@@ -83,7 +83,6 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\EntityFramework.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\EntityFramework.SqlServer.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\EPPlus.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Excel.dll
-E:\GitProjects\TT_Market\TT_Market.Web\bin\ICSharpCode.SharpZipLib.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.Identity.Core.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.Identity.EntityFramework.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.Identity.Owin.dll
@@ -99,10 +98,6 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.Twitter.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Web.Infrastructure.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Newtonsoft.Json.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.dll
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.dll
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OOXML.dll
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.dll
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXmlFormats.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Owin.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Net.Http.Formatting.dll
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Helpers.dll
@@ -125,9 +120,6 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.Identity.Core.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.Identity.EntityFramework.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\Newtonsoft.Json.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.xml
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.xml
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OOXML.xml
-E:\GitProjects\TT_Market\TT_Market.Web\bin\NPOI.OpenXml4Net.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Helpers.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Mvc.xml
 E:\GitProjects\TT_Market\TT_Market.Web\bin\System.Web.Optimization.xml
@@ -152,3 +144,4 @@ E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.Owin.Security.MicrosoftAcco
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csprojResolveAssemblyReference.cache
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
+E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.config

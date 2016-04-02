@@ -41,13 +41,13 @@ namespace TT_Market.Core.HelpClasses
 
             bool rnhasVal = sourceToken.SelectToken("TitleRow")["@RowNumber"] != null;
             bool rsHasVal = sourceToken.SelectToken("TitleRow")["@RowSpan"] != null;
-
             int? rn = (int?)sourceToken.SelectToken("TitleRow")["@RowNumber"];
             int? rs = (int?)sourceToken.SelectToken("TitleRow")["@RowSpan"];
-            string trpat = (string)sourceToken.SelectToken("TitleRow")["Condition"];
+            string trpat = sourceToken.SelectToken("TitleRow.Condition").Value<string>("#text");
             StartRow startRow = new StartRow
             {
-                StartReadRow = ((rnhasVal && rsHasVal) ? rn + rs : null),
+                TitleRow =  rn,
+                TitleRowSpan = rs,
                 RewievColumn =
                     (int?)
                         (sourceToken.SelectToken("TitleRow")["Column"] ?? null),
@@ -56,17 +56,17 @@ namespace TT_Market.Core.HelpClasses
             var ercol = sourceToken.SelectToken("EndRow")["Column"].HasValues;
             EndRow endRow = new EndRow
             {
-                RewievColumn =
-                    (int?)
-                        ((sourceToken.SelectToken("EndRow")["Column"].HasValues)
-                            ? sourceToken.SelectToken("EndRow")["Column"]
-                            : null),
-                StopReadPattern = (string)sourceToken.SelectToken("EndRow")["Condition"]
+                RewievColumn = (int?) (sourceToken.SelectToken("EndRow")["Column"]),
+                StopReadPattern =
+                    (sourceToken.SelectToken("EndRow")["Condition"] != null)
+                        ? sourceToken.SelectToken("EndRow")["Condition"].Value<string>("#cdata-section")
+                        : null
             };
             ReadSheetSetting readSeting = new ReadSheetSetting
             {
                 SheetName = sheetname,
                 StartRow = startRow,
+                SkipColumn = (int?) sourceToken["SkipColumn"],
                 EndRow = endRow
             };
 
