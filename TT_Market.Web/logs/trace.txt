@@ -1,0 +1,13 @@
+2016-04-03 18:16:34.2941|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|шипшина.xls - PrevDocument not Exists
+2016-04-03 18:52:49.7408|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 18:55:32.9812|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 18:57:38.7569|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:01:54.0171|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:04:19.8528|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:19:59.8002|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:24:33.2992|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:25:46.7208|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:25:46.8306|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|TireProposition was not recognised at line 6
+2016-04-03 19:26:47.0100|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|Price160202New.xls - PrevDocument not Exists
+2016-04-03 19:27:50.2107|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|TireProposition was not recognised at line 6
+2016-04-03 22:34:53.9033|TRACE|TT_Market.Web.Models.HelpClasses.ImportData|шипшина.xls - PrevDocument not Exists

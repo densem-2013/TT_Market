@@ -145,3 +145,7 @@ E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.csprojResolveAsse
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.dll
 E:\GitProjects\TT_Market\TT_Market.Web\obj\Debug\TT_Market.Web.pdb
 E:\GitProjects\TT_Market\TT_Market.Web\bin\NLog.config
+E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.SignalR.Core.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.SignalR.Core.xml
+E:\GitProjects\TT_Market\TT_Market.Web\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

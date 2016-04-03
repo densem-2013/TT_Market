@@ -22,4 +22,3 @@ E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Microsoft.AspNet.Identity.En
 E:\GitProjects\TT_Market\CreateInitialXML\bin\Debug\Newtonsoft.Json.xml
 E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.exe
 E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.pdb
-E:\GitProjects\TT_Market\CreateInitialXML\obj\Debug\CreateInitialXML.csprojResolveAssemblyReference.cache

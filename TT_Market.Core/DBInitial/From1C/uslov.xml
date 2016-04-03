@@ -77,5 +77,60 @@
       <alterkey>M.S</alterkey>
       <Значение>Грязь и снег</Значение>
     </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>6666666666666</Ref>
+      <Description>A6 (8сл)</Description>
+      <Значение>Армированный шип 8 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>7777777777777</Ref>
+      <Description>A6 (6сл)</Description>
+      <Значение>Армированный шип 6 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>8888888888888</Ref>
+      <Description>A6 (2сл)</Description>
+      <Значение>Армированный шип 2 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>9999999999999</Ref>
+      <Description>A5 (4сл)</Description>
+      <Значение>Армированный шип 4 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>A6 (8сл)</Description>
+      <Значение>Армированный шип 8 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>A8</Description>
+      <Значение>Армированный шип 8 слоёв</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>RHD</Description>
+      <alterkey>REG.RHD(вед.)</alterkey>
+      <Значение>Шины для ведущей оси, обеспечивающие большой пробег и эффективное сцепление с дорогой, предназначенные для широкого диапазона региональных перевозок</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>RHT</Description>
+      <alterkey>REG.RHT</alterkey>
+      <Значение>Шины для автоприцепов, предназначенные для региональных перевозок и обеспечивающие превосходный пробег, для широкого применения в различных сферах</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>RHD</Description>
+      <alterkey>REG.RHD(вед.)</alterkey>
+      <Значение>Шины для ведущей оси, обеспечивающие большой пробег и эффективное сцепление с дорогой, предназначенные для широкого диапазона региональных перевозок</Значение>
+    </CatalogObject.УслОбозначения>
+    <CatalogObject.УслОбозначения>
+      <Ref>01020334444444444444</Ref>
+      <Description>LHT</Description>
+      <alterkey>LHT(п/пр.</alterkey>
+      <alterkey>LHT(п/пр.)</alterkey>
+      <Значение></Значение>
+    </CatalogObject.УслОбозначения>
 	</V8Exch:Data>
 </V8Exch:_1CV8DtUD>

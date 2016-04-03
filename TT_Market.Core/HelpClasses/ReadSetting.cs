@@ -53,12 +53,14 @@ namespace TT_Market.Core.HelpClasses
                         (sourceToken.SelectToken("TitleRow")["Column"] ?? null),
                 TitleRowPattern = trpat
             };
-            var ercol = sourceToken.SelectToken("EndRow")["Column"].HasValues;
+            var ercol = sourceToken.SelectToken("EndRow")["Column"];
+            var stopreadtoken = sourceToken.SelectToken("EndRow")["Condition"];
             EndRow endRow = new EndRow
             {
-                RewievColumn = (int?) (sourceToken.SelectToken("EndRow")["Column"]),
+                RewievColumn =
+                    (int?) ((ercol != null && ercol.HasValues) ? sourceToken.SelectToken("EndRow")["Column"] : null),
                 StopReadPattern =
-                    (sourceToken.SelectToken("EndRow")["Condition"] != null)
+                    (stopreadtoken != null && stopreadtoken.HasValues)
                         ? sourceToken.SelectToken("EndRow")["Condition"].Value<string>("#cdata-section")
                         : null
             };

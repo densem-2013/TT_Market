@@ -120,3 +120,6 @@ E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.cspro
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.dll
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\obj\Debug\TT_Market.Web.Tests.pdb
 E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\NLog.config
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\WebGrease.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Antlr3.Runtime.dll
+E:\GitProjects\TT_Market\TT_Market.Web.Tests\bin\Debug\Antlr3.Runtime.pdb
